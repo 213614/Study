@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>06_연산자.html</title>
+    </head>
+
+    <body>
+
+        <h3>연산자</h3>
+
+        <script>
+            /*
+                ● 연산자 Operator
+                  - 이식성이 풍부하다 (연산자가 많을때)
+                  - 산술, 비교, 논리 연산자 (연산자 우선 순서 : 산술→비교→논리 / 최우선 연산자 = () )
+            */
+
+            // 1. 산술 연산자 : + - * / (계산기)
+            
+            document.write(5+3 + "<br>");    //8
+            document.write(5-2 + "<br>");    //3
+            document.write(5*3 + "<br>");    //15
+            document.write(5/3 + "<br>");    //1.6666666666666667 = 몫
+            document.write(5%3);             //2 = 나머지 : %은 나머지 연산자
+                        
+            document.write("<hr>");
+            
+            document.write(3/5 + "<br>");    //0.6
+            document.write(3%5 + "<br>");    //소수점없이 나누지 못하므로 3과 5 중 앞 수인 3이 떨어짐 
+                                             //6%7 도 6이 출력됨
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.write("<hr>");
+
+            // 2. 비교(관계 연산자) : < > == !=(같지 않다) <=(작거나 같다) >=(크거나 같다) 나옴
+            //                                            → 왼쪽을 기준으로 한다. 
+            // → 논리형(boolean)으로 반환된다 : true/false
+            document.write(5>3);        //true
+            document.write("<br>");
+            document.write(3>5);        //false
+
+            document.write("<hr>");
+
+            document.write(5>=3);       // >= 크거나 같다 : true
+            document.write("<br>"); 
+            document.write(5<=3);       // <= 작거나 같다 : false    
+
+            document.write("<hr>");
+
+            document.write(5==3);       // == 같다 : false
+            document.write("<br>");
+            document.write(5!=3);       // != 같지 않다 : true
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.write("<hr>");
+
+            // 3. 논리 연산자
+            // → 조건이 2개 이상일 경우 전체적으로 판단 → 결과값은 boolean값으로 반환 : true(1)/false(0)
+            // → 그리고(A and B) | 또는(A or B) | 부정 (A, not B)
+            
+            // 3-1. 그리고(and) 연산자 = && 연산자 : 모든 조건이 true 일때 ☞ 로그인 시 사용 (아이디와 비번이 맞아야 처리됨)
+            // → ~ 이면서 
+            // 〓 논리곱 연산자
+            document.write(5<3 && 2<4);  
+                     //    false  ture
+                     //    false (둘다 true여야 true값이 나온다)
+            
+            document.write("<hr>");
+
+            // 3-2. 또는(or) 연산자 = || 연산자 : 조건 중 하나만이라도 참이라면 true
+            // → ~ 이거나 
+            // 〓 논리합 연산자
+            document.write(5<3 || 2<4);  
+                     //    false  ture
+                     //    true (하나라도 true 값이 나오기 때문)
+            
+            document.write("<hr>");
+
+            // 3-3. 부정(not) 연산자 = ! 연산자 
+            // → ~가 아니라면
+            // 〓 논리부정 연산자
+            let flag=true;
+            document.write(!flag);   //flag 값이 true이기 때문에 true의 반대인 false가 출력된다
+
+        </script>
+    </body>
+</html>

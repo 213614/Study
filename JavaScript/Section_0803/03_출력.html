@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_출력.html</title>
+    </head>
+
+    <body>
+        <script>
+            
+            // ※ JavaScript에서 HTML 태그를 사용하려면,＊문자형＊으로 작성해야한다.
+            document.write("대한민국");
+            document.write("<br>");            
+            document.write("오 필승 코리아");
+            document.write("<hr>");
+            document.write("대한민국");
+            document.write("<hr>");
+
+            // document.write(""");    // " 만 쓰고싶다고 이렇게 하면 안됨
+            // document.write(''');    // ' 만 쓰고싶다고 이렇게 하면 안됨
+            // \ 와 쓰고싶은 기호를 쓰면 단순 기호로써 인식됨
+            document.write("\"");      
+            document.write("<hr>");
+            document.write("\'");
+            document.write("<hr>");
+            document.write("\\");
+            document.write("<hr>");
+           
+            document.write("＂");      // 아예 특수문자를 쓰면 \없이도 기호로 인식됨
+            document.write("<hr>");
+            document.write('"');      // JS에서는 ''안에 " 혹은 "" 안에 '는 기호로 인식됨
+
+        </script>
+    </body>
+</html>

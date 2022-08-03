@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>07_연습문제.html</title>
+    </head>
+
+    <body>
+
+        <h3>연산자 연습문제</h3>
+
+        <script>
+            document.write("<hr>");
+
+            //문1) 임의의 정수가 짝수인지 확인하시오 
+            //   → 짝수란? 2로 나누어서 나머지가 0인 수 = 2의 배수
+            let a=8;
+            document.write(a%2==0);
+            //   → a를 2로 나누었을 때 나머지가 0과 같다 
+            //             8%2
+            //              0 == 0
+            //                ∴ true 
+            document.write("<br>");
+            document.write(a%2!=1);
+            //   → a를 2로 나누었을 때 나머지 값이 1과 같지 않다. (밑 문1-1)
+            //              8%2
+            //               0 != 1
+            //                 ∴ true
+           
+            /* 문1-1 ) 임의의 정수를 2로 나눴을 때 나머지가 1과 같지 않으면 짝수 → 문제 1과 결과값이 같아야 함
+            let b=4;
+            document.write(b%2!=1);
+            //   → b를 2로 나누었을 때 나머지 값이 1과 같지 않다.
+            //              4%2
+            //               0 != 1
+            //                ∴  true */
+
+            document.write("<hr>");
+
+            //문2) 임의의 정수가 3의 배수인지 확인하시오                    
+            //   → 3으로 나눠서 나머지가 0인 수 
+            let b=17;
+            document.write(b%3==0);
+            //              17%3
+            //                2 != 0
+            //               ∴ false        
+
+            document.write("<hr>");
+
+            //문3) 임의의 정수가 4의 배수인지 확인하시오
+            //   → 4로 나눠서 나머지가 0인 수 
+            let c=88;
+            document.write(c%4==0);
+            //              88%4
+            //                0 == 0
+            //                ∴ true
+
+            document.write("<hr>");
+      
+            //문4) 해당 년도가 윤년인지 확인하시오            
+            //   → 윤년 : 4년마다 한번씩 2월이 29일로 끝나는 해 = 4의 배수 = 4번마다 반복된다
+            let year=2022;
+            document.write(year%4==0);
+
+            document.write("<hr>");
+            
+            //문5) 임의의 정수가 2의 배수이면서 5의 배수인지 확인하시오 = 10의 배수인지 확인하시오 
+            let d=42;
+            document.write(d%2==0 && d%5==0); 
+            //              42%2     42%5
+            //                0 == 0   2 != 0
+            //                true      false
+            //                   ∴ false
+
+                    document.write("<br>");
+
+            document.write(d%10==0);     // 2의 배수&&5의 배수 = 10의 배수                          
+            
+            document.write("<hr>");
+
+            //문6) 임의의 정수가 1 또는 3인지 확인하시오 = 홀수 (ex.주민번호에서 홀수=남성/짝수=여성 이럴때 사용)
+            let code=1;
+            document.write(code==1 || code==3);
+            //                true      false
+            //                     true
+
+            document.write("<hr>");
+
+        </script>
+    </body>
+</html>

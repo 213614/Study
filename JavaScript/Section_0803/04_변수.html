@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_변수.html</title>
+    </head>
+
+    <body>
+            <h3>상수와 변수</h3>
+        <script>
+
+            // 참조 : https://www.w3schools.com/js/js_variables.asp
+            // 값(Data, Value) 표현 방법
+            //    → 상수, 변수
+            
+            // 1. 상수(constant) → 고정 불변의 값
+            document.write(3);
+            document.write(-5);
+            document.write("A");
+            document.write('가');
+            document.write(true);
+            document.write("<hr>");
+
+            /* 
+                ● 식별자를 명명하는 규칙
+                    → id명(id=""), name명(name=""), 변수명, 함수명, 객체명 ···.
+                    → 식별자명에 의미를 부여하는 것이 중요 (이름만 보고도 어떤 값을 저장한건지 알아야함)
+                    → 식별자명은 영문,숫자 조합해서 사용 가능 
+                    ※ 주의사항: 한글은 식별자명으로 절대 사용 불가, 첫글자는 숫자 안됨 (무조건 영문으로 시작)
+            */
+            
+
+            // 2. 변수(variable) → 변하는 값
+            // → java에서는 변수의 타입(=자료형:실수,정수 등등)을 지정해야하는데 JS는 괜찮음
+            // → JavaScript 변수 타입(자료형)의 타입 : ver, let, const, nothing
+            // → 대입 변산자 형식 : 변수명=값 
+
+            // 2-1. var
+            var a=3; //a라는 변수 선언하고 3을 저장해달라는 뜻
+            var c=50; 
+            var f2=54;
+                document.write(a); //변수 a를 화면에 출력
+                document.write(c);
+                document.write(f2);
+                document.write("&nbsp"); 
+                document.write(a+c+f2); //107
+                document.write("&nbsp");
+                document.write("a"); //상수 a (문자형)
+            
+            document.write("<hr>");
+
+            // 2-2. nothing : 변수를 선언하지 않아도 사용할 수 있다.
+            name="손흥민"; 
+            age=25;         //변수 타입을 선언하지않고 변수명(name,age,height)에 값을 넣은 것
+            height=178.8;
+                document.write(name);
+                document.write(age);
+                document.write(height);
+            
+            document.write("<hr>");
+
+            // 변수는 새로운 값으로 대입하면서 사용한다.
+            // ↓ 이 시점부터 위의 a,c,f2,name,age,height들의 변수의 값이 바뀐것 
+            a=2;
+            c=4;
+            f2=6;
+
+            name="김연아";
+            age=30;
+            height=165.9;
+
+                document.write(a); 
+                document.write(c);
+                document.write(f2);
+
+                document.write(name);
+                document.write(age);
+                document.write(height);
+                
+            document.write("<hr>");
+
+            // 2-3. let → 반드시 변수 선언 후 사용
+            let i=2; // 변수를 선언한거지 타입을 지정한건 아님!
+            let j=4;
+            let k=i+j;
+                document.write(k); //6
+
+            // let i=8; → error : 이미 i 변수가 값이 선언되어있음 
+            // ※ let에서는 이중 선언이 안됨
+             
+            document.write("<hr>");
+
+            // 2-4. const → 변수를 상수화 시킴
+            const x=10;
+            // x=9; → error : const 선언은 지정된 변수의 값을 바꿀 수 없다. (변수의 상수화)
+            //                = 최초의 값이 마지막 값이 된다.
+
+        </script>
+    </body>
+</html>
