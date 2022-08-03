@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>15_layout.html</title>
+    </head>
+
+    <body>
+        <!-- 참조:https://www.w3schools.com/css/css_rwd_intro.asp
+                 :https://www.w3schools.com/html/html_layout.asp
+                 :NCS학습모듈(화면구현) https://ncs.go.kr/ -->
+
+        <!-- 블럭안에 블럭을 배치하려면 CSS Position 이용 -->
+        
+        <div id="wrap" style="background-color:antiquewhite;">#wrap 전체블럭
+            <div id="header" style="background-color:palegoldenrod;">#header</div>
+            
+            <div id="main" style="background-color:darkolivegreen;">#main
+                <div id="sub" style="background-color:darkgreen;">#sub</div>
+                <div id="content" style="background-color: darkgoldenrod;">#content</div>
+            </div><!--id=main 끝-->
+            
+            <div id="footer" style="background-color:springgreen;">#footer</div>
+        </div><!--id=wrap 끝-->
+        
+        <!-- ※ <div></div> 닫힘태그 잘 확인! -->
+
+<hr>
+        <!--연습) 동행복권 웹 서브페이지 레이아웃
+            참조:https://dhlottery.co.kr/store.do?method=sellerInfo645-->
+            <div id="wrap">
+            
+            <div id="header">
+                <div id="header_logo">
+                    <span>동행복권</span>
+                    <input type="button" value="로그인">
+                    <input type="button" value="회원가입">
+                    <input type="button" value="마이페이지">
+                    <input type="button" value="고객센터">
+                </div> <!--id=header_logo end-->
+
+                <div id="header_nav"> <!--대분류-->
+                    <h1 style="display:none;">대분류</h1>
+                    <!--style="display:none;" : 화면상에 출력되지 않음-->
+                    <ul style="list-style:none;">
+                        <!--style="list-style:none; 앞 도형이 화면상 출력되지않음 (정의목록처럼)-->
+                        <li>복권구매</li>
+                        <li>복권정보</li>
+                        <li>당첨결과</li>
+                        <li>판매점</li>
+                        <li>이벤트</li>
+                        <li>행복공감</li>
+                    </ul>
+                </div> <!--id=header_nav end-->
+            </div> <!--id=header end-->
+            
+            <div id="main">
+                <div id="sub">
+                    <h2 style="display:none;">중분류</h2>  
+                    <span>판매점</span>
+                    <ul style="list-style:none;">
+                        <li>구입처안내</li>
+                        <li>당첨판매점</li>
+                    </ul>
+                </div> <!--id=sub end-->
+                <div id="content">
+                    <h3 style="display:none;">소분류</h3>  
+                    <span style="font-size:28px;">로또6/45판매점 조회</span>
+                    <table border="1">
+                        <tr>
+                            <td>
+                                <strong><span style="color:rgb(61, 111, 219);">지역</span>으로 검색</strong>
+                                <br>
+                                <form>
+                                    <select id="sido" name="sido">
+                                        <option value="시/도 선택">시/도 선택</option>
+                                        <option value="서울" selected>서울</option>
+                                        <option value="경기">경기</option>
+                                        <option value="인천">인천</option>
+                                    </select>
+                                    <select id="gugun" name="gugun">
+                                        <option value="구/군을 선택해주세요.">구/군을 선택해주세요.</option>
+                                        <option value="강남구" selected>강남구</option>
+                                        <option value="강동구">강동구</option>
+                                        <option value="강북구">강북구</option>
+                                    </select>
+                                    <button>조회</button>
+                                    <!--<input type="button" value="조회> 강사님은 이렇게 입력하심
+                                        input 버튼으로 해도 자바스크립트나 제이쿼리에서 서브밋기능을 넣으면 됨-->
+                                </form>
+                            </td>
+
+                            <td>
+                                <strong><span style="color:rgb(61, 111, 219);">상호/지역(읍/면/동)</span>으로 검색</strong>
+                                <form>
+                                    <select id="store" name="store">
+                                    <!--아직 자바스크립트랑 제이쿼리 안쓰기때문에 id가 딱히 상관없음 있어도되고 없어도됨-->
+                                        <option value="상호" selected>상호</option>
+                                        <option value="지역(읍/면/동)" >지역(읍/면/동)</option>
+                                    </select>
+                                    <input type="text">
+                                    <input type="submit" value="조회">
+                                    <!--<input type="button" value="조회> 강사님은 이렇게 입력하심
+                                        버튼으로 해도 자바스크립트나 제이쿼리에서 서브밋기능을 넣으면 됨-->
+                                    <!--왜 여기에 넣었는데 버튼이 위로 올라가지? 위에 /td가 숨어있었다!-->
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+<br>           
+                    <span>검색결과:</span>
+                    <form>
+                        <select>
+                            <option value="전체" selected>전체</option>
+                            <option value="판매점">판매점</option>
+                            <option value="폐점">폐점<option>
+                        </select>
+                        <input type="submit" value="조회">
+                    </form>
+
+                    <table border="1">
+                        <tr>
+                            <th>상호명</th>
+                            <th>전화번호</th>
+                            <th>소재지</th>
+                            <th>위치보기</th>
+                        </tr>
+                        
+                        <tr>
+                            <td>GS25(논현동점)</td>
+                            <td>02-516-0245</td>
+                            <td>서울 강남구 도산대로50길 27 동현종합상가 맞은 편</td>
+                            <td>
+                                <input type="image" src="../images/search.png">
+                                <!--<a href=""><img src="../images/search.png"></a>
+                                    강사님은 이렇게 코드짜셨음-->
+                            </td>
+                        </tr>
+                    </table>
+                </div> <!--id=content end-->
+            </div> <!--id=main end-->
+            
+            <div id="footer"></div> <!--id=footer end-->
+       
+       
+        </div> <!--id=wrap end-->
+
+
+    </body>
+</html>

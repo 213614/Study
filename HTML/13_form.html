@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>13_form.html</title>
+    </head>
+
+    <body>
+        <!--참조:https://www.w3schools.com/html/html_forms_attributes.asp-->
+        <h3>1. 폼 관련 속성들</h3>
+        
+        <!--
+            ● 폼 속성들
+            id=""           폼 아이디 (주로 frontend단에서 접근시 사용)
+            name=""         폼 이름   (주로 backend단에서 접근시 사용)
+            action=""       사용자가 입력 요청한 정보를 서버측에서 받는 페이지를 명시 또는 명령어
+            method=""       전송 방식 (get / post)
+            enctype=""      파일 첨부
+        -->
+
+        <form id="loginfrm" name="loginfrm" action="ok.jsp">
+        <!--action="파일명.jsp/.py/.asp/.php" : form안에 정보를 받을 서버를 지정함
+             → 폼 데이터(form data)를 서버로 보낼 때 해당 데이터가 도착할 URL을 명시-->
+            
+             아이디 : 
+             <input type="text"name="userid">
+<hr>
+            비밀번호 : 
+            <input type="password" name="userpw">
+<hr>
+            <input type="submit" value="전송">
+        </form>
+<hr>    
+        <!--파일 첨부 전송시 enctype을 이용 enctype이 없으면 파일이 전송되지 않음-->
+        <form enctype="multipart/form-data">
+            
+            첨부파일 : <input type="file">
+         </form>
+
+         <h3>2. type=image</h3>
+         <form action="ok2.jsp">
+                <img src="../images/coffee.png">
+<hr>  
+                <input type="image" src="../images/coffee2.png">
+                <!--전송기능이 안에 숨겨져있어서 누르면 action으로 연결된 페이지로 이동
+                    ex. 검색창 돋보기 버튼 (이미지를 추가해서 버튼을 꾸밀 수 있음)
+                    → <img src=""> + <type="submit"> = <type="image"> -->
+<hr>
+                검색 : 
+                <input type="text" name="search">
+                <input type="image" src="../images/search.png">
+<hr>
+         </form>
+
+         <!--참조:https://www.w3schools.com/html/html_form_input_types.asp-->
+         <h3>3. 다양한 input types</h3>
+
+         <!--HTML페이지내에서 노출되지는 않지만 form에 포함된 컨트롤 요소-->
+         <input type="hidden" id="page" name="page" value="3">
+         <input type="hidden" id="col" name="col" value="title">
+         <!--form에 포함되어있으므로 함께 서버로 전송되지만 페이지에는 노출되지않음-->
+
+         <input type="number" id="quantity" name="quantity" min="1" max="5">
+<hr>     <!--숫자만 입력 가능-->
+         <input type="range" id="vol" name="vol" min="0" max="50">
+<hr>     <!--범위 바가 생김(ex.볼륨바, 원하는 가격대 선택바)-->
+         <input type="color">
+<hr>
+         <input type="date">
+<hr>
+         <input type="search">
+<hr>
+         <input type="time">
+<hr>
+
+        <h3>4. label</h3>
+        <label for="user">이름 : </label>
+        <input type="text" id="user">
+        <!--이름을 클릭해도 user이라는 변수의 텍스트 상자로 오토포커싱됨-->
+
+
+    </body>
+</html>

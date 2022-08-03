@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>05_이미지.html</title>
+    </head>
+
+    <body>
+        <!--
+            ● 이미지(.jpg .png .gif) 
+              <img src="경로명+파일명"> (닫힘태그 없음,src=source란뜻)
+              <img src="경로명+파일명"/> 
+
+              1) 상대 경로 : 현재 문서가 저장되어 있는 폴더를 기준으로 한다. 
+                             (이 파일에서는 /frontede/html 경로 기준으로 잡았을때)
+                             imgages/       현재 기준이 되는 폴더 안에서(html폴더) images폴더
+                             ./images/      현재 폴더 안에서 하위폴더 images폴더
+                             ../images/     현재 폴더의 상위폴더 images
+                             ../..images/   현재 폴더의 상위의 상위폴더 images 
+                             => 폴더 경로를 지칭하는 표현
+              2) 절대 경로 : 서버 경로(url경로), 웹 프로젝트의 홈디렉토리(root)부터 시작
+              (대부분 상대 경로로 많이 사용함)
+
+              ● src뒤에는 주로 파일명이 옴
+      -->
+      <img src="../images/b_apeach.png" width="150px" height="100px">
+      <hr>
+      <img src="../images/k2.png" width="50%" height="50%"> 
+      <!--%는 이미지도 브라우저 크기에 맞게 반응함-->
+      <hr>
+      <img src="../images/apeach.png" width="150px"> 
+      <br><img src="../images/apeach.png" height="80px"> 
+      <!--가로값만 지정하면 세로는 알아서 조절됨(반대 설정도 마찬가지)
+          크기에 대한 기준은 가로(width) -->
+      <hr>
+
+      <!--테두리선-->
+      <img src="../images/face-glasses.png" border="2px">
+      <hr>
+      <img src="../images/face-glasses.png" border="0"> 
+      <!--설정값을 주기 싫은 경우 0으로 설정함(강한 의사표시)-->
+      <hr>
+      <!--빨갛게 표시되는 속성은 더이상 사용하지 않으므로 사용하지 말라는 뜻-->
+
+    </body>
+</html>

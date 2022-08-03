@@ -1,0 +1,138 @@
+<html lang="ko">
+    <head>
+        <title>08_link.html</title>
+    </head>
+
+    <body>
+        <!--
+            ● 웹 페이지 연결
+               1) 다른 페이지와의 연결
+                    : <a href="경로명+페이지명 또는 URL주소">문자열</a> -> 문자열을 클릭하면 링크한 페이지로 이동
+                      target="_blank"속성은 새 탭에서 페이지가 열림
+                      참조:https://www.w3schools.com/tags/att_a_target.asp
+               2) 같은 페이지 내에서 문서연결 = 북마크한다(ex.맨 위로,맨 아래로)
+                    : <h1 id="아이디명">서울</h1>
+                      -> id는 식별자 / 밑에 있는 여기를 누르면 id가 속성된 곳으로 이동됨 (예시:하단의 챕터들)
+                      <a href="#아이디명">여기</a>
+                      -> frontend단에서 #은 id속성을 가르키는 단축키
+                      참조:https://www.w3schools.com/html/html_links_bookmarks.asp
+               3) 다른 페이지로 이동하면서 북마크한 곳으로 이동
+                    : <a href="html_demo.html#C4">Jump to Chapter 4</a>
+                      -> demo.html 페이지 안에 id=c4인 곳으로 이동  
+        -->
+
+        <!--1) 다른 페이지와의 연결 예제-->
+        <a href="https://www.itwill.co.kr/" target="_blank">아이티윌</a>
+        <br>
+        <a href="https://www.naver.com">네이버</a>
+        <br>
+        <a href="https://www.daum.net">다음</a>
+        <hr>
+        <a href="04_색상.html">색상</a>
+        <br>
+        <a href="05_이미지.html">이미지</a>
+        <hr>
+
+        <!--단락은 <p>태그-->
+        <p>
+            (지디넷코리아=이정현 미디어연구소)삼성전자 차세대 폴더블폰 ‘갤럭시Z플립4’의 렌더링이 공개돼 화제가 되고 있다고 IT매체 폰아레나가 26일(현지시간) 보도했다.
+            
+            해당 렌더링은 유명 IT 팁스터 스티브 해머스토퍼(트위터 @OnLeaks)가 IT매체 기즈넥스트와 함께 작업해 공개한 것으로, 다양한 각도에서 제품 모습을 보여주는 것이 특징이다.
+        </p>
+        <p>
+            공개된 렌더링에서 전작과 유사한 디자인을 갖춘 갤Z플립 4의 모습을 확인해 볼 수 있다. 색상은 그래파이트, 핑크 골드, 보라 퍼플, 블루 4개로 제공될 것으로 예상된다.
+
+            뒷면의 카메라 모듈에는 2개의 센서가 자리잡고 있는데 전작과 달리 검은 색으로 칠해져 있어 갤럭시Z 플립4의 투톤 디자인을 더 강조한다. 
+        </p>
+        <p>
+            화면 우측에는 음량 버튼이 있고 왼쪽에는 유심 카드 트레이가, 하단에는 스피커와 USB 타입-C 포트가 자리하고 있다.
+
+            갤럭시Z플립 4은 1200만 화소 메인 카메라와 1200만 화소 초광각 카메라의 듀얼 후면 카메라에 1000만 화소 전면 카메라가 탑재될 예정이다. 또한 스냅드래곤 8+ 젠 1 프로세서에 8GB 램, 128GB/256GB/ 512GB 내부 스토리지, 방수 IPX8 등급 및 무선 충전 기능, 안드로이드 12 기반 원 UI 4.1.1을 탑재할 것으로 전망된다.
+
+            삼성전자는 오는 8월 10일 뉴욕에서 ‘갤럭시 언팩’을 열어 갤럭시Z폴드4와 갤럭시Z플립4을 공개할 예정이다.
+
+            이정현 미디어연구소(jh7253@zdnet.co.kr)
+        </p>
+
+        <!--2) 같은 페이지 내에서 문서연결(북마크) 예제 : id 속성과 그 사용법-->
+        <p><a href="#C4">Jump to Chapter 4</a></p>
+        <p><a href="#C10" target="_blank">Jump to Chapter 10</a></p>
+        <p><a href="#C23">Jump to Chapter 23</a></p>
+
+        <h2 id="C1">Chapter 1</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 2</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 3</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2 id="C4">Chapter 4</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 5</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 6</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 7</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 8</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 9</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2 id="C10">Chapter 10</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 11</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 12</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 13</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 14</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 15</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 16</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 17</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 18</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 19</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 20</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 21</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2>Chapter 22</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <h2 id="C23">Chapter 23</h2>
+        <p>This chapter explains ba bla bla</p>
+
+        <p><a href="#C1">Jump to Chapter 1</a></p>
+
+
+
+
+
+    </body>
+</html>

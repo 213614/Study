@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>12_form.html</title>
+    </head>
+
+    <body>
+        <!--
+            ● Form 입력 양식
+            : 사용자들이 값을 입력할 수 있도록 해줌
+            (ex. 로그인, 검색 ···.)
+            참조:https://www.w3schools.com/html/html_form_input_types.asp
+        -->
+        <!--
+            요소(Element) : <table> <img> <a>(링크태그) <audio> ···.
+            속성(Property=attribute) : width height border src ···.
+            
+            ● 다양한 폼 컨트롤 요소
+            1) <input> 요소 : 타입들에 따라 넣을 수 있는 속성은 조금씩 다름
+            2) 여닫힘태그가 있는 form 컨트롤 요소
+        -->
+
+        <!--<input> 요소-->
+        <input type="button">
+        <!--    버튼은 아무 기능은 없음, 버튼의 모양은 Bootstrap,CSS를 이용하여 변경가능 
+                기능 부여(동작)을 하고싶다면 JavaScript 등을 이용 -->
+        <input type="button" value="로그인">
+        <input type="button" value="검색">
+        <input type="button" value="등록">
+        <input type="button" value="입실">
+<hr>
+        <input type="submit" value="전송">
+        <input type="reset" value="취소">
+        <!--    버튼과 생김새는 비슷해도 기능은 완전 다름
+                submit은 사용자가 입력한 정보를 서버로 전송할 수 있고 
+                reset은 사용자가 입력한 입력 값(정보)을 다시 초기화함 -->
+<hr>       
+        <button>회원가입</button>
+        <!--    input요소는 아니지만 사용 할 수 있고 모양도 인풋 버튼과 같음
+                하지만 type="button"+type="submit"의 기능이 결합된 태그 -->
+
+<hr>
+        <input type="radio" name="1">
+        <br><input type="radio" name="1">
+        <br><input type="radio" name="1">
+        <!--    radio는 동그란 모양으로 하나의 값만 선택 가능
+                name="그룹명" 이라는 속성값을 여러 radio에 두어 그룹화시키면
+                하나만 선택 가능하다 (그룹화하지 않으면 중복선택 가능)
+                참조:https://curryyou.tistory.com/215 -->
+<hr>      
+        <input type="checkbox">
+        <br><input type="checkbox">
+        <br><input type="checkbox">
+        <!--    checkbox는 네모난 모양으로 값을 중복 선택 가능 -->
+<hr>
+        
+
+        <!--    로그인 페이지 
+                참조:https://dhlottery.co.kr/user.do?method=login&returnUrl= -->
+        <h3>LOGIN</h3>
+
+        <!--    사용자가 입력한 정보는 <form>태그로 묶인 그룹들 단위로 서버로 전송된다 
+                로그인 버튼을 누르면 <form>태그 안에있는 데이터들이 서버로 전송됨 -->
+        <form>
+            <table border="1">
+                <tr>
+                    <th>아이디</th>
+                        <td> <input type="text"> </td> <!-- 아이디 입력 칸 -->
+                        <td rowspan="2"> 
+                            <input type="submit" value="로그인"> <!-- 입력된 정보들을 서버로 보내는 버튼-->
+                        </td>
+                </tr>
+
+                <tr>
+                    <th>비밀번호</th>
+                    <td> <input type="password"> </td> <!-- 비밀번호 입력 칸:아이디와 다르게 가려져야하기때문에 패스워드 타입을 사용-->
+                </tr>
+
+                <tr>
+                    <td colspan="3"> <!-- 하나의 칸으로 병합하고 각 input요소들 삽입 -->
+                        <input type="checkbox"> ID저장
+                        <input type="button" value="회원가입">
+                        <input type="button" value="아이디／비밀번호 찾기">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <!-- 
+            ※ 주의 사항 ※
+                ex) 잘못된 경우 : form안에 또 form태그가 들어가면 안됨
+                    <form>
+                        <form>
+                        </form>
+                    </form>
+
+                ex) 잘된 경우 : form태그가 여러개여도 상관없음
+                    <form>
+                    </form>
+                    <form>
+                    </form>
+        -->
+<hr>
+        <!-- 회원가입 페이지 -->
+        <h3>회원가입</h3>
+
+        <form id="memfrm" name="memfrm">
+        <!--    id="JavaScript나 JQuery접근시 주로 사용" 
+                frontend단에선 id사용을 추천(#때문에)
+                name="backend단에서 주로 사용"
+                id와 name 주로 같은 값을 준다(헷갈림 방지) 
+                id와 name으로 그룹화를 해야 정보를 프로그램이 컨트롤 할 수 있음 -->
+            
+            이름 :
+            <input type="text" autofocus>
+            <!-- autofocus는 자동으로 마우스 커서가 들어가는 것 
+                 하나만 사용 가능 -->
+<hr>    
+            아이디 : 
+            <input type="text"
+                   id="userid"
+                   name="userid"
+                   size="10"
+                   maxlength="5"
+                   placeholder="아이디를 입력해주세요."
+                   required>
+                   <!-- size = 텍스트상자 크기
+                        maxlength = 최대 글자 수
+                        placeholder = 클릭 전 보충 설명글이 보여짐
+                        required = 입력값이 없으면 넘어가지 않음 
+                                 = 서버로 제출되기 전 반드시 채워져 있어야 하는 입력 필드를 명시
+                                 → 참조:https://ssungkang.tistory.com/entry/htmlinput%E1%84%8B%E1%85%B4-%E1%84%91%E1%85%B5%E1%86%AF%E1%84%89%E1%85%AE%E1%84%80%E1%85%A1%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8C%E1%85%B5%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB-required -->
+            <input type="button" value="중복 확인">
+<hr>
+            비밀번호 : 
+            <input type="password"
+                   id="userpw"
+                   name="userpw"
+                   size="12"
+                   maxlength="12"
+                   placeholder="비밀번호를 입력해주세요."
+                   required>
+<hr>
+            우편번호 : 
+            <input type="text" size="5" readonly> 
+            <!--readonly : 커서가 들어가지 못하므로 사용자가 입력 불가-->
+            <input type="button" value="주소찾기">
+<hr>
+            나이 : 
+            <input type="radio" name="age" value="10"> 10대
+            <input type="radio" name="age" value="20"> 20대
+            <input type="radio" name="age" value="30"> 30대
+            <!-- 사용자가 20대를 선택하면 age라는 변수에 20이라는 값(value)을
+                 가진 정보가 서버로 넘어감 -->
+<hr>
+            성별 :
+            <input type="radio" name="gender" value="m"> 남자
+            <input type="radio" name="gender" value="w" checked> 여자
+            <!-- checked : 미리 예시로 선택이 되어져 있음 -->
+<hr>
+            취미 : 
+            <input type="checkbox" id="movie" name="movie" value="m" checked> 영화
+            <input type="checkbox" id="cook" name="cook" value="c"> 요리
+            <input type="checkbox" id="book" name="book" value="b"> 독서
+<hr>
+        </form>
+
+        <!--여닫힘태그가 있는 form 컨트롤 요소-->
+        <form id="myform" name="myform">
+                <button>버튼 1</button>
+<hr>
+                생년월일 :
+                <select id="myyear" name="myyear">
+                    <option value="2022">2022</option>
+                    <option value="2021" selected>2021</option>
+                    <option value="2020">2020</option>
+                </select>
+                <!-- 사용자가 연도를 선택하면 myyear 변수에 그 value값이 들어가고 위의 버튼1을 누르면 서버로 전송됨-->
+
+                <select id="mymonth" name="mymonth" multiple>
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4">4월</option>
+                    <option value="5">5월</option>
+                </select>
+                <!-- multiple : Ctrl키를 이용하여 다중선택 가능 -->
+<hr>
+                배송 메세지 : 
+                <textarea cols="50" rows="3" maxlength="200">200자 이내로 입력해주세요.</textarea>
+<hr>            
+                <input type="submit" value="전송">
+                <input type="reset" value="취소">
+                <!-- <form name=myform>이 서버로 전송되는 버튼 -->
+        </form>
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>14_블럭 요소.html</title>
+    </head>
+
+    <body>
+        <!--참조:https://www.w3schools.com/html/html_blocks.asp-->
+        <!--HTML은 미리 블록처럼 그룹화해서 명령을 줘야함
+            (워드처럼 실시간으로 드래그해서 명령 불가. 그럴려면 CSS로 해야함)
+            → 블럭을 잡아서 id로 식별해놓고 CSS에서 #ID명 으로 명령 줌
+            열고 닫는 태그로 이루어진 태그는 Block Level Element -->
+        <!--특정 영억에 대해서 블럭을 지정할 수 있음
+            블럭 요소의 크기는 자신이 감싸는 내용과 상관없이 자신만의 영역을 가지고 있음 -->
+
+        <h3>1.블록 요소 Block</h3>    
+        <!-- ● 블럭이 없는(안잡혀있는) 경우 -->
+        Text 1
+        Text 2
+        Text 3
+<hr>
+        <!-- ● 블럭이 있는 경우
+             : 열고 닫는 태그로 이루어진 태그는 블록 형태 (ex.<h1></h1>···.)
+               블럭 안에 블럭 가능 => 레이아웃 
+             → <div>태그를 이용하여 블럭을 잡는다 
+                    : 내용과 상관없이 화면 가로 처음부터 끝까지를 하나의 블럭으로 만든다-->
+
+        <div>Text 1</div>
+        <div>Text 2</div>
+        <div>Text 3</div>
+<hr>
+        <!-- ● 블럭 인용구 -->
+        <blockquote>Text1</blockquote>
+        <blockquote>Text2</blockquote>
+        <blockquote>Text3</blockquote>
+<hr>
+        <pre>
+            서울특별시
+            강남구        테      헤란로
+            삼원타  워 4층 아이티윌
+        </pre>
+        <!--엔터 및 스페이스 가능-->
+<hr>
+        
+        <h3>2.인라인 요소 inline</h3>
+        <!--인라인 요소의 크기는 자신이 감싸는 내용과 밀접하며,
+            내용의 크기가 곧 자신의 크기가 된다.-->
+        <strong>진하게</strong>
+        <u>밑줄</u>
+        <i>기울임</i>
+        <a>링크</a>
+        <span>솔테스크</span>
+        <!-- <div>와 비슷하지만 내용의 크기까지만 블럭화되므로 줄바꿈이 되진 않음 -->
+        <textarea cols="10" rows="3"></textarea>
+<hr>
+        
+        <h3>3. 블럭 요소의 크기</h3>
+        <div style="background-color: cadetblue;">DIV</div>
+        <blockquote style="background-color: rgb(9, 65, 67); color: bisque;">BLOCKQUOTE</blockquote>
+        <span style="background-color: rgb(55, 173, 65);">SPAN</span>
+        <pre style="background-color: brown;">PRE</pre>
+        <h1 style="background-color: rgb(74, 26, 123); color: aliceblue;">H1</h1>
+        <ul style="background-color:red;">
+            <li>LIST 1</li>
+            <li style="background-color: rgb(222, 176, 77);">LIST 2</li>
+        </ul>
+<hr>
+
+        <h3>4. inline 요소의 크기</h3>
+        <strong style="background-color:rgb(179, 87, 179);">김연아</strong>
+        <span style="background-color:orange;">김연경</span>
+<hr>
+
+        <!--블럭요소와 인라인요소는 주로 CSS에서 편집한다(;세미콜론 빼먹지말기)-->
+        <div style="background-color:rgb(174, 225, 149); width:250px; height:200px;"></div>
+    </body>
+</html>

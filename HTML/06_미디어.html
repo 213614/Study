@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>06_미디어.html</title>
+    </head>
+
+    <body>
+        <!--
+            ● 동영상(.mp4 .avi / .mp3(오디오만) .ram(오디오만))
+              1) Old Version 사용 비추 
+                 : <embed src="경로명+파일명">
+              2) HTML5 Version 사용 추천 : 오디오,비디오 파일 구분 필요
+                 : 아래 태그들 
+        -->
+
+        <img src="../music/gangnamstyle.jpg" width="50%">
+        <br>
+        <audio controls>        <!--오디오 플레이어 태그-->
+            <source src="../music/gangnamstyle.mp3">
+        </audio>
+        <hr>
+        <!--hr태그에도 속성값 추가 가능 <hr width="50%" align="left">-->
+        <img src="../music/genie.jpg" width="50%">
+        <br>
+        <audio controls>
+            <source src="../music/genie.mp3">
+        </audio>
+        <hr>
+        <video width="350" height="300" poster="../music/crayonpop.jpg" controls>   
+            <!--비디오 플레이어 태그-->
+            <!--뒤에 controls필수, poster는 썸네일-->
+            <source src="../music/crayonpop.mp4">
+        </video>
+    </body>
+</html>
