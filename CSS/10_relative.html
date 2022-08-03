@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>10_relative.html</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            /* 1. 요소의 자기위치가 살아있음 
+            #s1 ul {
+                    background-color: burlywood;
+                    height: 300px;
+                    width: 300px;
+                    position: relative;
+                   } 
+            #s1 li:nth-child(1) {
+                                 background-color: khaki;
+                                 position: relative; 
+                                 left: 50px; top: 30px;
+                                 width: 100%;
+                                }     
+            #s1 li:nth-child(2) { 
+                                 background-color: lightgreen;
+                                }
+            #s1 li:nth-child(3) { 
+                                 background-color: lightskyblue;
+                                }
+            */
+
+            /* 2. 부모의 위치에 자녀태그 위치가 따라감 */
+            #s1 ul {
+                    background-color: burlywood;
+                    height: 300px;
+                    width: 300px;
+                    position: relative;
+                    left: 50px; top: 50px;
+                   } 
+            #s1 li:nth-child(1) {
+                                 background-color: khaki;
+                                 position: relative; 
+                                 --left: 50px; top: 30px; right: 50px;
+                                 width: 100%;
+                                }     
+            #s1 li:nth-child(2) { 
+                                 background-color: lightgreen;
+                                }
+            #s1 li:nth-child(3) { 
+                                 background-color: lightskyblue;
+                                }
+        </style>
+    </head>
+
+    <body>
+        <!--상대적 위치 position:relative
+            → 원 위치를 살린채 (비워둔채) 위치 이동됨-->
+        <section id="s1">
+            <h3>position:absolute</h3>
+            <ul>
+                <li>손흥민</li>
+                <li>김연아</li>
+                <li>김연경</li>
+            </ul>
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/*
+    문자 인코딩 UTF-8 
+    → 3byte짜리로 한글(2byte)이 깨지지 않기때문에 첫줄에 선언해놓는다
+    ＊반드시 첫줄에 와야한다
+*/
+
+/* .css파일이므로 <style></style>쓰면 오류남!
+   참조:https://www.w3schools.com/cssref/css_selectors.asp */
+
+/*mystyle.css*/
+
+* {
+    font-family: Courier New;
+    font-size: 18px;
+    font-style: oblique;
+    font-weight: normal;
+  } /* 모든 요소들에 적용됨*/
+
+body {
+     margin: 0;  /*바깥여백, 특정 방향을 지정하지않으면 전 방향에 값이 적용됨*/
+     padding: 0; /*안쪽여백*/   
+     background-color: bisque;
+     }
+
+.line {
+        border: 1px dotted saddlebrown;
+        background-color: bisque;
+      }
+
+#mylayer {
+            width: 200px;
+            height: 200px;
+            background-color: darkolivegreen;
+         }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>09_Absolute.html</title>
+        <!--현재 페이지에서 CSS 초기화-->
+        <link rel="stylesheet" href="reset.css">
+        <style>
+/*   
+            #s1 ul {
+                 background-color: burlywood;
+                 height: 300px;
+                }
+*/
+/*
+            #s1 li:nth-child(1) {
+                                background-color: orangered;
+                                position: absolute; right: 5px; bottom: 60;
+                                } 
+*/        
+/* 
+            #s1 li:nth-child(1) {
+                                 background-color: orangered;
+                                 position: absolute; left: 100px; top: 30px;
+                                 /*left,top은 그 위치 여백 값
+                                }                
+*/              
+            /* 1. <body> 본문 영역이 기준 좌표 
+            #s1 li:nth-child(1) {
+                                 background-color: orangered;
+                                 position: absolute; left: 100px; top: 30px;
+                                }     
+            #s1 li:nth-child(2) { 
+                                 background-color: darkgreen;
+                                }
+            #s1 li:nth-child(3) { 
+                                 background-color: rebeccapurple;
+                                }  */
+
+            /* 2. 부모 태그 영역을 기준으로 position:relative ← 부모태그에 작성(없으면 body가 기준이됨)  */
+            /* 여기선 부모=ul 자식=li \
+            #s1 ul {
+                    background-color: burlywood;
+                    height: 300px;
+                    position: relative;
+                   }
+            #s1 li:nth-child(1) {
+                                 background-color: khaki;
+                                 position: absolute; 
+                                 right: 0; bottom: 0px;
+                                }     
+            #s1 li:nth-child(2) { 
+                                 background-color: lightgreen;
+                                }
+            #s1 li:nth-child(3) { 
+                                 background-color: lightskyblue;
+                                }
+                                 */
+            
+            /* 3.  */
+            #s1 ul {
+                    background-color: burlywood;
+                    height: 300px;
+                    width: 100px;
+                    position: relative;
+                   }
+            #s1 li:nth-child(1) {
+                                 background-color: khaki;
+                                 position: absolute; 
+                                 right: 0; bottom: 0px;
+                                 width: 100%;
+                                }     
+            #s1 li:nth-child(2) { 
+                                 background-color: lightgreen;
+                                }
+            #s1 li:nth-child(3) { 
+                                 background-color: lightskyblue;
+                                }
+/* 부모는 relativ 자식은 absolute가 가장 일반적 */
+
+        </style>
+    </head>
+
+    <body>
+        <!--절대적 위치 position:absolute
+            → 위치가 바뀌면서 원래 위치가 없어짐
+            → 부모태그(여기선body)를 기준으로 잡고 여백이 설정되어 포지션이 잡힘 
+              = 부모태그의 포지션을 설정하지않으면 기본으로 body를 기준으로함(좌측 최상단)
+            / relative 는 원 위치를 살리면서 위치 변경 -->
+        <section id="s1">
+            <h3>position:absolute</h3>
+            <ul>
+                <li>국어</li>
+                <li>영어</li>
+                <li>수학</li>
+            </ul>
+        </section>
+
+
+    </body>
+</html>

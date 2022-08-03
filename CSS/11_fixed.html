@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>11_fixed.html</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            /* 
+                absolute 문서 영역 기준 (부모태그 위치가 없다면 body영역을 기준으로 함)\
+                fixed    화면 영역 기준 (브라우저를 기준으로) ex. 위로 버튼 아래로 버튼, 퀵메뉴 등 
+            */ 
+            /* 1.
+            #s1 ul {
+                    background-color: tan;
+                   }
+            #s1 li:nth-child(1) {background-color: cadetblue;}
+            #s1 li:nth-child(2) {background-color: lightslategrey;
+                                 --position: absolute;
+                                 --position: relative;
+                                 position: fixed;
+                                 left: 100px; top: 100px;
+                                }
+            #s1 li:nth-child(3) {background-color: palevioletred;}
+            */
+            /* 2.
+            #s1 ul {
+                    background-color: tan;
+                   }
+            #s1 li:nth-child(1) {background-color: cadetblue;}
+            #s1 li:nth-child(2) {background-color: lightslategrey;
+                                 position: fixed;
+                                 --left: 100px; --top: 100px;
+                                 bottom: 0;
+                                 height: 80px;
+                                 width: 100%;
+                                }
+            #s1 li:nth-child(3) {background-color: palevioletred;}
+            */
+            /* 3. 부모태그 포지션 지정 
+                  → 브라우저 화면을 기준으로 보기 때문에 부모의 포지션에 영향을 받지 않음*/
+            #s1 ul {
+                    background-color: tan;
+                    position: relative;
+                    height: 300px;
+                   }
+            #s1 li:nth-child(1) {background-color: cadetblue;}
+            #s1 li:nth-child(2) {background-color: lightslategrey;
+                                 position: fixed;
+                                 --left: 100px; --top: 100px;
+                                 bottom: 0;
+                                 height: 80px;
+                                 width: 100%;
+                                }
+            #s1 li:nth-child(3) {background-color: palevioletred;}
+        </style>
+    </head>
+
+    <body>
+            <!--고정 위치 position:fixed 
+                스크롤로 페이지 이동해도 고정되어서 나타남-->
+            <section id="s1">
+                <h3>position:fixed</h3>
+                <ul>
+                    <li>개나리</li>
+                    <li>진달래</li>
+                    <li>라일락</li>
+                </ul>
+            </section>
+
+            <!--문서의 길이를 강제로 길게, 수직 스크롤이 나올 수 있도록 환경조성 후 테스트-->
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            <p>FLOWER</p>
+            
+
+
+
+    </body>
+</html>

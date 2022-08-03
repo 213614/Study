@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>22_Media Query.html</title>
+        <style>
+            /*1.가장 기본형
+            div { width: 100%; height: 200px;
+                  font-size: 12px;
+                  border: 2px solid maroon;
+                }         */
+            
+            /*2. Used for computer screen, tablets, smart-phone etc.*/
+            @media screen {
+                            div { 
+                                  width: 100%; height: 200px;
+                                  font-size: 12px;
+                                  border: 2px solid darkslateblue;
+                                }     
+                
+                          }
+
+            /* 화면 길이가 최대 150px까지 (0px~150px) 에는 display:none;처리 한다.
+                          (min-height는 최소값이 150px일때 = 150px ~ ∞ px일때 속성을 입힌다)  
+            @media screen and (max-height: 150px) {
+                                                    body {
+                                                           display: none;
+                                                         }
+                                                 }
+            */
+
+            /*Used for printers → 장비를 인식시키는 것*/ 
+            @media print {
+                            div { 
+                                  width: 100%; height: 200px;
+                                  font-size: 12px;
+                                  border: 2px solid yellowgreen;
+                                }
+                         }
+
+            h3 { text-align: center;}
+
+        </style>
+    </head>
+
+    <body>
+        <!-- 참조 https://www.w3schools.com/css/css3_mediaqueries.asp / https://www.w3schools.com/css/css_rwd_intro.asp -->   
+        
+        <div>
+            <h3> Media Query</h3>
+                - 화면크기 마다 각각 다르게 CSS를 적용하는 것이다.
+                - 화면 사이즈를 인식해 서로 다른 CSS를 적용시켜준다. 
+                - 보통은 스마트폰, 태블릿 , PC 화면 3개 정도를 구분해준다.
+                - 화면 크기가 변할때 스타일을 바뀌도록 해서 반응형 웹을 구현할 수 있다
+<hr>
+            <h3> 반응형 웹 디자인(Responsive Web Design : RWD)</h3>
+                - 하나의 웹사이트에서 PC, 스마트폰, 태블릿 PC 등 접속하는 디스플레이의 종류에 따라 
+                  화면의 크기가 자동으로 변하도록 만든 웹페이지 접근 기법을 말한다
+                - 디바이스 별로 각각 레이아웃(grid)이 달라지는 웹
+        </div>     
+
+        <!--
+            참조 : https://www.w3schools.com/css/css_rwd_mediaqueries.asp
+            → 반응형 웹에서 해상도에 따른 레이아웃 변화를 제공해준다. 
+            참조 : https://www.w3schools.com/css/css_rwd_templates.asp
+            → 소스코드까지 제공해줌
+            참조 : https://www.w3schools.com/css/css_templates.asp
+            → 레이아웃 템플릿
+            참조 : https://www.w3schools.com/bootstrap/bootstrap_theme_me.asp
+            → 부트스트랩 (미니프로젝트때 가져다 쓸 것 : 10월쯤)
+        -->
+    </body>
+</html>

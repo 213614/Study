@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>05_다양한 Selector.html</title>
+        <link rel="stylesheet" href="mystyle05.css">
+    </head>
+
+    <body>
+        <h3>다양한 Selector 연습</h3>
+
+        <p>대한민국</p> <!--대한민국의 부모는 body-->
+        <div>
+            <p>오 필승 코리아</p> <!--오필코의 부모는 div-->
+        </div>
+        <!--감싸고있는 태그를 부모태그 / 그 안에 있는 태그를 자식태그-->
+<hr>
+        <h1>종로구</h1>
+        <h2>무궁화</h2>
+        <div>
+            <h2>개나리</h2>
+            <span>
+                <p>라일락</p>
+                <!--'라일락'의 부모는 span이지만 css에서 div p라고 코딩했다면 
+                div 속 모든 p태그에 적용되기때문에 '라일락'에도 해당 속성값이 적용된다-->
+                <h2>해바라기</h2>
+            </span>
+        </div>   
+<hr>
+        <div id="mybox">Box Model</div>
+<hr>
+        <div>
+            <span><p>진달래</p></span>
+            <div><p>봉선화</p></div>
+        </div>
+<hr>
+        <div id="menu">
+            <ol class="hide">
+                <li>국어</li>
+                <li>영어</li>
+                <li>수학</li>
+            </ol>
+        </div>
+    </body>
+</html>

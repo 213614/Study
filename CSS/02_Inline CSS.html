@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>02_InlineCSS.html</title>
+    </head>
+
+    <body>
+        <h3>1) Inline CSS</h3>
+        <!--문서가 지저분해지므로 비추천 잠깐 줬다 지울때정도에 씀(일시적)
+            style="속성:값; 속성:값;" 속성-->
+
+        <div style="width:200px;  /*가로 길이*/ 
+                    height:150px; /*세로 길이*/ 
+                    background-color: pink;"> <!--CSS는 단위 필수-->
+        </div>
+<hr>
+        <div style="--width:100px; 
+                    height:100px; 
+                    background-color: thistle;">
+                    <!--속성 앞 --은 해당 속성의 효과를 없앤다-->
+        </div>
+<hr>
+        <div style="width:100%; 
+                    height:100px; 
+                    background-color: violet;">
+        </div>     
+<hr>    
+        <div style="width:50%; /* %단위로 반응형 가능 */
+                    height:100px; 
+                    background-color: mediumorchid;">
+        </div>
+<hr>
+        <!--Background 배경 관련 스타일 
+            참조 https://www.w3schools.com/css/css_background.asp -->
+        <div style="width:300px;
+                    height:300px;
+                    background-image: url(../images/Ruby1.png);
+                    background-color: rgb(138, 71, 124);
+                    background-repeat: no-repeat;       /*배경사진이 반복되지않고 하나만 출력됨*/
+                    background-position: right bottom;  /*이미지 방향의 기준은 보통 시계방향*/
+                    background-size: 40% 60%;           /*가로 세로*/">
+        </div>
+<hr>
+        <!--Text 관련 스타일
+            참조:https://www.w3schools.com/css/css_text.asp-->
+        <div style="width: 300px;
+                    height: 300px;
+                    background-color: rgb(132, 90, 205);
+                    color: aliceblue;            /*text color*/
+                    text-decoration: line-through; /*밑줄(html에서 u태그 쓰지말고 css에서 해결하기)*/
+                    text-indent: 50px;             /*들여쓰기*/
+                    text-shadow: 3px 2px plum;   /*그림자:수평(오른쪽으로) 수직(아래로) 색상;*/
+                    letter-spacing: -3px;          /*자간 (음수값 가능)*/
+                    line-height: 20px;             /*행간 (음수값 가능)*/
+                    word-spacing: 10px;            /*단어간격 (음수값 가능)*/">
+            웹 페이지 전체의 일관성을 유지할 수 있도록 스타일을 미리 저장해 둔 시트를 의미한
+            다. 웹 페이지를 HTML로만 작성할 경우에는 스타일 변경에 제약이 있으나, 스타일을
+            미리 저장해 두고 일부 내용의 스타일을 변경할 때 전체 페이지의 내용을 한꺼번에 처
+            리할 수 있어 간편하고 페이지의 일관성을 유지할 수 있다.
+        </div>
+
+    </body>
+</html>

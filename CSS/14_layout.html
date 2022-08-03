@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>14_layout.html</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            /* 1단계 
+            .container { 
+                        border: 2px solid rgb(26, 26, 169);
+                        width: 900px; → 전체 레이아웃 크기는 변하지 않게 보더(2px)까지 계산해서 줘야함 
+                        margin: auto;
+                       }
+            / 순서상 4단계 -> 이렇게 해도 되지만 굳이 그럴 필요 X 자동으로 해주는 속성이 있다->5단계! 
+            .container { 
+                        border: 2px solid rgb(26, 26, 169);
+                        width: 912px; 
+                        /* → 각 .inner section스타일에서 
+                        보더2px(좌)+300(컨테이너 가로값)+보더2px(우)*3개(섹션 갯수)=가로 12px가 더 필요 
+                        => 전체 가로는 912px이여야함 
+                        margin: auto;
+                       }
+            */
+
+            /* 순서상 5단계 = 정답코드(6단계의 box-sizing 활용) */
+            .container { 
+                        border: 2px solid rgb(26, 26, 169);
+                        width: 900px; 
+                        margin: auto;
+                       }
+
+            /* 2단계 */
+            header {
+                    border: 2px dotted lightcoral;
+                    text-align: center;
+                    height: 150px;
+                    width: 100%;
+                    line-height: 150px;
+                   }
+
+            /* 3단계 - 1,4단계랑 연결된 코드
+            .inner section {
+                            border: 2px dotted midnightblue;
+                            width: 300px;
+                            height: 300px;
+                            float: left;
+                           }
+            */
+
+            /* 6단계 = 5단계랑 연결된 정답코드 */
+            .inner section {
+                            border: 2px dotted seagreen;
+                            width: 300px;
+                            height: 300px;
+                            float: left; /*이 이후에 오는 요소들에도 영향을 미침*/
+                            padding: 20px; /*안쪽여백 - 글씨위치바뀜*/
+                            box-sizing: border-box; /*선굵기, 여백등으로 늘어난 부분은 container의 width=900px내에서 자동으로 해결됨*/
+                           }
+
+            /* 7단계 → float속성은 전 요소 속성을 상속받는 특징이 있으므로 여기에도 float:left가 숨겨져 있는 상태
+                                                 →이미 만들어진 코드를 물려받는것:물려주는 것=부모/물려받는 것=자식  
+            footer {
+                    border: 5px dotted plum;
+                    height: 100px; 
+                   }
+            */
+            /* 8단계 clear : 상속된 속성들을 해제 → 6단계에서 상속받은 float:left 속성을 지워야함 
+            footer {
+                    border: 5px dotted plum;
+                    height: 100px;
+                    clear: left; /*위에있는 float:left 속성을 끊어줌
+                    --clear: right; /*오른쪽 --clear: both; /*양쪽
+                    }
+            */
+            /* 9단계 = 정답코드
+               참조:https://www.w3schools.com/css/css_float_clear.asp */
+            footer {
+                    border: 5px dotted plum;
+                    height: 100px;
+                    clear: both;
+                    }
+
+        </style>
+    </head>
+
+    <body>
+        <!--전체 레이아웃 구성하기-->
+        <div class="container">
+            <header>Header</header>
+
+            <div class="inner">
+                <section>Section 1</section>
+                <section>Section 2</section>
+                <section>Section 3</section>
+            </div>
+
+            <footer>Footer</footer>
+        </div>
+
+
+    </body>
+</html>

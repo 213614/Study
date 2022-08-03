@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>13_float.html</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+        /*
+            div {
+                 border: 1px solid darkcyan;
+                 width: 100px;
+                 height: 100px;
+                }
+        */
+
+        /* 2. div의 블럭요소의 배치를 세로에서 가로로 변경*/
+            div {
+                 border: 1.5px solid deeppink;
+                 width: 100px;
+                 height: 100px;
+                 float: left;
+                }
+
+            .box4 { float: right; }
+        </style>
+    </head>
+
+    <body>
+        <!--              전체 레이아웃 구성하기.
+            참조 https://www.w3schools.com/css/css_float.asp 
+            ● 화면 레이아웃 기법
+            - position 속성 : 배치 방법을 지정
+            - float 속성    : 레이어를 왼쪽 또는 오른쪽 위치 지정.
+                              수평을 기준으로 정렬하기
+                              요소가 부모요소 기준으로 왼쪽 또는 오른쪽에 배치할 때 지정
+            - clead 속성    : float 속성을 해제 (float속성은 밑 코드들에 자동으로 입혀지기때문에 clear를 통해 끊어줘야함)
+            - z-index 속성  : 레이어 순서를 정함 (어떤걸 전면으로 할지/후면으로 보낼지) 
+        -->
+
+        <!-- float : 레이어 배치하기 -->
+        <div>BOX 1</div>
+        <div>BOX 2</div>
+        <div>BOX 3</div>
+        <div class="box4">BOX 4</div>
+
+    </body>
+</html>

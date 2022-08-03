@@ -1,0 +1,139 @@
+@charset "UTF-8";
+/*mystyle05.css*/
+/*
+    참조:05_다양한 Selector.html / https://www.w3schools.com/cssref/css_selectors.asp 
+*/
+
+p {
+    font-family: 고딕체;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: italic;
+  }
+/* → 현재 문서안에 모든 p태그에 적용 */
+
+div p {
+        background-color: darkslategray;
+        font-size: 30px;
+        color: aliceblue;
+      }
+/* → div안에 있는 모든 p태그에 적용
+     개별로 속성값이 지정되어있다면(컬러,사이즈) 
+     다른 선택자들과 겹쳐도 해당 속성은 적용되지 않음*/
+
+h2, p {
+        color: blue;
+      }
+/* → 부모태그 상관없이 모든 h2, p태그*/
+
+div h2 {
+        text-shadow: 2px 2px hotpink;
+       }
+/* → 예제) '개나리' 글자에 그림자 넣기 */
+
+#mybox {
+        width: 320px;
+        padding: 10px;  /*내용의 안쪽 여백을 상하좌우 모두 10px씩 적용*/
+        border: 5px solid gray;
+        margin: auto;   /*수평을 기준으로 화면 가운데에 배치*/
+       }
+/* 참조:https://www.w3schools.com/css/css_boxmodel.asp */
+
+div > span > p {
+                color: chartreuse;
+                text-decoration-line: line-through;
+                text-decoration-color: aliceblue;
+               }
+/* 부모와 자식태그를 정확히 속성값을 주고싶다면 부모 > 자식 */
+
+div > span > h2 {
+                 text-decoration-line: overline;
+                 color: purple;
+                }
+
+#menu {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        color: white;
+      }
+    
+.hide {
+        width: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+      }
+/* 설정값을 전부 0으로 하면 화면에서 출력되지 않음 (div display none처리도 가능)*/
+
+#nav {
+      width: 300px;
+      height: 500px;
+      background-color: lightblue;
+      margin: auto;
+     }
+
+#nav > ul {
+                    list-style: none;
+                   }
+/* id=nav의 자식태그 중 ul 태그만*/ 
+
+#nav .news {
+            background-color: cornflowerblue;
+            font-weight: bold;
+             }  
+/* > 대신 띄어쓰기를 하면 id=nav안에서 모든 class=news에 설정 적용 */
+
+#nav > ol >li:nth-child(2) {
+                            font-weight: bold;
+                           }
+/*태그의 상세 속성을 개별적으로 접근 가능 
+  → :nth-child(숫자) 자식태그에 순차적으로 접근 가능 (해당 숫자를 넣으면 그 순서의 자식태그에 속서만 가능) */
+
+#nav > ol > li > a {
+                    width: 200px;
+                    height: 100px;
+                    background-color: lightpink;
+                    /*text-decoration-style: wavy;*/
+                   }
+#nav > ol > li > a:hover {
+                          color: darkmagenta; /*커서 올리면 글씨 색도 바뀜*/
+                          text-decoration: underline;
+                          text-decoration-style: wavy;
+                          }
+
+/* 밑에 따로 추가 안하고 a에다가 아예 :hover을 달면 커서를 올리면 배경색+밑줄이 나옴
+#nav > ol > li > a:hover {
+  width: 200px;
+  height: 100px;
+  background-color: lightpink;
+  text-decoration-style: wavy;
+ } */    
+/* li중 링크만(a태그) css적용 */
+
+a:link {
+  color: black;
+  text-decoration: none;
+       }
+/* unvisited link : 일반적 링크 및 방문하지 않은 링크*/
+
+a:visited {
+  color: black;
+  text-decoration: none;
+          }
+/* visited link : 방문했던 링크 */
+
+a:hover {
+  color: black;
+  text-decoration: underline;
+        }
+/* mouse over link : 링크 위에 마우스 올렸을 때 */
+
+a:active {
+  color: black;
+  text-decoration: none;
+         }
+/* selected link : 링크를 마우스로 누르는 순간 
+   참조:https://www.w3schools.com/cssref/sel_active.asp */
+

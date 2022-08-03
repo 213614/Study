@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>20_플래시메뉴.html</title>
+        <style>
+            .hide {width: 0; height: 0;
+                   margin: 0; padding: 0;
+                   font-size: 0; line-height: 0;}
+
+            #nav {
+                  width: 200px; 
+                  margin: 0 auto;
+                  background-color: rgb(234, 234, 234);
+                 }
+        
+            #nav > ul {
+                        margin: 0; padding: 0;
+                        list-style: none;
+                      }
+                      
+            /*1.링크가 되어 있는 문자열에 스타일 적용*/
+            #nav > ul > li > a {
+                                 text-decoration: none;
+                                 font-weight:  bold;
+                                 color: black;
+                                 width: 200px; height: 64px;
+                                 display: block;
+                                 text-indent:  30px; /*들여쓰기*/
+                                 line-height: 58px;
+
+                                 /*4.아이콘 이미지 추가*/
+                                 background-image: url(../images/icons.png);
+                                 background-repeat: no-repeat;
+                                 background-position: right 0; /*이미지 오른쪽 정렬 위쪽여백은 0*/
+                               }
+            /*2.링크 문자열에 마우스 오버시 각 배경 색상 변경*/
+            #nav > ul > li:nth-child(1) > a:hover {background-color: lemonchiffon;}         /*색상명*/
+            #nav > ul > li:nth-child(2) > a:hover {background-color: #add8e6;}              /*16진수*/
+            #nav > ul > li:nth-child(3) > a:hover {background-color: lightpink;}
+            #nav > ul > li:nth-child(4) > a:hover {background-color: rgb(255, 191, 166);}   /*rgb()함수*/
+        
+            /*3.링크 문자열에 마우스 오버시 다양한 스타일 적용*/
+            #nav > ul > li > a:hover {
+                                       width: 240px; 
+                                       color:whitesmoke;
+                                       font-size: 18px;
+                                       text-shadow: 2px 1px 2px gray;
+                                       box-shadow: 2px 1px 2px gray;
+                                       border-radius: 0px 50px 50px 0px; /*시계방향으로 돈다 →좌측상단 - 우측상단 - 우측하단 - 좌측하단*/
+                                       opacity: 90%;
+                                       transition: width .2s linear;
+                                     }
+            
+            /*5.각각 다른 이미지를 보여주기 위해 각 이미지 top여백을 조절해서 지정*/
+            #nav > ul > li:nth-child(2) > a { background-position: right -65px;}
+            #nav > ul > li:nth-child(3) > a { background-position: right -529px;}
+            #nav > ul > li:nth-child(4) > a { background-position: right -595px;}
+
+        </style>
+    </head>
+
+    <body>
+        <h1 class="hide">플래시메뉴</h1>
+        
+        <div id="nav">
+            <h2 class="hide">주요메뉴</h2>
+            <ul>
+                <li><a href="https://www.flickr.com/" target="_blank">flickr</a></li>
+                <li><a href="https://twitter.com" target="_blank">twitter</a></li>
+                <li><a href="https://www.nbcnews.com/" target="_blank">newsvine</a></li>
+                <li><a href="https://www.last.fm/" target="_blank">last.fm</a></li>
+            </ul>
+        </div>
+
+
+
+    </body>
+</html>

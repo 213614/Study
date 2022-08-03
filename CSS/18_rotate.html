@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>18_rotate.html</title>
+        <style>
+            #menu {
+                    position: relative;        /*menu가 부모태그*/
+                    width: 150px; height: 130px;
+                    background-color:rgb(206, 216, 227);
+                    margin: auto;              /*수평을 기준으로 가운데 정렬*/
+                    border-radius: 8px;        /*숫자만큼 모서리가 깎여서 라운드 처리됨*/
+                    cursor:grab;               /*이 영역 안으로 들어오면 마우스 커서 모양을 바꿈*/
+                  }
+
+            #menu:hover { /*마우스가 영역 안으로 들어오면 ↓속성값을 주겠다*/
+                          background-color: rgb(140, 185, 229);
+                          transition: .1.5s linear;
+                        }
+            
+            #menu strong {
+                          position: absolute;   /*자식태그:원래 나의 위치도 사라짐,부모 영역 안에서만 움직임*/
+                          color: aliceblue;
+                          bottom: 10px; left: 37px;
+                         }
+            
+             /*이미지 삽입*/
+             #menu > .gear { 
+                            position: absolute;
+                            background-image:url(../images/gear-gray.png);
+                            width: 40px; height: 40px;  /*이미지가 나타나는 영역의 크기*/
+                            background-size: 40px 40px; /*이미지 자체의 사이즈를 줄일수있음*/
+                           }
+            /*gear이미지 배치*/
+            #menu > .gear:nth-child(1) {
+                                        top: 20px;
+                                        left: 42px;
+                                       }
+            #menu > .gear:nth-child(2) {
+                                        top: 47px;
+                                        left: 67px;
+                                        --transform: rotate(30deg); /*이미지를 시계방향으로 30˚ 회전*/
+                                       }
+            /*마우스가 menu영역안에 들어오면 이미지가 바뀜*/
+            #menu:hover > .gear{
+                                background-image: url(../images/gear.png);
+                                /*부드럽게*/
+                                transition: .8s linear; /*ease(점점 빠르게) | linear(일관된 속도)*/
+                             }
+            /*커서 오버시 이미지 회전*/  
+            #menu:hover > .gear:nth-child(1) { /*시계 반대방향으로 반바퀴 회전*/
+                                               transform: rotate(-180deg);
+                                             }
+            #menu:hover > .gear:nth-child(2) { /*시계 방향으로 반바퀴 회전*/
+                                               transform: rotate(180deg);
+                                             } /*톱니가 돌고 난 뒤 다리가 안맞으면 위에 rotate 30˚돌린거까지 계산해서 210deg만 줘야함*/
+        </style>
+    </head>
+
+    <body>
+
+        <div id="menu">
+            <div class="gear"></div>
+            <div class="gear"></div>
+            <strong>SETTINGS</strong>
+        </div>
+
+
+
+    </body>
+</html>
