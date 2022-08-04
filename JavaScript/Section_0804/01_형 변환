@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_형 변환.html</title>
+    </head>
+
+    <body>
+
+        <h3>자료형 변환 (Type Conversion)</h3>
+
+        <script>
+            /* 
+                ● 형 변환: 필요한 곳에서 일시적으로 변환(강제성을 띈다)
+                → 참조 : https://www.w3schools.com/js/js_type_conversion.asp
+            */
+            
+            document.write(10+20 + "<br>");      //30
+            document.write("10"+"20"+ "<hr>");           //"1020"
+
+            //【 Number Methods 】 : 날짜를 숫자로 변환하는 식도 있음 W3S 참조 
+
+            // 1.Number() → 숫자로 구성된 문자열을 숫자형으로 변환 ex. "1" → 1  
+            //      ※ 대소문자 구별 주의
+            // → 참조 https://www.w3schools.com/jsref/jsref_number.asp
+            document.write(Number("10") + "<br>");                //10
+            document.write(Number("10")+Number("20")+ "<br>");    //30
+            document.write(Number("10            ") + "<br>");    //10 공백이 있어도 무시하고 10으로 표현
+            document.write(Number("             10            ") + "<br>");
+            document.write(Number("8.81 ") + "<br>");             //8.81 실수형도 변환 가능
+            document.write(Number("KOREA") + "<br>");             //NaN(Not a Number) | undefined 제대로 된 값이 아니란 뜻 → 문자이기때문에 숫자형으로 변환 불가
+            document.write(Number("1 2  3") + "<hr>");            //NaN(Not a Number) : 숫자 사이에 공백은 처리되지 않으므로 오류   
+
+            // 2. parseInt() ＊＊진짜 많이 쓰므로 암기＊＊
+            //         → 숫자로 구성된 문자열을 정수형으로 변환 
+            document.write(parseInt("10") + "<br>");              //정수 10
+            document.write(parseInt("-20") + "<br>");             //정수 -20
+            document.write(parseInt("10.88") + "<br>");           //실수는 소수점 떼고 앞 10 정수형으로 변환
+            document.write(parseInt("SEOUL") + "<hr>");           //NaN(Not a Number)
+
+            // 3. parseFloat() → 숫자로 구성된 문자열을 실수형으로 변환 
+            document.write(parseFloat("10") + "<br>");            //실수 10 (=10.0)
+            document.write(parseFloat("10.33") + "<br>");         //10.33
+            document.write(parseFloat("JAVA") + "<hr>");          //NaN(Not a Number)
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            //【 String Methods 】
+
+            // 1. String() → 숫자형을 문자형 데이터로 변환 
+            document.write(String(123) + "<br>");                   //"123"
+            document.write(String(123) + String(456) + "<br>");     //"123456"
+
+            document.write("<hr>");
+
+            // 2. toString() → 문자형으로 변환 ※ 문법 유의
+            document.write((123).toString() + "<br>");                    //"123"
+            document.write((123).toString() + (456).toString() + "<hr>"); //"123456"
+
+            /* 문자열 데이터는 끝 문자만 잘라올수있음 (숫자형은 안됨)
+               ex. "12345" 끝 글자 잘라오세요 → "5"
+                    12345 끝 글자 잘라오세요 → 불가. 5를 가져오려면 계산을 통해 5를 도출해야함 */
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // Boolean값의 형변환 (논리형 Boolean : true | false)
+            document.write(Number(true) + "<br>");    //1
+            document.write(Number(false) + "<br>");   //0
+                                                      
+            document.write(String(true) + "<br>");    //"true"
+            document.write(String(false) + "<hr>");   //"false"
+
+
+        </script>
+    </body>
+</html>
