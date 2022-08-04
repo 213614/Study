@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_math.html</title>
+    </head>
+
+    <body>
+
+        <h3>Math Object</h3>
+
+        <script>
+            /*
+                참조 : https://www.w3schools.com/js/js_math.asp
+                ● Math → 수학 관련 객체 
+            */
+
+            document.write(Math.abs(-3));       // 절대값을 구하는 함수 / abs=함수 
+            document.write("<br>");
+            document.write(Math.max(-3,6,8));   // 최대값
+            document.write("<br>");
+            document.write(Math.min(-3,6,8));   // 최소값
+            document.write("<br>");
+            document.write(Math.pow(2,5));      // 2의 5승(2의 5제곱)
+
+            document.write("<hr>");
+
+            //소수점 - 반올림
+            document.write(Math.round(4.9));    // 5
+            document.write("<br>");
+            document.write(Math.round(4.4));    // 4
+            document.write("<br>");
+            document.write(Math.round(-4.50));   //-4
+            document.write("<br>");
+            document.write(Math.round(-4.51));   //-5
+
+            document.write("<hr>");
+            
+            //소수점 - 올림 
+            document.write(Math.ceil(8.6));    // 9
+            document.write("<br>");
+            document.write(Math.ceil(4.4));    // 5
+            document.write("<br>");
+            document.write(Math.ceil(-5.8));   //-5 음수는 올림해도 앞 음수만 남네
+            document.write("<br>");
+
+            document.write("<hr>");
+
+            //소수점 - 버림
+            document.write(Math.floor(7.5));    // 7
+            document.write("<br>");
+            document.write(Math.floor(3.4));    // 3 
+            document.write("<br>");
+            document.write(Math.floor(-9.1));   // -10 음수는 버리면 소수점 뒤 숫자 상관없이 앞 숫자가 하나 커짐 
+            document.write("<br>");
+
+            document.write("<hr>");
+
+            document.write(Math.E);     // 변수라서 ()가 없음 / 있으면 함수 
+            document.write("<br>");
+            document.write(Math.PI);
+
+            document.write("<hr>");
+
+            ///////////////////////////////////////////////////////////////////////////
+
+            // 【 Math.random() 】: 무작위로 발생한 수 (난수) → 범위는 정해져있음
+            //  ＊ 정말 많이 사용함 ＊
+            //  → random값 발생 범위 : 0.0 <= r < 1 → 0.0 이상 1 미만의 범위 내에서 랜덤으로 수가 나옴
+            document.write(Math.random());      // 새로고침하면 값이 바뀜
+            document.write("<br>");
+            document.write(Math.random());
+            document.write("<br>");
+            document.write("<br>");
+
+            // 1 이상의 수를 만들고 싶다면
+            document.write(Math.random()*2);    // 이런식으로 개발자가 만들어가며 사용해야함
+            document.write("<br>");
+            
+            // 1 이상의 수의 정수값만 가져오고싶다면
+            document.write(parseInt(Math.random()*2));  //  0,1 만 나옴 (2는 안나옴)
+            document.write("<br>");
+            document.write(parseInt(Math.random()*4));  //  0,1,2,3 만 나옴 (4는 안나옴)
+            document.write("<br>");
+
+            document.write("<hr>");
+
+            // 문 1 ) 6면체 주사위(1~6)의 수를 랜덤으로 발생시키시오.
+            // 내 풀이 및 강사님 풀이 같음 : 랜덤값*6=0~5까지 나옴 거기에 +1을 하면 = 1~6까지 나옴 
+            document.write(parseInt(Math.random()*6)+1);
+            document.write("<br>");
+
+            // 문 2 ) 로또 번호 (1~45) 
+            document.write(parseInt(Math.random()*45)+1);
+
+
+    
+
+
+        </script>
+    </body>
+</html>

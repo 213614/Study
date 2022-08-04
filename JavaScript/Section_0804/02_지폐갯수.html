@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_지폐갯수.html</title>
+    </head>
+
+    <body>
+
+        <div id="demo"></div>
+
+        <script>
+            // 연습) 각 지폐갯수를 구한 후 표 작성해서 본문 id=demo에 출력
+           
+    /* 내가 한 것
+            let money=54320;
+            let a=money/10000;
+            let b=(money-50000)/1000;
+            let c=(money-54000)/100;
+            let d=(money-54300)/10;
+
+        
+            let result=""; 
+            result=result + "<table border='1'>";           //result+="<table border=1>"
+                result=result + "<tr>";
+                    result=result + "<th>만원</th>";
+                        result=result + "<td>" + parseInt(a) + "장" + "</td>";
+                result=result + "</tr>";
+                
+                result=result + "<tr>";
+                    result=result + "<th>천원</th>";
+                        result=result + "<td>" + parseInt(b) + "장" + "</td>"; 
+                result=result + "</tr>";
+
+                result=result + "<tr>";
+                    result=result + "<th>백원</th>";
+                        result=result + "<td>" + parseInt(c) + "장" + "</td>"; 
+                result=result + "</tr>";
+
+                result=result + "<tr>";
+                    result=result + "<th>십원</th>";
+                        result=result + "<td>" + parseInt(d) + "장" + "</td>"; 
+                result=result + "</tr>";
+            result=result + "</table>";
+
+            document.getElementById("demo").innerHTML=result;   
+    */
+
+    /* 구글링 후 소스 긁어와서 수정한 것 
+            let money2=54320;
+            let a2 = Math.floor(money2 / 10000);         
+            let b2 = Math.floor((money2 - a2 * 10000) / 1000);
+                              //(54320 - 5*10000) /1000 =>  4320 / 1000 = 4.32
+            let c2 = Math.floor((money2 - a2 * 10000 - b2 * 1000)/ 100);
+            let d2 = Math.floor((money2 - a2 * 10000 - b2 * 1000 - c2*100)/ 10);
+
+            let result=""; 
+            result=result + "<table border='1'>";
+                result=result + "<tr>";
+                    result=result + "<th>만원</th>";
+                        result=result + "<td>" + a2 + "장" + "</td>";
+                result=result + "</tr>";
+                
+                result=result + "<tr>";
+                    result=result + "<th>천원</th>";
+                        result=result + "<td>" + b2 + "장" + "</td>"; 
+                result=result + "</tr>";
+
+                result=result + "<tr>";
+                    result=result + "<th>백원</th>";
+                        result=result + "<td>" + c2 + "장" + "</td>"; 
+                result=result + "</tr>";
+
+                result=result + "<tr>";
+                    result=result + "<th>십원</th>";
+                        result=result + "<td>" + d2 + "장" + "</td>"; 
+                result=result + "</tr>";
+            result=result + "</table>";
+
+            document.getElementById("demo").innerHTML=result;  
+
+            document.write("<hr>");
+    */
+
+
+    // 강사님 방법 → 이 방식대로 해야 money값이 바뀌어도 맞게 적용됨
+            let money3=54320;
+            
+            //document.write(money3/10000);     ← 맞는 값이 나오는지 먼저 확인
+            //document.write("<br>");
+            //document.write(mone3%10000);
+
+            let m=parseInt(money3/10000); //5
+            money3=money3%10000;          //4320 → money%=10000;
+                                          //만원 변수에 money값을 만으로 나눈 수의 정수만 담고
+                                          //그 후에 다시 money값에  나머지 값을 넣는다 
+                    
+            let c3=parseInt(money3/1000); //4
+            money3=money3%1000;           //320
+                                          //천원 변수에 나머지 값이 담긴 money를 다시 1000으로 나눈 후 정수만 담는다
+                                          //그후 만원 변수에서 바뀌었던 값(4320)을 다시 1000으로 나눈 나머지값을 money에 담는다
+
+            let d3=parseInt(money3/100);  //3
+            money3=money3%100;            //20
+                                          // 앞 방식으로 쭉 반복된다
+                                          
+            let e=parseInt(money3/10);    //2 
+            
+            let result=""; 
+            result=result + "<table border='1'>";           //result+="<table border=1>"
+                result=result + "<tr>";
+                    result=result + "<th>만원</th>";
+                        result=result + "<td>" + m + "장" + "</td>";
+                result=result + "</tr>";
+                
+                result=result + "<tr>";
+                    result=result + "<th>천원</th>";
+                        result=result + "<td>" + 3+ "장" + "</td>"; 
+                result=result + "</tr>";
+
+                result=result + "<tr>";
+                    result=result + "<th>백원</th>";
+                        result=result + "<td>" + d3 + "장" + "</td>"; 
+                result=result + "</tr>";
+
+                result=result + "<tr>";
+                    result=result + "<th>십원</th>";
+                        result=result + "<td>" + e + "장" + "</td>"; 
+                result=result + "</tr>";
+            result=result + "</table>";
+
+            document.getElementById("demo").innerHTML=result;   
+    
+        </script>
+    </body>
+</html>
