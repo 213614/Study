@@ -16,17 +16,19 @@
                         → 산술 → 비교 → 논리 
                 → 후순위 연산자 = 대입 연산자 (값에서 모든 연산 완료 후 변수에 대입함)
             */
+
             // 1. 결합 연산자 → ()
             document.write(3+4+5/2 + "<br>");    // 9.5 : 나누기먼저 
             document.write((3+4+5)/2 + "<hr>");  // 6 : 괄호먼저 → 연산이 복잡해질 때 우선순위를 두고싶으면 괄호를 활용
 
 
-            // 2. 대입 연산자 
+            // 2. 대입 연산자 → = 
             let num=3;
 
             num=num+2;
             document.write(num + "<br>");    //5
 
+            // 2-1. 대입 연산자의 축약어 
             num+=2; // 같은 변수에 값을 계속 대입할 때 단축키 : 변수+=  (참조:https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Addition_assignment)
                     // → 더하기 할당 연산자( += )는 오른쪽 피연산자의 값을 변수에 더한 결과를 다시 변수에 할당합니다.
             document.write(num + "<br>");    //7
@@ -47,9 +49,45 @@
             num%=4; // num=num%4;
             document.write(num + "<hr>");     //1
 
-            // 3. 1증감 연산자 →
+            
+            // 3. 1증감 연산자 → a++; | ++a; → a=a+1; : 1씩 증가한다. 
+            let a=3;                          // a 변수 'a' 문자 상수
+            
+            a=a+1;        //4
+            document.write(a + "<br>");
+            a+=1;         //5
+            document.write(a + "<br>");
+            a++;          //6
+            document.write(a + "<br>");
+            ++a;          //7 
+            document.write(a + "<hr>");
 
 
+            // 4. 1감소 연산자 → a--; | --a; → a=a-1; : 1씩 감소한다. 
+            let b=3;
+            
+            b=b-1;      //2
+            document.write(b + "<br>");
+            b-=1;       //1
+            document.write(b + "<br>")
+            b--;        //0
+            document.write(b + "<br>")
+            --b;        //-1
+            document.write(b + "<hr>")
+            
+            // ※ 1증감 연산자는 다른 계산식과 혼용해서 사용 시 주의사항 : ++ | -- 의 순서가 계산의 순서를 바꾸기 때문에 주의한다.
+            let c=10;
+            let d=20;
+            let i=c++;      //i=c 후에 c=c+1 하라는 뜻 (++이 뒤에 있으면 나중에 1을 증가하란 뜻)
+                            // 그러면 i=c(1o) | c=c+1이 됨. 별개의 순서로 진행되기때문에 c는c+1로 증가된 값이 대입됨
+            let j=--d;      //d=d-1; 후에 j=d 하라는 뜻 (--가 앞에있으면 1 감소를 먼저 하란 뜻)
+                            // 그러면 이미 d-1된 값이 j에 대입됨. 
+
+                            // → 순서가 중요함! ++|--이 뒤로 가면 해당 변수에는 원 변수의 값이(증감되기전 값) 대입된다.
+            
+            document.write((c+d+i+j) + "<br>");     
+            // 11(i에서 증가된 c라서 11) + 19(j에서 1뺀 d라 19) + 10(i=c 값이라서 10 들어감) + 19 (d-1이 j에 대입)
+            // i=++c;로 하면 암산처럼 60이 나옴 = 10+20+11+19 (c에 원래 c=10; 대입됨)
 
 
 
