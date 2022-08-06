@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_switch.html</title>
+    </head>
+
+    <body>
+
+        <h3>switch ~ case</h3> 
+
+        <script>
+            /*
+                ● switch ~ case 문 (on/off , true/false, left/right)
+                    → 경우의 수의 목록 중에서 동일한 값을 찾아서 수행한다.
+                    → switch~case문의 문법은 버전의 영향을 많이 받는다.
+                    → if문으로도 가능하다 = if (a == b) {}
+                    
+                    1) break : switch문을 빠져나옴 
+                    2) default : 목록 중 없는 경우에 무조건 수행한다. (if문에 else)
+
+
+            */
+
+            // 【 switch~case문 형식 】
+
+            // 1. switch~case문 문법 → 값은 실수형으로는 case로 사용 불가. 
+            //     ↓ 여기에 들어가는 케이스를 찾고 break (switch 문을 빠져나간다.) 
+            //       case에 없는 값을 넣으면 실행되지 않는다. (문자가 허용되는 버전도 있으므로 주의)
+            switch(20){ //↓ 양 옆이 값이 같단 뜻 : 10은 "SEOUL이다"
+                case 10 : document.write("SEOUL"); break; // ← 안써도 오류나지 않음 필요에따라 사용
+                case 20 : document.write("JEJU"); break;
+                case 30 : document.write("BUSAN"); break; 
+                //  ↑ 같은 값을 찾는 것이기에 >= 같은 연산자가 들어갈 수 없다. / 값이 순차적일 필요는 없지만 작성자가 헷갈림ㅎㅎ
+            } //switch end 
+
+            document.write("<hr>");
+
+           // 2. default : 목록에 값이 없으면 무조건 수행. 
+            switch(40){ 
+                case 10 : document.write("SEOUL"); break;
+                case 20 : document.write("JEJU"); break;
+                case 30 : document.write("BUSAN"); break; 
+                default : document.write("기타"); break; // ← 어차피 마지막이라 꼭 break를 쓸 필요는 없음
+                                            //  ↑ 세미콜론 잘 챙기자..! 
+            }
+
+            document.write("<hr>");
+
+            // 3. break문이 없을 경우 → break가 걸린 목록이 나올때까지 전부 출력된다. 
+            //    → 이 경우엔 20을 넣으면 JEJU BUSAN이 출력된다 (BUSAN에는 Break가 있으므로 그 이후는 출력되지 않음)
+            switch(20){ 
+                case 10 : document.write("SEOUL"); break;
+                case 20 : document.write("JEJU"); 
+                case 30 : document.write("BUSAN"); break; 
+                default : document.write("기타"); break;
+            }
+
+        </script>
+    </body>
+</html>
