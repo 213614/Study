@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_continue.html</title>
+    </head>
+
+    <body>
+
+        <h3>break와 continue문</h3><hr>
+
+        <script>
+            //break : 반복문에서 회전수와 상관없이 빠져나온다 → 무한루프와 break는 짝꿍! = 무한 걸어놓고 중간에 브레이크로 빠져나오기 
+            //continue : 해당 조건은 제외되고 반복문을 계속 실행함 
+
+            for(let a=1; a<10; a++){
+                if (a==5){
+                    break;          // a==5가 true값이 되면 반복을 중단하고 {}를 빠져나간다
+                } //if end
+                document.write(a+"<br>");  // 1234만 출력됨
+            } //for end
+            /*
+                a=1 → 1<10 → {if(1==5)→false→다시반복} → a=1+1
+              → a=2 → 2<10 → {if(2==5)→false→다시반복} → a=2+1
+              → a=3 → 3<10 → {if(3==5)→false→다시반복} → a=3+1
+              → a=4 → 4<10 → {if(4==5)→false→다시반복} → a=4+1
+              → a=5 → 5<10 → {if(5==5)→true!→break} → 반복중단 
+            */
+           /*
+            document.write(a); // 값 출력 안됨 = 정상 , a라는 값 정의 하지 않았다는 오류메세지나옴 
+                               // scope = 유효범위  
+                               // a라는 변수를 위 for문장 ()안에다가 let으로 선언했기때문에 for범위를 나오면 유효하지 않다.
+                               // 아닌 변수도 있지만 let으로 선언한 변수는 for안에서 선언한 변수는 for 안에서만 유효하다. 
+            */
+
+            document.write("<hr>");
+
+            for(let a=1; a<10; a++){      //위 for안에 a변수는 break로 {}안을 나가면서 사라지므로 같은 이름으로 다시 변수를 지정할 수 있다. = 한 지역(for문 안)에서만 유효하다 = 지역변수
+                if (a==5){
+                    continue;          
+                } //if end
+                document.write(a+"<br>");  // 12346789
+            } //for end
+
+        </script>
+    </body>
+</html>

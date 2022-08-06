@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>05_while문.html</title>
+    </head>
+
+    <body>
+
+        <h3>while문과 do~while문</h3><hr>
+
+        <script>
+            /*
+                1. while문 
+                    - 형식: while(조건) {조건이 true면 실행}
+                    - while(true){} → 무한 loop (가장 대표적인 패턴)
+                ※ 시작·종료값과 증감이 없기때문에 잘 활용해야함 
+            */
+
+            let a=1;
+            while(a<=3) {
+                document.write(a+"&nbsp");
+                document.write("JAVA<br>");
+                a++;
+            } //while end
+            /*
+                a=1 → while(1<=3) → true → {a "JAVA" a=1+1}
+              → a=2 → while(2<=3) → true → {a "JAVA" a=2+1}
+              → a=3 → while(3<=3) → true → {a "JAVA" a=3+1}
+              → a=4 → while(4<=3) → false! → 반복 중단
+            */
+            document.write(a); // 4 → a=4일때 while문을 빠져나왔기때문에 4가 출력됨.
+                               // while()안에다가 선언하지 않았기때문에 계속 유효함
+
+            document.write("<hr>");
+
+            /*
+                2. do~while문 
+                    - 형식: do { 
+                        while 조건이 true일 시 수행
+                               } while (조건);
+            */
+
+            let b=1;
+            do {
+                document.write(b+"&nbsp");
+                document.write("Python<br>");
+                b++;
+            } while (b<=3);      // 세미콜론 잊지말기
+            /*
+                b=1 → do {b "Python" b=1+1} → while(2<=3) → true 
+              → b=2 → do {b "Python" b=2+1} → while(3<=3) → true
+              → b=3 → do {b "Python" b=3+1} → while(4<=3) → false! → 반복 중단 
+           
+              ▶ do{명령} 이 while(조건)보다 앞에 있으므로 결과에 상관없이 한번은 무조건 출력 
+            */
+
+            document.write("<hr>");
+
+            let c=5;
+            do {
+                document.write("JQuery<br>");
+            } while (c<=3);
+            /*
+                c=1 → do {c "JQuery" c=5+1} → while(6<=3) → false! → 반복중단 
+                → 조건인 while이 뒤에 있기때문에 조건이 틀리더라도 무조건 한번 값은 출력된다. 
+                   ↑ document.write("JQuery<br>");이 조건보다 앞에 있으므로
+            */
+        </script>
+    </body>
+</html>
