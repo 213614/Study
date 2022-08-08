@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_성적표.html</title>
+    </head>
+
+    <body>
+
+        <h3>성적표</h3><hr>
+
+        <div id="demo"></div>
+
+        <script>    
+            let name="손흥민";
+            let kor=100, eng=98, mat=100;
+
+            let total=kor+eng+mat;                 // 총점 구하기
+            let aver = parseInt(total/3);          // 평균 구하기
+
+            /*
+                ● 출력 결과 (표작성=table해서 본문 #demo안에 출력)
+                    -----------------------------
+                    이름    홍길동
+                    -----------------------------
+                    국어    100
+                    -----------------------------
+                    영어    100
+                    -----------------------------
+                    수학    95
+                    -----------------------------
+                    총점    235
+                    -----------------------------
+                    평균    98
+                    -----------------------------
+                            A학점                     문1) 평균 90이상 A, 80이상 B, 70이상 C, 60점 이상 D, 나머지 F (if,else if)
+                    결      합격                      문2) 한과목이라도 40미만이면 재시험 (||,&&) → 평균 70점 이상만 (이하는 무조건 탈락)
+                    과      *********                 문3) 평균 10점당 * 한개씩 (for?)
+                            장학생                    문4) 평균 95이상은 장학생 출력
+                    -----------------------------
+            */
+
+            // 문 1
+            let aaa="";
+            if(aver>=90) { 
+                aaa="A";
+            } else if (aver>=80) {
+                aaa="B";
+            } else if (aver>=70) {
+                aaa="C";
+            } else if (aver>=60) {
+                aaa="D";
+            } else {aaa="F";}
+    
+    /* 강사님 풀이 
+            let grade="";
+            switch(parseInt(aver/10)) {
+                case 10:
+                case 9: grade = "A"; break;
+                case 8: grade = "B"; break;
+                case 7: grade = "C"; break;
+                case 6: grade = "D"; break;
+                default: grade = "F"; break;
+            } // switch
+    */
+
+            // 문 2 → 강사님도 이렇게 푸심
+            let bb="";
+            if (aver>=70) {             
+                if (kor<40 || eng<40 || mat<40) {      
+                    bb="재시험";
+                } else {
+                    bb="합격";
+                }
+           } else { 
+                    bb="탈락";
+           }
+
+           // 문 3 
+    /* 하 실패 
+           let cc="";
+           let fff=parseInt(aver/10)
+           for(a="*"; a<=fff; a=a+1){      // a=0으로 잡고 했으면 됐을거같음 좀 더 고민하기
+                cc=document.write(a);
+            }
+          위에 강사님 풀이보고 재도전 성공햇지만 너무 지저분함..! 
+            let cc="";
+            switch(parseInt(aver/10)) {
+                case 10: cc="**********"; break;
+                case 9 : cc="*********"; break;
+                case 8 : cc="********"; break;
+                case 7 : cc="*******"; break;
+                case 6 : cc="******" ; break;
+                case 5 : cc="*****" ; break;
+                case 4 : cc="****"; break;
+                case 3 : cc="***"; break;
+                case 2 : cc="**"; break;
+                case 1 : cc="*"; break;
+            } //switch end
+             
+            //강사님 풀이
+            let star="";
+                        // n=0이면 < | n=1이면 <=
+            for(let n=0; n<parseInt(aver/10); n++){
+                star=star+"*";
+            }
+    */
+            let cc="";
+            let fff=parseInt(aver/10)
+            for(a=0; a<fff; a++){     
+                cc+="*"
+             }
+           
+            // 문 4
+            let dd="";
+            if (aver>=95) {
+              dd="장학생"  
+            }
+
+            // 테이블
+            let result=""; 
+
+            result+= "<table border='1'>";
+                result+= "<tr>";
+                    result+= "<th>이름</th>";
+                        result+= "<td>" + name + "</td>"; 
+                result+= "</tr>";
+                
+                result+= "<tr>";
+                    result+= "<th>국어</th>";
+                        result+= "<td>" + kor + "</td>"; 
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<th>영어</th>";
+                        result+= "<td>" + eng + "</td>"; 
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<th>수학</th>";
+                        result+= "<td>" + mat + "</td>"; 
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<th>총점</th>";
+                        result+= "<td>" + total + "</td>"; 
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<th>평균</th>";
+                        result+= "<td>" + aver + "</td>"; 
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<th rowspan='4'>결과</th>";
+                        result+= "<td>" + aaa + "</td>";    // 여기에 rowspan 넣으면 밑으로 br로 값들을 넣어야함
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<td>" + bb + "</td>";
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<td>" + cc + "</td>";
+                result+= "</tr>";
+
+                result+= "<tr>";
+                    result+= "<td>" + dd + "</td>";
+                result+= "</tr>";
+            result+= "</table>";
+
+            document.getElementById("demo").innerHTML=result;   
+
+
+
+
+        </script>
+    </body>
+</html>
