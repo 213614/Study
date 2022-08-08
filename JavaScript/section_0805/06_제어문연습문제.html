@@ -244,7 +244,7 @@
                     break;
                 } // if end
             } // while end
-            document.write("횟수 : "+result);
+            document.write("횟수 : "+result + "<hr>");
 
         /* 시도한 흔적
             while (result<0) {
@@ -264,7 +264,50 @@
 
             //과제 ) 3의 배수의 누적 합이 100이 넘어가려면 3부터 어디까지 더해야 하는지 구하시오 -> 무한루프 
             //         3+6+9+...=100 넘어가려면 어디까지해야하는가 3+..+24=108 결과값이 24가 나와야함
-            
+            //         3 6 9 12 15 18 21 24 
+            //         4의 배수로 바꿧을때도 100이 넘어가려면 어디부터 더해야하는지의 결과값이 나와야함
+            // 참조 : https://itadventure.tistory.com/288
+            // 변수 3개 쓰면 된..다?
+            // 변수 누적(ex.num+=3;)은 알고리즘의 기초 
+
+            // while(true) = for(;;) : 무한반복 
+
+        /* 내 풀이 대 실패! 누적의 합만 했음...
+            let i=0;    //누적 합
+
+            for (let aa=3; aa<=100; aa+=3){
+                i += aa;
+                document.write(aa + "<br>"); 
+                if(i>=100){
+                    break;
+                }
+            }
+            document.write("누적 합 : "+i); 
+        */
+
+            let  num=0;
+            let  add=0;  //누적 합
+            let  str="";  //출력 결과 
+
+            while(true){
+                num+=3; // 3의배수 
+                add+=num;
+                
+                //document.write(num + "&nbsp;&nbsp;&nbsp;" + add + "<hr>" );     // 중간 중간 출력해서 확인해보기
+                                                                                  // 아예 while 밖으로 빼도 같은 값 나옴 
+                
+                str=str+num+"+";
+
+                if (add>=100) {
+                    break;
+                }               
+            } // while end
+            document.write(str);
+            document.write( "<br>" );
+            document.write("3의 배수 누적의 합 : " + add);
+            document.write( "<hr>" );
+
+
         </script>
     </body>
 </html>
