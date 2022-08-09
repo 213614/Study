@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_성적 프로그램.html</title>
+    </head>
+
+    <body>
+
+        <h3>성적 프로그램</h3><hr>
+
+        <br><div id="demo"></div><br><hr>
+
+        <script>
+            //문) *5명의 학생*(배열)을 대상으로 평균, 과락, 평균10점당 * 한개씩, 장학생을 구한후
+            //    결과값을 표작성해서 id=demo에 출력하시오
+            //    인덱스 같은 번호끼리 하나의 정보 (라일락-100-100-100)
+            /*
+            --------------------------------------------------------
+            이름   국어 영어 수학 평균 등수 결과
+            --------------------------------------------------------
+            무궁화 100  100  100  100  1    합격   ********** 장학생
+            홍길동  20   50   30   33  5    탈락   ***
+            개나리  90   95   90   91  2    합격   *********
+            진달래  70   80   60   70  4    합격   *******
+            라일락  35  100  100   78  3    재시험 ******* 
+            --------------------------------------------------------
+            */
+            let uname= ["라일락","진달래","개나리","무궁화","홍길동"];
+            let kor  = [100, 50, 95, 80, 60];
+            let eng  = [100, 55, 95, 85, 40];
+            let mat  = [100, 60, 35, 90, 30];
+            let size = uname.length;    // 5 
+
+            let aver = [0, 0, 0, 0, 0];         // 평균
+            let rank = [1, 1, 1, 1, 1];         // 등수 
+            let pass = ["", "", "", "", ""];    // 과락
+            let star = ["", "", "", "", ""];    // *
+            let grade= ["", "", "", "", ""];    // 장학생
+
+            document.write(uname);
+            document.write("<hr>");
+
+            // 평균
+            for(let i=0; i<size; i++){      // aver 배열 0번째엔 kor,eng,mat 0 번째 들어가고 aver 1번에는 kor1 이런식으로 반복
+                    aver[i]=aver[i]+parseInt((kor[i]+eng[i]+mat[i])/3);
+            }
+            document.write(aver);
+            document.write("<hr>");
+
+            // 등수
+            for(let i=0; i<size; i++){
+                for(let j=0; j<size; j++){
+                    if(aver[i] < aver[j]){
+                        rank[i]=rank[i]+1;
+                    }
+                }
+            }
+            document.write(rank);
+            document.write("<hr>");
+
+            // 과락 
+           for(let i=0; i<size; i++){
+            if(aver[i]>=70){
+                if (kor[i]<40 || eng[i]<40 || mat[i]<40){
+                    pass[i]=pass[i]+"재시험";
+                } else {pass[i]=pass[i]+"합격";}
+            } else {pass[i]=pass[i]+"탈락";}
+           }
+           document.write(pass);
+           document.write("<hr>");
+
+           // 평균 점수당 *표 
+
+            for (let i=0; i<size; i++){
+               for(let n=0; n<parseInt(aver[i]/10); n++){
+                star[i]+="*";
+               }
+            }
+            document.write(star);
+            document.write("<hr>");
+
+            // 장학생 (평균 95이상)
+            for(let i=0; i<size; i++){
+                if (aver[i]>=95){
+                    grade[i]+="장학생";
+                } else {grade[i]+="　";}
+            }
+            document.write(grade);
+            document.write("<hr>");
+
+            // 테이블
+            let result=""; 
+
+            result+= "<table border='1'>";
+                result+= "<tr>";
+                    result+= "<th>이름</th>";
+                    result+= "<th>국어</th>";
+                    result+= "<th>영어</th>";
+                    result+= "<th>수학</th>";
+                    result+= "<th>평균</th>";
+                    result+= "<th>등수</th>";
+                    result+= "<th colspan='4'>결과</th>";
+                result+= "</tr>";
+
+                for(let i=0; i<size; i++){
+                    result+="<tr>";
+                    result+="<td>"+uname[i]+"</td>";
+                    result+="<td>"+kor[i]+"</td>";
+                    result+="<td>"+eng[i]+"</td>";
+                    result+="<td>"+mat[i]+"</td>";
+                    result+="<td>"+aver[i]+"</td>";
+                    result+="<td>"+rank[i]+"</td>";
+                    result+="<td>"+pass[i]+"</td>";
+                    result+="<td>"+star[i]+"</td>";
+                    result+="<td>"+grade[i]+"</td>";
+                    result+="</td>"
+                }
+/*
+                result+= "<tr>";    // 라일락 
+                        result+= "<td>" + uname[0] + "</td>"; 
+                        result+= "<td>" + kor[0] + "</td>"; 
+                        result+= "<td>" + eng[0] + "</td>"; 
+                        result+= "<td>" + mat[0] + "</td>";
+                        result+= "<td>" + aver[0] + "</td>";
+                        result+= "<td>" + rank[0] + "</td>";
+                        result+= "<td>" + pass[0] + "</td>";
+                        result+= "<td>" + star[0] + "</td>";
+                        result+= "<td>" + grade[0] + "</td>";
+                result+= "</tr>";
+
+                result+= "<tr>";    // 진달래
+                        result+= "<td>" + uname[1] + "</td>"; 
+                        result+= "<td>" + kor[1] + "</td>"; 
+                        result+= "<td>" + eng[1] + "</td>"; 
+                        result+= "<td>" + mat[1] + "</td>";
+                        result+= "<td>" + aver[1] + "</td>";
+                        result+= "<td>" + rank[1] + "</td>";
+                        result+= "<td>" + pass[1] + "</td>";
+                        result+= "<td>" + star[1] + "</td>";
+                        result+= "<td>" + grade[1] + "</td>";
+                result+= "</tr>";
+
+                result+= "<tr>";    // 개나리 
+                        result+= "<td>" + uname[2] + "</td>"; 
+                        result+= "<td>" + kor[2] + "</td>"; 
+                        result+= "<td>" + eng[2] + "</td>"; 
+                        result+= "<td>" + mat[2] + "</td>";
+                        result+= "<td>" + aver[2] + "</td>";
+                        result+= "<td>" + rank[2] + "</td>";
+                        result+= "<td>" + pass[2] + "</td>";
+                        result+= "<td>" + star[2] + "</td>";
+                        result+= "<td>" + grade[2] + "</td>";
+                result+= "</tr>";
+
+                result+= "<tr>";    // 무궁화
+                        result+= "<td>" + uname[3] + "</td>"; 
+                        result+= "<td>" + kor[3] + "</td>"; 
+                        result+= "<td>" + eng[3] + "</td>"; 
+                        result+= "<td>" + mat[3] + "</td>";
+                        result+= "<td>" + aver[3] + "</td>";
+                        result+= "<td>" + rank[3] + "</td>";
+                        result+= "<td>" + pass[3] + "</td>";
+                        result+= "<td>" + star[3] + "</td>";
+                        result+= "<td>" + grade[3] + "</td>";
+                result+= "</tr>";
+
+                result+= "<tr>";    // 홍길동
+                        result+= "<td>" + uname[4] + "</td>"; 
+                        result+= "<td>" + kor[4] + "</td>"; 
+                        result+= "<td>" + eng[4] + "</td>"; 
+                        result+= "<td>" + mat[4] + "</td>";
+                        result+= "<td>" + aver[4] + "</td>";
+                        result+= "<td>" + rank[4] + "</td>";
+                        result+= "<td>" + pass[4] + "</td>";
+                        result+= "<td>" + star[4] + "</td>";
+                        result+= "<td>" + grade[4] + "</td>";
+                result+= "</tr>";
+*/
+            result+= "</table>";
+
+            document.getElementById("demo").innerHTML=result;   
+
+        </script>
+  
+    </body>
+</html>

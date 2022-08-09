@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_배열 연습문제.html</title>
+    </head>
+
+    <body>
+
+        <h3>배열 연습문제</h3><hr>
+
+        <script>
+            let num=[7, 8, -9, 5, 6];
+            let size=num.length;    // 5
+
+            document.write(num + "<hr>");
+
+            //문1) 배열 요소의 전체 합을 구하시오
+            let sum=0;  // 결과 값
+
+            for (let i=0; i<size; i++){
+                sum+=num[i];
+            }
+
+            document.write("합 : "+ sum + "<hr>");
+
+            //문2) 음수의 갯수를 구하시오
+            let count=0;    // 결과 값
+
+            for (let i=0; i<size; i++){
+                if (num[i]<0) {
+                    count+=1;
+                }
+            }
+            document.write("음수 갯수: " + count + "<hr>");
+
+            //문3) 최대값, 최소값을 각각 구하시오
+
+/*          // 1차시도 : 변수선언에 뭔가 오류가잇ㄴ느데 뭔지 모르겟음
+            let max=num[0]; // 최대값 
+            let min=num[0]; // 최소값
+            
+            for (let i=0; i<size; i++){
+                if(num[i] > max){
+                    max = num[i];
+                    document.write("최대 :" + max + "<br>")
+                }
+            }
+            for (let i=0; i<size; i++){
+                if (num[i] < min){
+                    min = num[i];
+                    document.write("최소 :" + min + "<hr>");
+                }
+            }
+            //2차시도→ 구글링함 : Math.함수 사용하면 간단한데 데이터 양이 어어엄청 많아지면 오류남 
+            let max1 = Math.max(...num);
+            document.write("최대값 : "+ max1 + "<br>");
+            document.write("최대값 : " + Math.max(...num) + "<br>");
+            let min1 = Math.min(...num);
+            document.write("최소값 : "+ min1 + "<hr>")
+*/             
+            // 3차시도 참조: https://www.habonyphp.com/2019/02/for-loop-ext-3.html
+            let max = num[0], min = num[0];
+
+            for(let i=0; i<size; i++){
+                if(num[i]>max){
+                    max=num[i];
+                }
+                if(num[i]<min){
+                    min=num[i];
+                }
+            }
+            document.write("최대 : "+ max + "<br>")
+            document.write("최소 : "+ min + "<hr>")
+
+            /* 강사님 코드 : 내림차순 정렬 후 0번째 인덱스와 마지막 인덱스 출력
+            num.sort(function(a, b){return b - a});         // 배열 요소가 숫자형+문자형이라면 어려움
+            document.write("최대값 : "+ num[0] + "<br>");
+            document.write("최소값 : "+ num[size-1] + "<hr>");
+            */ 
+            //강사님 코드 2 = 나랑 같음
+            let max2 = num[1];   // 최대값 : 인덱스 번호는 상관없음 비교용 초기값이라 
+            let min2 = num[1];   // 최소값
+
+            for(let i=0; i<size; i++){
+                if (max2<num[i]) max2=num[i];
+                if (min2>num[i]) min2=num[i];   // if문에서 {}안 내용이 한줄이면 생략 가능
+            }
+            document.write("최대값 : "+ max2 + "<br>");
+            document.write("최소값 : "+ min2 + "<hr>");
+
+            //문4) num[4]요소의 등수를 구하시오 (if 비교)
+            //     숫자가 크면 1등처리 (오름차순?) 등수하나 밀려나는건 +1만 하면됌  
+            // 다슬님의 힌트로함 for안에 if 하나 
+            let rank=1;
+
+            for (let i=0; i<size; i++){
+                if (num[i] > num[4]) {     // 여기를 >= 크거나 같다하면 let rank=0; | rank=1로하면 >
+                    rank+=1;
+                }
+            }
+            document.write(num[4] + " → " + rank + "등 <hr>");
+
+            //강사님 코드
+            /*
+                6<7     if(num[4]<num[0]) true    r=r+1
+                6<8                       true    r=r+1
+                6<-9                      false
+                6<5                       false
+                6<6                       false
+            */
+            let r=1;
+            for(let i=0; i<size; i++){
+                if(num[4]<num[i]){
+                    r+=1;
+                }
+            }
+            document.write(r+"등<hr>");
+
+            //문5) num배열 요소의 각각의 등수를 모두 구하시오 (for안에 for)
+            /* 
+            let all=0;
+            for (let i=0; i<size; i++){         // 결과가 21531 나옴 : 21543 으로 나와야함, 왜 마지막은 안되지??? 4등이 안나옴           
+                for(let j=0; j<size; j++){
+                    if (num[i]<=num[j]){
+                        all+=1;
+                    }
+                }
+                num[i]=all;
+                document.write(all);
+                all=0;
+            }
+            
+            // 천우님 정답코드 
+            let rr=[1, 1, 1, 1, 1];
+
+            for(let i=0; i<size; i++){
+                for(let j=0; j<size; j++){
+                    if(num[i] < num[j]){
+                        rr[i]=rr[i]+1;
+                    }
+                }
+            }
+            document.write(rr);
+ */
+            let all=[1, 1, 1, 1, 1];
+
+            for(let i=0; i<size; i++){
+                for(let j=0; j<size; j++){
+                    if(num[i] < num[j]){
+                        all[i]=all[i]+1;
+                    }
+                }
+            }
+            document.write(all);
+            document.write("<hr>");
+           
+            // 강사님 코드 
+            /*                              → 구구단 방식
+                7<7     if(num[0]<num[0])       false   
+                7<8     if(num[0]<num[1])       true    allrank=allranl[0]+1;  : allrank=1+1;
+                7<-9    if(num[0]<num[2])       false
+                7<5     if(num[0]<num[3])       false
+                7<6     if(num[0]<num[4])       false
+
+                8<7     if(num[1]<num[0])       false
+                8<8     if(num[1]<num[1])       false
+                8<-9    if(num[1]<num[2])       false   : true가 없으므로 allrank 초기값을 가져감 = 1 
+                8<5     if(num[1]<num[3])       false
+                8<6     if(num[1]<num[4])       false
+
+                -9<7    if(num[2]<num[0])       true    allrank=allranl[2]+1;  
+                -9<8    if(num[2]<num[1])       true    allrank=allranl[2]+1; 
+                -9<-9   if(num[2]<num[2])       false
+                -9<5    if(num[2]<num[3])       true    allrank=allranl[2]+1;  
+                -9<6    if(num[2]<num[4])       true    allrank=allranl[2]+1;  
+                ···.
+            */
+            let allrank=[1, 1, 1, 1, 1];
+
+            for(let a=0; a<size; a++){
+                for(let b=0; b<size; b++){
+                    if(num[a]<num[b]){
+                        allrank[a]=allrank[a]+1;
+                    }
+                }
+            }
+            document.write(allrank);
+            document.write("<hr>");
+            
+
+
+
+        </script>
+    </body>
+</html>
