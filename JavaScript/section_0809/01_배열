@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_배열.html</title>
+    </head>
+
+    <body>
+
+        <h3>배열 Array</h3><hr>
+
+        <script>
+            // 참조 https://www.w3schools.com/js/js_arrays.asp
+            /*
+                ● [ 배열 Array ]
+                                 (큰 틀에서 이해해놓으면 다른 비슷한 개념을 이해하기 쉬움) 
+                 : 연속성을 갖는 자료 = 열거형 = 컬렉션 
+                 : 한 변수 안에 하나 이상의 데이터를 한번에 저장 가능하다. 
+                    = 변수라는 이름을 가진 큰 서랍장에 칸칸이 각기 다른 데이터를 저장하는 것 
+                    → 숫자형, 문자형 다 데이터로 저장 가능
+                 : 접근은 순서대로할수도 아닐수도 있음 
+                    → ex. kor = [10,20,30] - 순차적 접근 방법 : kor[0] = 10, kor[1] = 20, kor[2] = 30
+                              → 한칸의 데이터는 요소,원소,element라고 부른다. 
+                              → [0]은 순서, 색인, index : 순서는 0부터 시작해서 1씩 증가한다. 
+                 : 반복문과 배열은 짝꿍! 
+            */
+
+            let kor=[];     // 배열 선언 (자바랑 문법차이가 있음)
+            kor[0] = 10;    // 배열 요소의 인덱스는 0부터 시작한다.
+            kor[1] = 20;    // 배열 요소의 인덱스는 1씩 증가한다. (0-1-2)
+            kor[2] = 30; 
+            // let kor=[10, 20, 30]
+
+            document.write(kor[0] + "<br>");
+            document.write(kor[1] + "<br>");
+            document.write(kor[2] + "<hr>");
+                            // ↑ 이 요소를 i 변수로 지정해서 반복문으로 활용한다. → let i = kor;
+
+            let names=[];   // 여러개면 변수에다가 s붙여서 많이 사용함 
+            names[0]="무궁화";
+            names[1]="개나리";
+            names[2]="진달래";
+            
+            document.write(names[0] + "<br>");
+            document.write(names[1] + "<br>");
+            document.write(names[2] + "<hr>");
+
+            //구버전 JS 배열 선언
+            //let points=new Array(); // Bad = java문법 
+
+            //배열 선언 및 초기화(초기값) : 한번에 다량의 데이터를 한번에 선언할 수 있다.
+            let points=[40, 100, 25, 1, 3, 8];
+            //  index →  0   1   2   3  4  5
+            document.write(points[0] + "<br>");     // 40
+            document.write(points[1] + "<br>");     // 100
+            document.write(points[2] + "<br>");     // 25        
+            document.write(points[3] + "<br>");     // 1
+            document.write(points[4] + "<br>");     // 3
+            document.write(points[5] + "<hr>");     // 8
+
+            document.write(points.length + "<br>");  // 6 → 배열 요소의 총 갯수 
+            document.write(points + "<hr>"); // 배열 요소의 전체가 출력됨(쉼표까지 다)
+
+            // 반복문에 적용하는 문법  
+            for(let i=0; i<points.length; i++) {    // 렝스보다 작아야니까 < 을 써야함 
+                                                    // <=은 같을때 값이 없으니 안됨 : 총 갯수는 6인데 인덱스는 0부터 시작해서 5까지밖에 없으니까
+                document.write(points[i] + "<br>"); // i는 인덱스에 대입하는 것! 
+            } // for end
+
+            document.write("<hr>");
+
+            // 변수 선언하고 반복으로 일괄처리하는게 가장 일반적인 활용 방법
+
+            let fruits=["Banana", "Orange", "Apple", "Mango"]; 
+            fruits[6]="Lemon";      
+            document.write(fruits.length + "<br>");     // 7
+            document.write(fruits + "<br>");            // 데이터가 없는 인덱스는 공백으로 인정되고 출력됨  그래서 렝스가 7
+                                                        // Banana,Orange,Apple,Mango,,,Lemon  
+            document.write(fruits[6] + "<br>");         // Lemon
+            document.write(fruits[4] + "<br>");         // undefined : 데이터가 없으므로 
+            document.write(fruits[5] + "<br>");         // undefined
+            document.write(fruits[8] + "<br>");         // undefined
+
+            fruits[8]="Kiwi";
+            document.write(fruits.length + "<br>");     // 9 : 중간 값이 비어있어도 최종 인덱스+1이 렝스값이다이 
+            
+            
+
+            
+
+
+
+
+        </script>
+    </body>
+</html>
