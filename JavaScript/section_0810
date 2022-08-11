@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_요일 구하기.html</title>
+    </head>
+
+    <body>
+
+        <h3>요일 구하는 프로그램</h3><hr>
+
+        <script>
+            let cYear=2022, cMonth=8, cDate=10;
+            /* 
+                [전체적인 시나리오(알고리즘)]
+                서기 1년 1월 1일 ~ 서기 2022년 8월 10일 => 총 날수 (대충 738.030일) 
+                       → 윤년구하는 공식 활용 : 윤년은 366일 누적, 평년은 365일 누적 
+                총 날수 %7 => 0(일요일) 1(월요일) 2(화요일) 3(수요일) 4(목요일) 5(금요일) 6(토요일)
+                
+                1단계.  year
+                서기 1년 ~ 2021년까지 누적  
+                평년 += 365 | if(%4==0) 윤년 += 366
+
+                2단계.  month
+                1월 ~ 7월 까지 누적 
+                31  : 1 3 5 7 8 10 12 += 31 
+                30  : 4 6 9 11        += 30
+                29  : 2               += 29 (윤년)
+                28  :                 += 28 (평년)
+
+                3단계.  date
+                hap += cDate;
+            */
+
+            // 1단계 
+            let hap=0;
+            
+            for(let y=1; y<cYear; y++){         // 738155
+                if(y%4==0 && y%100!=0 || y%400==0){ // 윤년 구하는 공식
+                    hap += 366;
+                }else { hap += 365; }
+            }
+
+            // 2단계 ↓ 계산을 빠르게 이해하기위해 쓰지않는 인덱스를 추가해서 월과 인덱스를 맞춘다
+            let mon=[0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            // 1월~7월 mom[1] + mon[7] (0번째 인덱스 추가되었으니까)
+            
+            if (cYear%4==0 && cYear%100!=0 || cYear%400==0) { // 올해가 윤년인지 판단
+                mon[2] = 29;    // 윤년이면 2월달을 29로 바꾼다 
+            }
+            
+            for(let m=1; m<cMonth; m++){
+                hap+=mon[m];
+            }
+
+            //3단계
+            hap+=cDate;
+
+            document.write(cYear + "년" + "&nbsp;" + cMonth + "월" + "&nbsp;" + cDate + "일" + "<hr>");
+            document.write("총 일수 :" + hap + "<hr>");
+
+            switch(hap%7){                      // 월요일나옴 실패!
+                case 0 : document.write("일요일"); break;
+                case 1 : document.write("월요일"); break;
+                case 2 : document.write("화요일"); break;
+                case 3 : document.write("수요일"); break;
+                case 4 : document.write("목요일"); break;
+                case 5 : document.write("금요일"); break;
+                case 6 : document.write("토요일"); break;
+            }
+            document.write("<hr>");
+
+            // 문 1. 년도 cYear 값의 띠를 구하시오 (12간지)
+            let animal = ["원숭이", "닭", "개", "돼지", "쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양"]
+            document.write("띠: "+animal[cYear%12]); // cYear%12의 값이 인덱스가 된다
+            // 나머지가 0이면 원숭이띠여가지구 12간지 순서가 저럼 
+        </script>
+    </body>
+</html>
