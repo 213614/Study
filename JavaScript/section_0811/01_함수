@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_함수.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>Function</h3>
+        <h5>사용자 정의 함수</h5><hr>
+
+        <script>
+            //참조 https://www.w3schools.com/js/js_functions.asp
+            /*
+                ＊＊＊ [ 함수 Function, Method(in JAVA) ]＊＊＊ 정말정말정말정말 중요함 진짜정말엄청
+                - 일정한 기능을 가지고 있다.
+                - 여러 함수 작성 가능 = 함수 정의
+                - 만들어놓고 부르지않으면 작동하지않음 = 함수 호출 (한 함수를 여러곳에 호출가능)
+                - 함수명(불용어:한글,첫글자 숫자,공백) : 의미부여가 중요 (이름만봐도 알게끔)
+                - 형식 : function 함수명() {} 
+                - 함수 작성(정의)하고, 그 함수를 호출함으로써 실행된다
+                - ex. document.write() : 괄호 안의 값을 웹 브라우저 본문 영역(body)에 출력하는 함수
+                      Math.random()    : 0.0 <= r < 1 사이(r)에서 랜덤값을 뽑는 함수
+
+                ※ 함수 작성시 고려사항
+                - 매개변수(parameter)가 있는가?     → 매개변수는 let var const(변수타입)을 지정하지않는다.
+                - 리턴(return)값이 있는가? 
+
+                - 함수 정의 순서는 상관이 없으나 호출 순서가 중요 : 그 순서대로 출력되니까 
+                - 자주쓰는 기능을 함수로 지정해놓고 사용할대마다 호출하는 식으로 활용됨
+            */
+
+            // [ 함수 정의 ]
+            // 함수는 함수끼리 (style을 .css에 모아놓듯이) → function만 모아놓는 파일은 .js 
+            // 함수 안에 함수는 안됨
+            // 함수   함수명
+            function test1(){
+                document.write("KOREA");
+                document.write("<br>");
+            }//text1() end
+
+            function test2(){
+                document.write("SEOUL");
+                document.write("<br>");
+            }//test2() end
+
+            function test3(a){  // a는 매개변수(parameter)
+                                // 매개변수는 자료형(변수타입):let,var,const 이 없으므로 사용 불가 
+                document.write(a);
+                document.write("<br>");
+            }//test3() end
+
+            function test4(a, b, c){    // 전달값 갯수 = 매개변수 갯수
+                document.write(a+b+c);
+                document.write("<br>");
+            }//test4() end
+
+            function test5 (c, d){
+                for (let a=1; a<=d; a++){   // 1부터해야 100까지 (a=0에서 시작하면 101개)
+                    document.write(c);
+                }
+            }//test5() end
+            /* 강사님 코드
+            furction test5 (ch, num){
+                for (a=1; a<=num; a++){
+                    document.write(ch);
+                }
+            }//test5() end
+            */
+ 
+////////////////////////////////////////////////////////////////////////////////////////////
+
+            // [ 함수 호출 ]
+    
+            // 함수의 전달값(argument value)
+            // Math.abs(-3); | Math.random(); → 괄호 안에 들어갈 값으로 있을수도, 없을수도있다 
+
+            //1. 전달값이 없는 경우 
+            test1();
+            test1();
+            test2();
+            test1(); 
+            
+            //2. 전달값이 있는 경우
+            test3(10);          // 이 전달값이 위 함수 안 let a로 대입된다.
+            test3(20);          
+            test3(30);
+            test3("JEJU");
+
+            //2-1. 전달값은 1개 이상 가능 (쉼표로 구분)
+            test4(50, 60, 70);
+            test4(-3, -2, -1);
+
+            //문 1. # 기호를 100번 출력하기 
+            test5("#", 100);
+
+
+            
+
+        </script>
+    </body>
+</html>
