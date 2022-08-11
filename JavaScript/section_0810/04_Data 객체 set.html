@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_Data 객체 set.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>Date 객체 날짜 세팅</h3><hr>
+
+        <script>
+            // 참조: https://www.w3schools.com/js/js_date_methods_set.asp
+
+            const someday=new Date();  // 무조건 오늘 날짜를 가지고 있음
+            someday.setFullYear(1989, 5, 8); // 1989년 6월(0번째부터니까 값+1해야 출력값임) 8일
+            
+            document.write(someday.getFullYear()+"<br>");
+            document.write((someday.getMonth()+1)+"<br>");
+            document.write(someday.getDate()+"<br>");
+            // set로 지정해놓은 날짜의 값이 나옴 : 1989 5 18
+
+            const days=["일","월","화","수","목","금","토"];
+            document.write(days[someday.getDay()]+"<hr>");
+
+            const d=new Date();
+            d.setDate(someday.getDate()+10);
+            document.write(d.getDate());
+            // someday date = 8일에 10을 더해서 18일이 나옴
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_로또번호.html</title>
+    </head>
+
+    <body>
+
+        <h3>로또</h3><hr>
+        <div id="demo"></div>
+
+        <script>
+            // 문. 로또번호 1-45사이의 수를 서로 겹치지 않게 6개 발생시킨 후,
+            //     오름차순(1-..-10)으로 정렬해서 #demo에 출력하시오.
+
+            /*  → 숫자가 겹치게 발생
+            document.write(parseInt(Math.random()*45)+1 + "<br>");
+            document.write(parseInt(Math.random()*45)+1 + "<br>");
+            document.write(parseInt(Math.random()*45)+1 + "<br>");
+            document.write(parseInt(Math.random()*45)+1 + "<br>");
+            document.write(parseInt(Math.random()*45)+1 + "<br>");
+            document.write(parseInt(Math.random()*45)+1 + "<br>");
+            */
+
+            let lotto=[];   // 최종 로또 번호 배열
+
+            for(let i=0; i<6; i++){ // 0~6 = 6개
+                lotto[i]=parseInt(Math.random()*45)+1;      //위의 출력값을 반복문화했을 뿐이라서 숫자가 겹침
+                for(let j=0; j<i; j++){     // 1씩 증가되는 i를 j의 종료값으로 썼기때문에 j도 함께 점차 증가함 = 회전수 점차 증가
+                    if(lotto[i]==lotto[j]){ // 중복인가 체크
+                        i--;
+                        break;
+                    } 
+                }
+            }//for end
+        
+            lotto.sort(function(a, b){return a - b});
+            document.getElementById("demo").innerHTML=lotto;   
+
+            /*                   ↓여긴 랜덤값이라 이건 예시 
+                i=0     lotto[0]=4
+                    j=0     0<0     false
+                i=1     lotto[1]=9
+                    j=0     0<1     true    if(lotto[1]==lotto[0])  9==4    false
+                i=2     lotto[2]=3
+                    j=0     0<2     true    if(lotto[2]==lotto[0])  3==4    false
+                    j=1     1<2     true    if(lotto[2]==lotto[1])  3==9    fasle
+                i=3     lotto[3]=9
+                    j=0     0<3     true    if(lotto[3]==lotto[0])  9==4    false
+                    j=1     1<3     true    if(lotto[3]==lotto[1])  9==9    true    i=3-1;  break;
+                                                                                    → i=2인 상태로 i++로 돌아가서 다시 반복한다.
+                                                                                    → i=3에서 다시 회전 시작
+            */
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_Date 객체 get.html</title>
+    </head>
+
+    <body>
+
+        <h3>Date 객체</h3><hr>
+        현재 날짜정보
+        <div id="clock"></div>
+
+        <script>
+            //참조 https://www.w3schools.com/js/js_dates.asp
+            // Date 날짜 관련 내장 객체
+
+            // 함수 앞 get:정보를 주고 결과값을 받아오는 것| set: 어떤 값을 주는 것 setting
+            // const = 변수 값을 절 때 바 꿀 수 없 음
+            const d=new Date(); // 시스템 설정 시각 및 날짜정보 (년월일 시분초)
+
+            /*
+            document.write(d.getFullYear()+"년"+"&nbsp;");
+            // document.write(d.getMonth()+"&nbsp;"); // 0부터 카운터되다보니 n-1로 결과값이 나옴
+            document.write((d.getMonth()+1)+"월"+"&nbsp;");
+            document.write(d.getDate()+"일"+"&nbsp;");
+
+            const days=["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+            document.write(days[d.getDay()] + "<hr>");
+
+            document.write(d.getHours()+"시"+"&nbsp;");
+            document.write(d.getMinutes()+"분"+"&nbsp;");
+            document.write(d.getSeconds()+"초"+"<hr>");
+            */
+
+            // 날짜데이터도 연산 가능 : 오늘이 어제보다 크다 (오늘-어제=1)
+            // 문 1. 날짜 데이터를 활용해서 날짜 정보를 아래와 같이 구성해서 #clock에 출력
+            //       2022.08.10 (수) pm 3:00:00 : 구분 기호 온점. / 자릿수 통일을 위해 01~09월 / 시간은 12시간제 / 
+
+            let today="";
+            
+            today += d.getFullYear() + "."; // 년.
+    
+            if ((d.getMonth()+1)<10) {          // 월.
+            today += "0"+(d.getMonth()+1)+".";  
+            } else { today += (d.getMonth()+1)+"."; }
+
+            //삼항연산자로 푸는법 
+            //today += ((d.getMonth()+1)<10) ? "0"+(d.getMonth()+1)+"." : (d.getMonth()+1)+"." ;
+
+            today += d.getDate()+"&nbsp;";       // 일.
+
+            const days=["일","월","화","수","목","금","토"];
+            today += "("+days[d.getDay()]+")"+"&nbsp;";  // 요일
+
+            // 인터넷에서 가져옴 (분석해서 이해 필요) 참조: https://66651.tistory.com/362
+            today += d.getHours() >= 12 ? 'PM'+"&nbsp;" : 'AM'+"&nbsp;";
+
+            //↓ 이 나머지가 이해가안감 작동은 됨
+            //today += d.getHours() % 12 ? (d.getHours() % 12)+":" : 12+":";
+            today += d.getHours() > 13 ? (d.getHours() - 12 )+":" : d.getHours() +":";
+
+            today += d.getMinutes() < 10 ? '0' + d.getMinutes()+":" : d.getMinutes()+":";
+            
+            today += (d.getSeconds() < 10 ? "0"+(d.getSeconds()) : d.getSeconds());
+/*        
+            // 강사님 코드 
+            document.write("<hr>"); 
+
+            if(d.getMonth()+1<10){      //월
+                today+="0";
+            }
+            today += d.getMonth()+1 + ".";
+
+            today += d.getDate();       // 일
+            
+            switch(d.getDay()){         // 요일 
+                case 0 : today+= "(일)" ; break;
+                case 1 : today+= "(월)" ; break;
+                case 2 : today+= "(화)" ; break;
+                case 3 : today+= "(수)" ; break;
+                case 4 : today+= "(목)" ; break;
+                case 5 : today+= "(금)" ; break;
+                case 6 : today+= "(토)" ; break;
+            }
+
+            if(d.getHours()<12){        // 오전오후
+                today += " AM ";
+            } else { today += " PM "; }
+
+            if(d.getHours()<13) {       // 시
+                today+= d.getHours()+":";
+            } else { today += d.getHours()-12+":";}
+
+            if(d.getMinutes()<10){       // 분
+                today += "0" ;
+            } 
+            today += d.getMinutes() + ":";
+
+            if(d.getSeconds()<10){       // 분
+                today += "0" ;
+            } 
+            today += d.getSeconds();
+ */ 
+
+            document.getElementById("clock").innerHTML=today; 
+        </script>
+    </body>
+</html>

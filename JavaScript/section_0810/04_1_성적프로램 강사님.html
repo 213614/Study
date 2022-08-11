@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_1_성적프로램 강사님.html</title> 
+    </head>
+
+    <body>
+
+        <h3>성적 프로그램</h3><hr>
+
+        <br><div id="demo"></div><br><hr>
+
+        <script>
+            
+            //문) *5명의 학생*(배열)을 대상으로 평균, 과락, 평균10점당 * 한개씩, 장학생을 구한후
+            //    결과값을 표작성해서 id=demo에 출력하시오
+            //    인덱스 같은 번호끼리 하나의 정보 (라일락-100-100-100)
+            /*
+            --------------------------------------------------------
+            이름   국어 영어 수학 평균 등수 결과
+            --------------------------------------------------------
+            무궁화 100  100  100  100  1    합격   ********** 장학생
+            홍길동  20   50   30   33  5    탈락   ***
+            개나리  90   95   90   91  2    합격   *********
+            진달래  70   80   60   70  4    합격   *******
+            라일락  35  100  100   78  3    재시험 ******* 
+            --------------------------------------------------------
+            */
+           
+            let uname= ["라일락","진달래","개나리","무궁화","홍길동"];
+            let kor  = [100, 50, 95, 80, 60];
+            let eng  = [100, 55, 95, 85, 40];
+            let mat  = [100, 60, 35, 90, 30];
+            let size = uname.length;    // 5 
+
+            // 1.평균 구하기
+            let aver=[0, 0, 0, 0 ,0];
+            for(let i=0; i<size; i++){
+                aver[i]=parseInt((kor[i]+eng[i]+mat[i])/3);
+            }//for end
+
+            // 2.등수 구하기 (평균점수 기준)
+            let rank=[1, 1, 1, 1, 1];
+
+            for(let a=0; a<size; a++){
+                for(let b=0; b<size; b++){
+                    if(aver[a]<aver[b]){
+                        rank[a]=rank[a]+1;
+                    }
+                }
+            }//for end
+
+            // 3. 출력
+            let result="";
+
+            result+= "<table border='1'>";
+            result+= "<tr>";
+                result+= "<th>이름</th>";
+                result+= "<th>국어</th>";
+                result+= "<th>영어</th>";
+                result+= "<th>수학</th>";
+                result+= "<th>평균</th>";
+                result+= "<th>등수</th>";
+                result+= "<th>결과</th>";
+            result+= "</tr>";    
+
+            // 4. 다섯명의 성적 출력
+            for(let i=0; i<size; i++){
+                result+="<tr>";
+                    result+="<td>"+uname[i]+"</td>"
+                    result+="<td>"+kor[i]+"</td>"
+                    result+="<td>"+eng[i]+"</td>"
+                    result+="<td>"+mat[i]+"</td>"
+                    result+="<td>"+aver[i]+"</td>"
+                    result+="<td>"+rank[i]+"</td>"
+                    result+="<td>";
+                        // 5.과락(합격,재시험,탈락)
+                        if(aver[i]>=70){
+                            if(kor[i]<40 || eng[i]<40 || mat[i]<40){
+                                result += "재시험";
+                            } else { result += "합　격" ;}
+                        }else {result += "불합격"};
+                        
+                        // 6.평균 10점당 * 한개씩 
+                        for(let star=1; star<=parseInt(aver[i]/10); star++){
+                            result+="*";
+                        }//for end
+                        
+                        // 7.평균 95점 이상이면 장학생
+                        if (aver[i]>=95) {
+                            result += "<span style='color:red; font-weight:bold;'>장학생</span>";
+                        }
+
+                    result+="</td>";
+                result+="</tr>";
+            }// for end
+
+            
+            result+= "</table>";
+            
+            document.getElementById("demo").innerHTML=result;   
+
+
+        </script>
+    </body>
+</html>
