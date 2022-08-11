@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_scope.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>변수의 유효 범위(Scope)</h3>
+                                                <!-- ↓ 클릭 이벤트 발생시 이곳에 적혀있는걸 동작시켜주세요-->
+        <input type="button" value="SCOPE1" onclick="alert('오 필승')"> <!--동작 명령은 JS/JQuery만 가능-->
+        <input type="button" value="SCOPE2" onclick="alert('코리아')">  <!--스콥1/2를 누르면 오 필승/코리아 알림창이 뜬다-->
+        <hr>                                    <!--  ↑ 함수를 짜놓고 여기다가 호출시켜서 필요시 일괄 수정이 쉽게 하는게 보통이다-->
+        <input type="button" value="SCOPE3" onclick="test3()">
+        <input type="button" value="SCOPE4" onclick="test4()">
+
+        <script>
+            /*
+                참조 : https://www.w3schools.com/js/js_scope.asp
+
+                ● [ 변수의 종류 ]
+                    - 지역 변수(local variable)  : 한 구역에서만 ex.매개변수, {}안에서만 선언된 변수들
+                        : function함수 내에서 선언된 변수는 함수 내에서만 사용 가능하다. 
+                    - 전역 변수(global variable) : 전 구역 다 ex.같은 값을 공유한 변수들 
+                        : fuction함수 외부에서 선언된 변수로 모든 함수 내에서 그 값을 공유한다.
+                        : 전역 변수는 순서가 상관 없다 (함수 밖에서 선언됐다면 어디든 접근 가능하기때문에)
+                    ▶ { } 안을 한 지역으로 여긴다 
+
+                    → 지역 변수와 전역 변수가 함께 있다면 *지역 변수가 우선*이다 (가장 작은 값을 가진것들이 우선시되는 경우가 많다)
+
+                ● [ EVENT ]
+                - 종류에 따라 다양한 이벤트들이 있다 (ex.button - onclick event)
+            */
+            let one="하나"; // 전역 변수
+
+            function test3(a){
+                alert("ONE : " + one);
+                alert("TWO : " + two);
+                alert("THREE : " + three);
+                
+                let uid = "아이티윌";   // 지역 변수 : 괄호를 빠져나가면 사라짐
+                alert(uid);
+                //alert(upw);          // 같은 괄호내에서만 변수를 인식하기때문에 다른 함수에서 선언된 변수를 쓰면 오류남
+            }//test3 end
+
+            let two="둘";   // 전역 변수
+
+            function test4(){
+
+                let two="두번째";
+
+                alert("ONE : " + one);
+                alert("TWO : " + two);  // 지역변수가 우선이라 같은 이름의 변수는 지역 변수의 값이 들어온다 
+                                        // TWO : 두번째 라고 나옴 (원래는 TWO : 둘)
+                alert("THREE : " + three);
+
+                let upw="1234";
+                alert(upw);
+                //alert(uid);          // 같은 괄호내에서만 변수를 인식하기때문에 다른 함수에서 선언된 변수를 쓰면 오류남
+            }//test4 end
+
+            let three="셋"; // 전역 변수
+
+
+        </script>
+    </body>
+</html>

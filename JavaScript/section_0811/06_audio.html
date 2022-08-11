@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>06_audio.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <div style="text-align: center;">
+            <h3 style="font-weight: lighter;">music list</h3>
+            <img src="../../music/gangnamstyle.jpg" id="poster" width="300px" height="250px">
+            <br><br>
+            <audio src="../../music/gangnamstyle.mp3" id="audio1" controls></audio>
+        </div>
+        
+        <hr width="50%">
+
+        <div style="margin: auto; width: 50%;">
+            <ol>
+                <!--<li><a href="해당 포스터와 음악을 바꿔주는 함수:#poster 을 바꾸고 #Audio를 바꾸꼬">소원을 말해봐</a></li>-->
+                <li><a href="javascript:loadMusic('../../music/genie.jpg', '../../music/genie.mp3')">소원을 말해봐</a></li>
+                <li><a href="javascript:loadMusic('../../music/sheis.jpg', '../../music/sheis.mp3')">그녀가 처음 울던 날</a></li>
+                <li><a href="javascript:loadMusic('../../music/candy.jpg', '../../music/candy.mp3')">내 귀에 캔디</a></li>
+                <li><a href="javascript:loadMusic('../../music/gangnamstyle.jpg', '../../music/gangnamstyle.mp3')">강남 스타일</a></li>
+
+            </ol>
+
+        </div>
+        <script>    
+            function loadMusic(jpg, mp3){   // 엥 이해안감ㅋ; 
+                //test/ alert("#" + jpg + "#");
+                //test/ alert("#" + audio + "#");
+                let poster=document.getElementById("poster");
+                let audio1=document.getElementById("audio1");
+                // 본문에 있는 #poster, #audio1을 변수에 담은 것
+
+                poster.src=jpg;
+                audio1.src=mp3;
+                    // 해당 링크를 누르면 함수 호출 → 함수 안에서 poster,audio1 변수에 각각 #poster,#audio를 담고 
+                    // → 해당 변수의 src라는 멤버변수를 사용해서 jpg파일을 앵커태그에 연결된 파일을 #poster에 있는 jpg에다가 대입시켜주고
+                    // → mp3파일도 앵커태그에 연결된 파일을 #audio1이 있는 곳의 mp3파일에다가 대입시킨다 (파일을 바꿔주는 것)
+                audio1.play();
+                    // 파일을 바꿔준 후에는 자동으로 #audio1이 재생되라는 뜻 
+            }//loadMusic() end
+
+
+
+
+
+        </script>
+    </body>
+</html>

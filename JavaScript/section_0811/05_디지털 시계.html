@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>05_디지털 시계.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>디지털 시계</h3>
+        <div id="clock"></div>
+        <hr>
+
+        <input type="button" value="시작" onclick="showtime()">
+        <input type="button" value="중지" onclick="killtime()">
+
+        <script>
+            function showtime(){
+                const d=new Date();
+                let today="";
+            
+                today += d.getFullYear() + "."; // 년.
+        
+                if ((d.getMonth()+1)<10) {          // 월.
+                today += "0"+(d.getMonth()+1)+".";  
+                } else { today += (d.getMonth()+1)+"."; }
+
+                
+                today += ((d.getMonth()+1)<10) ? "0"+(d.getMonth()+1)+"." : (d.getMonth()+1)+"." ;
+
+                today += d.getDate()+" ";       // 일.
+
+                const days=["일","월","화","수","목","금","토"];
+                today += "("+days[d.getDay()]+")"+" ";  // 요일
+
+
+                today += d.getHours() >= 12 ? 'PM'+" " : 'AM'+" ";
+
+
+                today += d.getHours() > 13 ? (d.getHours() - 12 )+":" : d.getHours() +":";
+
+                today += d.getMinutes() < 10 ? '0' + d.getMinutes()+":" : d.getMinutes()+":";
+                
+                today += (d.getSeconds() < 10 ? "0"+(d.getSeconds()) : d.getSeconds());
+
+                document.getElementById("clock").innerText=today;       // today에 showtime 넣으면 무한 호출이라 오류남
+
+                timer=setTimeout(showtime, 1000); // 1초마다 showtime 함수 호출
+                // 변수에다가 명령자체를 담을수도있음
+            }//showtime() end
+
+            let timer;      // 전역 변수
+                            // 다른 함수안에있는 명령어를 이용하려할때 전역 변수를 사용한다 
+                            // 전역 변수 선언 → 해당 명령어를 변수에 대입 → 명령어를 사용하고자하는 다른 함수에 변수를 불러와서 사용
+            function killtime(){
+                clearTimeout(timer);     // clear를 안해주면 cpu를 계속 잡아먹음 (페이지를 나가면 clear가 되는 방법을 주로 씀)
+            }//killtime() end
+            
+
+        </script>
+    </body>
+</html>

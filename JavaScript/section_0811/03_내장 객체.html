@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_내장 객체.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>JavaScript 내장 객체</h3><hr>
+
+        <script>
+            /*
+            참조 https://www.w3schools.com/js/js_objects.asp
+            참조 https://www.w3schools.com/jsref/default.asp
+
+                ● [ 내장 객체 ]
+                : 프로그래밍 언어 안에 제공해주는 객체(class in java | package, module in python) 
+                
+                    ○ 자바스크립트 내장 객체(Object)
+                        - Objetct = 멤버 변수, 멤버 함수로 구성되어 있다
+                            - 멤버 변수(Property, Attribute, Field, Column)
+                                - 형식 : 객체명.멤버변수 
+                            - 멤버 함수(Function, Method)
+                                - 형식 : 객체명.멤버함수() 
+
+                - JS 필수 내장 객체 : window  → https://www.w3schools.com/jsref/obj_window.asp
+
+            
+
+            //1.Math 객체         ↓ 멤버 함수(전달값)
+            document.write(Math.abs(-3)); 
+            document.write(Math.PI);
+                             //  ↑ 멤버 변수
+
+            //2.Number 객체
+            document.write(Number("5"));       // 문자열 5를 숫자열데이터로 변환
+            document.write(Number("8.9"));
+
+            //3.Date 객체
+            const d=new Date();
+
+
+            //4.Window 객체＊＊＊
+            // → 객체명(window)을 생략 가능하다
+
+            //4-1.alert() : 경고창(확인)
+            //                → 코드 짜던 중 중간중간 얼럿을 활용해서 오류 검사도 가능하다
+            //                  경고창을 꾸미고 싶다면 Bootstrap 활용
+            window.alert();  // 전달값을 적으면 경고창에 대입되어 나옴
+            alert('boo!');   // 객체명 생략 가능
+            alert(1234);
+            alert("'");      // 명령어에 사용되는 기호를 그냥 문자로 사용하고 싶을때 "" ''를 적절하게 활용해야한다
+            alert('"');
+            alert("\"");     // 중복하여 사용하고싶다면 \를 함께 작성한다
+            alert('\'');
+            alert("서\n울\n제주\n\n부산");  // \n 은 줄바꿈 명령어 <br>은 본문에서만 사용 가능함
+           
+            //4-2.confirm() : 경고창(확인 | 취소) → 확인(true 반환) | 취소(false 반환) : boolean값을 반환
+            //                ex. 휴지통 비우기 : 영구히 삭제된다는 알람창 
+            window.confirm();
+            confirm();              //객체명 생략가능 
+            let flag=confirm("영구히 삭제됩니다. \n지우시겠습니까?");
+            alert(flag);    // 확인을 누르면 true가 나옴
+
+            //4-3.open()  : 새로운 창이 열림 (팝업창)
+            //              → 모바일에선 작동하지 않음 | 팝업을 허용해놓지 않는 경우 안보여짐 
+            //              → 그래서 요즘은 현재창에 새로운 레이어를 씌우는 식(모달창)으로 팝업창을 사용함
+            window.open();
+            open();
+            //4-3_1.close() : 창을 닫음
+
+            //4-4.print(); : 인쇄창을 띄움
+            print();
+*/ 
+            //4-5.setInterval()     ↔       clearInterval()       
+            //    setTimeout()      ↔       clearTimeout()
+            /*
+                → 주어진 시간에 따라 자동으로 *함수* 호출 
+
+                참조 : https://www.w3schools.com/jsref/met_win_settimeout.asp
+                - 시간단위 : 1초=1000 / 0.5초=500 / 1분=60000
+                
+                ※ new version 사용을 권장 
+                
+                -【 new version 】
+                    - setInterval(함수명, 시간) : 지정된 시간 만큼 주기적으로 함수 호출
+                        ex. setInterval(함수명, 1000) : 1초마다 한번씩 함수 호출 
+
+                    - setTimeout(함수명, 시간)  : 지정된 시간이 지나면 한번만 호출
+                        ex. setTimeout(함수명, 1000) : 1초 후 한번 함수 호출 후 끝 
+                - old version
+                    - setInterval("함수명()", 시간)
+                    - setTimeout("함수명()", 시간)
+
+                → 함수를 다 활용했으면 시간 설정을 죽여야함
+                → clear하지 않으면 cpu가 계속 돌아갈수도있음 
+                → 계속해서 유지하는 경우도 있음 ex.은행사이트 로그인 유지시간(창이 바뀌어도 유지가 되어야함)
+
+                - clearInterval()
+                - clearTimeout()
+           
+            function hello(){
+                alert("안녕하세요");
+            }//hello end
+
+            setInterval(hello, 3000); // 3초 간격으로 hello 함수를 호출
+            setTimeout(hello, 3000);    // 3초 후 hello함수 단 한번만 호출
+            /
+                function hello(){
+                    setTimeout(hello, 3000);
+                }//hello end
+                → 재귀적 함수 호출관계를 이용해서 3초마다 주기적으로 hello함수를 호출할수도있다 
+                = setInterval(hello, 3000); 과 같은 반응이 나옴
+            /
+
+            //4-6.screen() : 사용자가 사용중인 device의 해상도 확인  
+            //             → 팝업창의 위치를 정할때 사용한다. (screen.width/2)이런식
+            alert(screen.width);
+            alert(screen.height);
+
+            //4-7.location : 현재 페이지에서 다른 페이지로 이동
+            //               → location.href="URL | 페이지명"
+            //               → location="URL | 페이지명"
+            location.href="https://www.itwill.co.kr/";
+            location="https://www.naver.com/";
+            location.reload();      // 현재 페이지 새로고침 : 무한으로 새로고침
+                                    // html에서 meta tag = 주기적으로 현재 페이지 새로고침 
+            
+            //4-7.history  : 이전,이후 페이지 이동 
+            history.back();         // 이전페이지로 이동됨
+            history.forward();      // 이후페이지로 이동됨
+            history.go(숫자);       // 전달값에 -2하면 두 페이지 뒤로 이동 2면 두 페이지 앞으로 이동 
+*/
+
+/*
+            ● 자료구조 
+                - 파이퍼구조 : 먼저 들어간 데이터는 먼저 출력된다. ex. 프린터기
+                - 스텍 구조  : 가장 먼저 들어간 데이터가 가장 늦게 나옴 (입출구가 하나)  
+                              데이터가 쌓인다. ex.history 객체와 비슷 
+*/
+        </script>
+    </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_함수.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3></h3><hr>
+
+        <script>
+
+            //3. 리턴값이 있는 경우 (ex. 1, 3을 줄테니 그중 큰 값을 돌려(return)주세요.)
+            //   리턴값이 있는 함수의 경우 함수명 앞에 get을 많이 붙임 (리턴값이 있다는 뜻으로)
+            //   대체적으로 코드 맨 위나 맨 아래 혹은 .js로 함수를 몰아서 저장한다.
+
+            /*
+                - 함수는 호출한 시점으로 되돌아오는 특징이 있다. (=return)
+                    → 그래서 그 밑에 있는 함수 호출로 감 → 그렇게 순서대로 출력되는 것
+                    ex test1();_함수호출 → function test1(){}_함수정의 → test1(); 돌아오고 그 밑에 있는 → test2(); → 반복 
+                - return값 : 값을 가지고 호출한 시점으로 돌아옴 (값을 안가지도 돌아올 수도 있음 ex.01_함수_function_test1~5)
+                ※ 단 return값은 하나의 값만 가지고 올 수 있다.
+                - 형식 : return 값;
+            */
+
+            function test1(){
+                document.write("SEOUL");
+                return; // 이 생략된 것 → 호출된 시점으로 다시 돌아가란 뜻 
+                        //             → 맨 마지막 return은 생략 가능!
+                        //             → 중간에 리턴값을 가진 리턴은 생략하면 안됨
+            }//test1 end
+
+            function test2(a){
+                if(a<0) {       // 만약 전달값이 음수일 경우 다시 호출된 곳으로 돌아가라 → 화면에 출력되지 않음!
+                    return;     // 리턴값을 정하지 않았으므로 빈손으로 돌아감 → 화면에 출력되지 않음!
+                }   
+                document.write(a);
+            }//test2 end
+            
+            function test3(a, b){
+                let c=a+b; 
+                return c;   // c값을 리턴한다 → 리턴값은 1개만 가능 (return c, d, e는 안돼!)
+                            // → 여러값을 리턴하고싶다면 배열같은 자료형을 이용한다
+            }//test3 end
+
+            function fact(a){
+                let x=1;
+                for (i=a; i>=1; i--){   // i=a!!!! 그래야 전달값이 바뀌어도 적용됨
+                    x*=i;
+                } //for end
+                return x;
+            }//fact end
+
+            /*강사님 코드 
+            function fact(f){
+                let gop=1;
+                for(a=f; a>=1; a--){
+                    gop*=a;
+                }
+                return gop;
+            } */
+
+            function leap(a){
+                let t = true;
+                let f = false;     
+
+                if (a%4==0 && a%100!=0 || a%400==0) {
+                    return t;   // true | false는 기본 명령어라 굳이 변수로 저장 안해도됨!  
+                } else {        // 그냥 return true; | return false; 적으면 알아서 적용됨
+                    return f;
+                }
+            }//leap end
+
+            /*강사님 코드 
+            function leap(year){
+                if(year%4==0 && year%100!=0 || year%400==0){
+                    return true;
+                }else{
+                    return false;   
+                }
+            }*/
+        
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            test1(); // 함수 호출
+
+            test2(9);
+            test2(-9);
+
+            document.write("<hr>");
+
+            let result=test3(6, 7);
+            document.write(result);         // 변수값 
+            document.write(13 + "<br>");    // 상수값
+            document.write(test3(8, 9));    // 함수의 리턴값으로 a+b를 가진 c가 돌아와서 17이 출력된다.
+
+            document.write("<hr>");
+
+            //문 1. 팩토리얼값을 구하시오 
+            let gop=fact(4);    // 4*3*2*1
+            document.write(gop);
+
+            document.write("<br>");
+
+            //문 2. 윤년, 평년인지 출력하시오 
+            if (leap(2022)) {   // 함수 호출 위치가 if문 조건 안이기 떄문에 함수에서는 조건확인만 해주면 됨 = boolean값으로 반환해줘야함
+                document.write("윤년");
+            } else {document.write("평년");}
+
+            document.write("<hr>");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //4. 재귀적 함수 호출 ＊굉장히 자주 쓰임
+            //   → 자신이 자신의 함수를 호출 할 수 있다 단, 무한 루프가 될 수 있기때문에 빠져나올 수 있게끔 만들어야한다 
+            //   → 함수는 서로 호출 관계에 있음 (test1이 fact를 호출하는 식)
+
+            document.write(test(3));    // 3 팩토리얼 값 구하기 
+            
+            function test(f) {
+                if (f==0){
+                    return 1;
+                } else {                //test(); 자신의 함수를 호출할 수 있음 = 재귀적 호출 관계 
+                    return f*test(f-1);  
+                }
+            }//test() end
+            /*  for문과 같다
+                if(3==0)    false→else    3*test(3-1)=3*2 / test(f-1)이 다시 if (f==0)으로 회전 (반복)
+                                            if(2==0)    false→else     2*test(2-1)=2*1
+                                                                            if(1==0)     false→else    1*test(1-1)=1*0
+                                                                                                            if(0==0)    true→1 호출 (재귀호출 멈춤)
+                → if가 true가 될 때까지 회전한다 (조건을 잘 맞추지 않으면 무한루프에 빠진다)                                                                                            
+            */
+        </script>
+    </body>
+</html>
