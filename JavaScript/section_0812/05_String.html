@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>05_String.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>String Methods</h3><hr>
+
+        <script>
+            /*
+                    참조 https://www.w3schools.com/js/js_string_methods.asp
+
+                    ● 【 String 】
+            */
+            let str="Gone With The Wind";
+
+            document.write(str.length);     // 18 - 총 글자 갯수
+            document.write("<hr>");
+
+            document.write(str.charAt(0));  // "G" - 가장 첫 글자(0번째 글자) : 0부터 카운트
+            document.write("<hr>");
+
+            document.write(str.charAt(17)); // "d" - length 수 - 1 = 마지막 글자 
+            document.write("<hr>");
+
+            //＊＊＊＊＊＊＊＊＊＊      
+            document.write(str.charAt(str.length-1));   // "d" - length 수 - 1 = 마지막 글자 
+            document.write("<hr>");
+            //＊＊＊＊＊＊＊＊＊＊
+
+            document.write(str.toUpperCase());  // 전부 대문자
+            document.write("<hr>");
+                                                                // : 전달값이 없는 함수니까 괄호 빼먹지말기
+            document.write(str.toLowerCase());  // 전부 소문자  
+            document.write("<hr>");
+
+            document.write(str.slice(0,5));     // a부터 b까지의 글자만 남기고 전부 삭제(띄어쓰기 포함)
+            document.write("<hr>");
+
+            document.write(str.split(","));     // string.split( separator, limit ) (리밋을 정하지 않을 경우 전체 문자열에서 분할)
+            document.write("<hr>");             // separator에는 분할의 기준 : "," 쉼표로 분할 | " " 공백으로 분할 : 화면에서는 ","은 공백으로 나오고 " " 은 ,로 나온다
+
+            document.write(str.replace("n","N"));   // 문자열속에 있는 a를 b로 바꾸어줌 : 앞에서부터 한글자만 
+            document.write("<hr>");
+            
+            //＊＊＊정말 많이 씀＊＊＊
+            document.write(str.substring(6, 12));   // a번째 글자에서부터(0부터 카운트, 띄어쓰기 포함) b-1번째 글자까지만 출력하고 나머진 삭제 
+            document.write("<br>");
+            document.write(str.substring(10, 13));  // b = 원하는 글자의 순번 + 1  
+            document.write("<br>");
+
+            // substring으로 맨 앞글자 따오기 
+            document.write(str.substring(0, 1));    // 0부터 (1-1)번째까지니까 맨 앞 한글자만 나옴 
+            document.write("<br>");
+            document.write("#"+str.substring(0, 1)); 
+            document.write("<br>");
+
+            // substring으로 맨 뒷글자 따오기 
+            document.write(str.substring(17, 18));  // 17번째부터 (18-1)번째까지니까 17번째 한 글자만 나옴
+            document.write("<br>");
+
+            //＊＊＊＊＊＊＊＊＊＊
+            document.write(str.substring(str.length-1, str.length)); // 가장 마지막 글자 출력 문법
+            //＊＊＊＊＊＊＊＊＊＊
+
+            document.write("<hr>");
+
+            // document.write();
+            document.write(str.slice(10, 13));
+            document.write("<br>");
+            document.write(str.slice(str.length-1, str.length));
+            document.write("<hr>");
+
+            let text1="HELLO";
+            let text2="WORLD";
+            let text3=text1.concat(text2) // .concat() : 문자열 합치기 | + 기호로 걍 합쳐도 됨 
+            
+            document.write(text3);        // "HELLOWORLD"
+            document.write("<hr>");
+
+            // 공백 제거하기 (맨 앞, 맨 뒤만 가능) → 로그인할 때 앞 뒤 공백을 지워줄때 사용(개발자가 서비스로 지워주는것)
+            let text4="          JAVA          SCRIPT          ";
+
+            document.write("#"+text4.trim()+"#");       // #JAVA SCRIPT#
+            document.write("<br>");
+            document.write(text4); // 글자 사이의 띄어쓰기는 원래 한칸만 인식하나봄 
+            document.write("<hr>");
+
+            let text5="9";
+            document.write(text5.padStart(6,1));        // 0009
+            document.write("<br>");                     //  a:전체자릿수 b:빈칸 채우는 값
+            let text6="8";                              // padStart : 앞을 빈칸으로 여기고 채움  | padEnd : 뒤를 빈칸으로 여기고 채움 
+            document.write(text6.padEnd(4,0));          // 8000     a:전체자릿수 b:빈칸 채우는 값 
+            
+        </script>
+    </body>
+</html>

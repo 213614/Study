@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+        <title>04_계산기.html</title>
+        <style>
+            table{
+                background-color: rgb(238, 238, 238); 
+                border: 1px solid rgb(238, 238, 238); 
+                border-width: 3px;
+            }
+            .txt {
+                border:1px;
+                background-color: rgb(238, 238, 238);
+                text-align: right;
+                font-size: x-large;
+                font-weight: bolder;
+                color: black;
+                height: 50px;
+                padding-right: 10px;
+                font-family: 'Alata', sans-serif;
+            }
+            input:focus {       /* input 클릭시 나오는 아웃라인 제거 */
+                outline: none;
+            }
+            .button {
+                border: none;
+                background-color: whitesmoke;
+                width: 100%; height: 50px;
+                font-size: large;
+                font-family: 'Alata', sans-serif;
+            }
+            .button:hover {
+                background-color: rgb(217, 226, 202);
+            }
+            .button:active {
+                background-color: rgb(180, 190, 163);
+            }
+            td {
+                padding: 3px;
+            }
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>미니 계산기</h3><hr>
+
+        <form>
+            <table>
+                <tr>
+                    <td colspan="4">
+                        <input type="text" name="result" id="result" size="0px" value="0" readonly class="txt">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <input type="button" value="  C  " class="button" onclick="cls()"></td>
+                    <td colspan="2"> <input type="button" value="  ←  " class="button" onclick="backspace()"> </td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="  7  " class="button" onclick="inputData(7)"> </td>
+                    <td> <input type="button" value="  8  " class="button" onclick="inputData(8)"> </td>
+                    <td> <input type="button" value="  9  " class="button" onclick="inputData(9)"> </td>
+                    <td> <input type="button" value="  ÷  " class="button" onclick="operator('/')"></td>
+                        <!-- /*-+ 을 눌렀을 때 값을 기억하고 있다가 =를 누르면 값이 나와야한다 -->
+                </tr>
+                <tr>
+                    <td> <input type="button" value="  4  " class="button" onclick="inputData(4)"> </td>
+                    <td> <input type="button" value="  5  " class="button" onclick="inputData(5)"> </td>
+                    <td> <input type="button" value="  6  " class="button" onclick="inputData(6)"> </td>
+                    <td> <input type="button" value="  ×  " class="button" onclick="operator('*')"></td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="  1  " class="button" onclick="inputData(1)"> </td>
+                    <td> <input type="button" value="  2  " class="button" onclick="inputData(2)"> </td>
+                    <td> <input type="button" value="  3  " class="button" onclick="inputData(3)"> </td>
+                    <td> <input type="button" value="  -  " class="button" onclick="operator('-')"></td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="  0  " class="button" onclick="inputData(0)"> </td>
+                    <td> <input type="button" value="  .  " class="button" onclick="operator('.')"> </td>
+                    <td> <input type="button" value="  =  " class="button" onclick="compute()"> </td>
+                    <td> <input type="button" value="  +  " class="button" onclick="operator('+')"></td>
+                </tr>
+
+            </table>
+
+        </form>
+
+        <script>
+
+            //1. C버튼을 클릭하면 #result에 0을 대입한다
+            function cls(){
+                document.getElementById("result").value = 0;
+                // html에 있는 id result에 접근해서 value 값을 0으로 바꾼다.
+                // JQuery 문법 : $("#result").val(0);
+            }//cls() end
+
+            //2. 클릭한 숫자 버튼에 맞는 수를 출력하기
+            function inputData(num){
+                //alert(num); 
+                // 전달받은 num변수 값을 #result에 대입해야함
+                //document.getElementById("result").value += num; 
+
+                //#result값을 숫자형으로 변환(지금은 문자열로 데이터가 쌓이기때문에 0이 그대로 입력이 남아있음)
+                document.getElementById("result").value = Number(document.getElementById("result").value += num);
+                // 숫자형으로 변환한 값을 다시 #result에 넘겨줘야하기때문에 코드가 길어진다 → 그래서 제이쿼리써야함
+            }//inputData() end
+
+            //3. 연산에 필요한 전역변수 3가지 
+            let op;         // 연산기호
+            let num1;       // 사용자가 입력한 연산하기 위한 첫번째 수 
+            let num2;       // 사용자가 입력한 연산하기 위한 두번째 수 
+
+            function operator(kind){
+                // 누른 기호에 따라 값에다 저장을 해놓고 기억해야함
+                // 7누르고 -누르고 8을 누르면 7은 첫번째 숫자 8은 두번째 숫자 : 연산할 수들 + 연산 기호 둘다 기억해야함
+                //alert(kind);
+
+                //4. 클릭한 연산 기호를 전역 변수 op에 저장
+                op = kind;
+                
+                //5. 현재 #result가 가지고 있는 값을 num1변수에 저장
+                num1 = Number(document.getElementById("result").value);
+                
+                //6. 다시 값을 입력 받을 수 있게(두번째 수) #result값을 클리어를 한다
+                cls(); // 아까 만들어놓은 함수를 재호출 
+            }//operatop() end
+
+            // ＊＊operator에서 저장된 기호나 연산 수들을 compute변수에서 사용해야니까 ＊전역변수＊를 사용해서 저장해야한다.＊＊
+
+            function compute(){
+                // 여기서 실제 계산을해서 = 버튼을 누르면 결과값이 가도록 리턴한다
+                // 7. 계산에 필요한 두번째 수를 num2에 저장
+                num2 = Number(document.getElementById("result").value);
+
+                //8. 계산해서 #result에 결과 출력하기       |       eval(): 문자열을 담은 변수를 넣어줘도 알아서 숫자열로 변환해서 계산해주는 함수 : https://www.w3schools.com/jsref/jsref_eval.asp
+                document.getElementById("result").value = eval(num1+op+num2);
+
+            }//compute() end
+            
+
+            // 백스페이스는 변수.substring(0, str.length - 1); 을 이용해서 마지막 글자 지우기 
+            // 한자릿수가 남으면 지우면 0이 되어야함 (cls활용)
+            // 숫자를 지우는게아니라 앞 숫자들만 남는것 str.substring(0, 1); 을 다시 텍스트박스에 넣어줘야함
+            // 9. ← 백스페이스를 누르면 #result값에서 마지막 글자는 지우고 앞 글자들만 남겨서 다시 벨류값으로 보내는거임
+            function backspace(){
+                let b = document.getElementById("result").value;
+                //alert(b);
+                if (Number(b)<10){
+                    cls();
+                }else {
+                    document.getElementById("result").value=b.substring(0, b.length-1);
+                }
+                //(b.slice(0, b.length-1)); 도 가능
+
+                /* 강사님코드 */
+                // #result값에서 마지막 글자만 제외시키고 다시 대입. 단, 1자리 수에서는 0으로 대입한다.
+                function backspace(){
+                    // a. #result값을 가져와서 글자 갯수까지 출력
+                    let result = document.getElementById("result").value;
+                    //alert(result); 
+                    //alert(result.length);
+
+                    // b. 처음 글자부터 마지막 글자를 제외시키고 문자열 가져오기 : substring() 활용
+                    let len=result.length;
+                    //alert(result.substring(0, len-1));      // 첫번째 글자(0번째) ~ 마지막 글자 바로 앞까지 
+
+                    // c. 분리된 b 문자열을 다시 #result에 대입. 단, 글자수가 1자리인 경우 0으로 대입
+                    if (len==1) {
+                        document.getElementById("result").value = 0;
+                    } else {
+                        document.getElementById("result").value = result.substring(0, len-1);
+                    }// if end
+                }
+            }//backspace() end
+
+            // 소수점붙이는거 해보기
+
+        </script>
+    </body>
+</html>

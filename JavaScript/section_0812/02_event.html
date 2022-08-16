@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_event.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <!--<body onload="alert('welcome')">-->
+        <body>
+
+        <h3>Event</h3><hr>
+
+        <form name="myform" id="myform" method="get" action="ok.jsp" onsubmit="return true">
+            <!-- onsubmit은 해당 폼이(myform) 서버로 전송될때 (ok.jsp로 전송되는 순간에) 발생되는 이벤트
+                 → 특이하게 return값을 가지는데 리턴값이 true면 서버로 전송되고 false면 전송되지 않는다 
+                 ex. 로그인시 아예 작성안했을시 사용 : 아이디 및 비밀번호의 최소글자수를 체크해서 부족하면 서버로 보내지않음 
+                return true : 서버로 전송됨 | return false 서버로 전송자체가 안돼서 페이지 변화 없음 -->                             
+            
+                                              <!--           ↓ 자바스크립트 문법이 와야함 -->
+            <input type="button" value="button 1" onclick="alert('clicked button 1')">
+            <br>
+            <input type="button" value="IT will" onclick="location.href='https://www.itwill.co.kr/'">
+            <br>
+            <input type="button" value="mouse" onmouseover="alert('mouse over')"
+                                               onmouseout ="alert('mouse out')">
+            <hr>
+            <input type="text" onkeydown="alert('pressed keyboard')">
+            <textarea rows="5" cols="0" onkeydown="alert('pressed keyboard')"></textarea>
+            
+            <hr>
+            <select onchange="alert('changed option')">
+                <!--다른 목록을 바꾸는 순간에 실행됨-->
+                <option>SEOUL</option>
+                <option selected>JEJU</option>
+                <option>BUSAN</option>
+            </select>
+
+            <hr>             <!-- ↓ 마우스커서가 영역안에 들어오면-->
+            <input type="text" onfocus="alert('mouse on')">
+
+            <hr><!-- 서버로 해당 폼이 전송될때의 이벤트 : onsubmit : form태그 안에다 작성-->
+            <input type="submit" value="send 1">
+            
+            <!-- ↓ 기본속성으로 submit이 장착되어 있음 -->
+            <button>send 2</button>
+            <input type="image" src="../../images/search.png">
+        </form>             
+
+
+
+        <script>
+            //참조 https://www.w3schools.com/js/js_events.asp           
+            /*
+                
+                ● 【  EVENT  】
+                
+                - 자바스크립트는 주로 이벤트를 발생시킨 후 함수를 호출함으로써 실행한다.
+                    = 계속 실행되는것이 아니라 특정한 이벤트 발생 후 실행이 되는 것
+                        → 이벤트 만들고, function 걸고 
+
+                - 기본 이벤트 종류 
+                    - onchange	    An HTML element has been changed
+                                    : 다른 객체로 바뀌었을때 
+                    ★ onclick	    The user clicks an HTML element
+                                    : 마우스를 클릭 했을때 
+                    - onmouseover	The user moves the mouse over an HTML element
+                                    : 마우스가 올려졌을때 
+                    - onmouseout	The user moves the mouse away from an HTML element
+                                    : 마우스가 나갔을때
+                    - onkeydown	    The user pushes a keyboard key
+                                    : 키보드를 눌렀을때     
+                                    → 주민번호나 전화번호 입력시 다음칸으로 이동시켜줄 때 사용한다 
+                                      (글자수 체크 후 마지막 글자의 키보드가 눌렸다가 올라올때 다음칸으로 이동)
+                    - onload	    The browser has finished loading the page
+                                    : 문서를 불러오는 작업이 끝났을 때(body에서 많이 사용)
+                                    → 팝업창 띄울 때 사용 (페이지 들어가서 로드 끝나면 바로 팝업창 뜨니까)
+
+            */
+
+
+
+        </script>
+    </body>
+</html>

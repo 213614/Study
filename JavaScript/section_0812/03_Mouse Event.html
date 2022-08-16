@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_Mouse Event.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3 style="text-align:center;">Mouseover Event</h3>
+
+        <table border="1" style="margin:auto;">
+            <tr>
+                <th onmouseover="show('r')">Ryan</th>
+                <th onmouseover="show('n')">Neo</th>
+                <th onmouseover="show('j')">Jay-G</th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <!--같은 아이디를 줘도 배열로 활용해서 실행시킬순있음 ryan[0], ryan[1] 등 하지만 비추-->
+                    <div id="ryan" style="display:block;">
+                        <img src="../../images/k7.png">
+                    </div>
+                    <div id="neo" style="display: none;">
+                        <img src="../../images/k5.png">
+                    </div>
+                    <div id="jayg" style="display: none;">         
+                        <img src="../../images/k3.png">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            function show(kind){
+                // alert(kind); : 마우스 오버시 잘 함수가 전달되는지 확인용
+                switch (kind) {     //if문으로 작성할수도있음
+                    case 'r' : document.getElementById("ryan").style.display="block";
+                    // 전달값이 'r'인 경우
+                               //#ryan에 가서 style diplay속성을 block로 지정해주세요
+                               //JQuery에서는 $("#ryan").css()라고 작성함
+                               document.getElementById("neo").style.display="none";
+                               //#neo에 가서 style diplay속성을 none으로 지정해주세요
+                               document.getElementById("jayg").style.display="none";
+                               break ; 
+                    case 'n' : document.getElementById("ryan").style.display="none";
+                               document.getElementById("neo").style.display="block";
+                               document.getElementById("jayg").style.display="none";
+                               break ; 
+                    case 'j' : document.getElementById("ryan").style.display="none";
+                               document.getElementById("neo").style.display="none";
+                               document.getElementById("jayg").style.display="block";
+                               break ; 
+                }//switch end
+            }//show() end
+
+
+
+
+        </script>
+    </body>
+</html>
