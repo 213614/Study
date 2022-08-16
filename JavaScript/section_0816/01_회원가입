@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_회원가입.html</title>
+        <script src="myscript2.js"></script>    <!--JS파일 연결-->
+        <style>
+            .line {
+                width: 150px; height: 20px;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>회원 가입 및 유효성 검사</h3><hr>
+        <!-- 
+            ● HTML 문서에는 html문법 + css문법 + JS문법 + JSP문법 + EL/JSTL문법 → 이종문법이 공존한다. 
+              => 각자의 영역을 잘 구분하고 서로 값에 접근 할 수 있도록 연결해줌 = 그 역할을 JS랑 jQuery가 함
+ 
+            ● Frontend(UI, View) 단에서 서로 다른 문법(이종)간의 데이터 교류를 위해 
+              JavaScript랑 jQuery를활용하고, (그걸로 안되면 JSP써야함) 데이터의 유효성을 검증하기 위해서도 사용한다.
+              → Bankend는 JAVA만..ㅎㅎ
+
+            ● 문서 객체 모델(DOM)로 각 데이터를 교류시킴 (ex.document, screen)
+              참조 : https://www.w3schools.com/js/js_htmldom.asp
+        -->
+        <form name="memfrm" id="memfrm" action="ok.jsp" onsubmit="return validate()"> 
+             아이디 : 
+             <input type="text" name="uid" id="uid" class="line">
+             <input type="button" value="ID 중복 확인" onclick="getID()">
+             <input type="button" value="ID 적용" onclick="setID()">
+             <hr>
+
+             비밀번호 :
+             <input type="password" name="upw" id="upw">
+             <hr>
+
+             주민등록번호 : 
+             <input type="text" name="jumin1" id="jumin1" size="6" maxlength="6">
+             -
+             <input type="text" name="jumin2" id="jumin2" size="7" maxlength="7">     
+             <!--type="number"에서는 maxlength가 안먹힘, type="text"로 하면 문자가 입력될수도있음 : 개발자 재량-->
+             <hr>
+
+             약관 동의 :
+             <input type="checkbox" name="agree" id="agree" >
+             <hr>
+
+             <input type="submit" value="가입1" >     
+                <!--Onsubmit이 되었을 때(type="submit"에서만 사용가능) 이벤트발생 → 유효성 검사 후 서버로 전송
+                    onsubmit는 return값을 가진다 : ture :전송O  |  false : 전송X 
+                    → onsubmit이벤트는 <form> 태그 안에 작성-->
+             <input type="reset" value="취소">
+             <input type="button" value="가입2" onclick="validate2()"> 
+             <!--type="button"은 submit기능 없지만 JS에서 Submit기능을 추가하여 제어가능
+                 action="ok.jsp" JS를 통해 각기다른 JSP로도 연결가능   -->
+                 
+        </form>   <!-- 서버에 보내기 위함이기때문에 반드시 form안에다가 작성해야한다.-->
+
+        <script>
+
+
+
+
+
+        </script>
+    </body>
+</html>
