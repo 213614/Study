@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_이미지 스크롤.html</title>
+        <style>
+            #mydiv {
+                position: relative;
+                left: 100px; top: 10px; 
+                /* 8. */
+                --width: 800px; 
+                /* 9. 가로 폭 영역 크기 줄이기 */
+                width: 270px;
+                height: 100px;
+                /* 10. */
+                --background-color: darkseagreen;
+                /* 11. 배경 색상 변경 */
+                background-color: white;
+                /* 12. 영역 크기보다 넘치는건 hidden처리 → 13단계는 다시 밑으로가서 killtime() */
+                overflow: hidden;       
+            }
+        </style>
+        <script>    // script의 위치는 상관없음
+
+            // 1. 스크롤하고자 하는 이미지를 전역 변수에 저장
+            let ctnt=[];        // 이미지가 여러개니까 배열선언해서 몰아넣기
+            ctnt[0]= '<img src="../../images/face-grin.png" width="85px">'
+            ctnt[1]= '<img src="../../images/smile.png" width="85px">'
+            ctnt[2]= '<img src="../../images/face-wink.png" width="85px">'
+            ctnt[3]= '<img src="../../images/face-smile.png" width="85px">'
+            ctnt[4]= '<img src="../../images/face-plain.png" width="85px">'
+            ctnt[5]= '<img src="../../images/face-sad.png" width="85px">'
+            ctnt[6]= '<img src="../../images/face-surprise.png" width="85px">'
+            ctnt[7]= '<img src="../../images/crying.png" width="85px">'
+            
+            // ex. 풍선이 밑으로 점점 내려가는것처럼 보이려면 top 여백값을 점점 크게 주면 된다.
+            //     = 이미지가 오른쪽으로 흘러가는것처럼 보이려면 left여백값을 점점 크게 주면 됨
+            //     만약 화살로 풍선을 맞추고싶다면 풍선의 x,y축과 화살의 x,y축 값을 맞춘 후 정확히 일치하면 풍선이 터지는 이미지로 교체 + 점수 적립
+            //     → 그림을 움직이려면 블럭요소(주로 div)를 사용, 상하좌우 여백을 활용하여 움직이는 듯한 효과를 준다
+            //          = 그림 하나하나 블럭요소에 둘러쌓여서 relative(부모)안에서만 움직여야함 = position: absolute; 
+
+            // 2. 1번에서 준비한 이미지를 #mydiv안에 배치 
+            function start(){
+                /*
+                document.write("<div id='area0' style='position: absolute; top:0px; left:0px;'>");
+                    document.write(ctnt[0]);
+                document.write("</div>");       // 그림 하나하나를 블럭요소로 감싼다 (여백을 줘서 움직이게끔 보이기 위해)
+                                                //  ↓ 상하좌우 여백을 위해 style요소 필수  
+                document.write("<div id='area1' style='position: absolute; top:0px; left:90px;'>");
+                    document.write(ctnt[1]);
+                document.write("</div>"); 
+                                                // JS에서는 식별자(Id)도 반복문처리 가능하다.
+                */
+            
+                // 문 1. 반복문을 활용하여 이미지 여덟장을 배치한다. : 배열인덱스+1, 레프트여백 +90px씩, id도+1씩
+                /*
+                for (let i=0; i<ctnt.length; i++){      
+                     // 식은 맞는데 왜 아래로 정렬될까? position: absolute 이게 안먹나 → id=area에 '' 따옴표가 지워져서 그럼! 
+                    document.write("<div id=area"+ i + "style='position: absolute; top:0px; left:" + (i * 90) +"px;'>" + ctnt[i] + "</div>");
+                    //                                   ↓ id감싸는 '' 따옴표 잘 챙기기!
+                    document.write("<div id='area"+ i + "' style='position: absolute; top:0px; left:" + (i * 90) +"px;'>" + ctnt[i] + "</div>");
+                    
+                    document.write("<div id='area"+ i + "'");       // ← 이렇게 해야 absolute가 적용된다
+                    document.write("style='position: absolute;");
+                    document.write("top:0px; left:" + (i * 90) +"px;'>" );
+                    document.write(ctnt[i]);
+                    document.write("</div>");
+                }
+                */ 
+                // 강사님 코드
+                for (let i=0; i<ctnt.length; i++){
+                    document.write("<div id='area"+ i + "'style='position: absolute; top:0px; left:"+ (i*90)+"px;'>");
+                    document.write(ctnt[i]);
+                    document.write("</div>"); 
+                }
+                
+                // 3. 2초 후에 scroll함수 1번 호출 
+                setTimeout(scroll, 2000);
+
+            }//start() end
+                                
+            // 4. 이미지 스크롤
+            function scroll(){
+                // 2초 후 사진이 움직여야함 = 2초 후 호출
+                //alert("scroll 함수 호출");
+                //alert(document.getElementById("area0"));              // [object HTMLDivElement]
+                //alert(document.getElementById("area0").style);        // [object CSSStyleDeclaration]
+                //alert(document.getElementById("area0").style.left);   // 0px : #area0 에 style속성에 left값
+                
+                // 5. #area0의 style속성을 가져와서 left의 여백값을 -10px씩 줄여나간다
+                //let tmp = document.getElementById("area0").style;     // 임시 변수에 #area0의 스타일속성을 담음
+                //tmp.left = parseInt(tmp.left) - 10 + "px";            // #area0의 스타일속성에 left값을 - 10한다 (정수로 담아야 효과가 적용됨 + 단위 필수)
+                
+                /* 실패!
+                for(let i=0; i<ctnt.length; i++){                ↓ 따옴표 있어서 오류남 없어도됨...팍씨
+                    let tmp = document.getElementById("'area"+i+"'").style; 
+                    tmp.left = parseInt(tmp.left) - 10 + "px";
+                }
+                */
+
+               // 강사님 코드
+               // 이미지 8장의 왼쪽 여백을 동시에 -10해서 전체적으로 이동시키기
+               for(let i=0; i<ctnt.length; i++){
+                    let tmp = document.getElementById("area"+i).style; 
+                    tmp.left = parseInt(tmp.left) - 10 + "px";
+                    // : 0 → -10 → -20 → -30 계속 tmp.left에 저장됨
+
+                    // 7. 이미지를 순환하기 위해 이미지를 다시 배치 (맨 앞 이미지를 뒤로 배치)  → 8단계는 css로!
+                    // 0번째 사진이 left가 -90이이 되면 left를 이미지 갯수*90 만큼을 줘서 맨 뒤로 보내도록 반복
+                    if (parseInt(tmp.left) <= -90) {
+                        tmp.left = parseInt(tmp.left) + (ctnt.length*90) + "px";
+                    }
+
+                    /* 강사님 코드 
+                    if (parseInt(tmp.left) <= -90){ // ← #mydiv영역을 벗어났나?
+                        tmp.left = (ctnt.length-1) * 90 + "px";
+                    }
+                    */
+               }
+
+               // 6. 0.5초후에 scroll함수를 호출 
+               timer = setTimeout(scroll, 500);                                 // 내가 나를 부름 = 재귀함수 : 0.5있다가 scroll 부르고 scroll부르고 부르고 반복됨
+               // ↑ 13단계에서 만든 전역변수에 setTime을 담는다 (해제하기위해)                       
+                                                                                // 재귀 호출 = for 반복문 
+                                                                                // 위에 setTimeout(scroll, 2000);로 한번 호출 후 재귀 호출해야함 (최초 호출 필요)
+               
+               
+
+            }//scroll() end
+            
+            // 13. 6단계에서 준 시간을 해제  
+            // 페이지를 이동해서 문서가 종료 되면 settime을 죽이고 가야함 = 계속 호출되면서 cpu에 부담됨
+            var timer;              // 전역변수로 선언 
+            function killtime(){    // <body>태그 안에 onunload이벤트의 함수
+                clearTimeout(timer);
+            }
+
+        </script>
+    </head>
+                                                                                                                                                                                                     
+    <body onunload="killtime()"> <!-- 14. onunload 현재 문서를 떠났을때 반복호출(setTime)을 해제하고 나간다.-->
+
+        <h3>이미지 스크롤</h3><hr>
+        <!-- 이미지가 스크롤 되는 위치 
+             넓은 공간에 8가지 그림을 넣어놓고 앞 3개만 보이도록 출력(hidden)-->
+       
+        <input type="button" value="이미지 스크롤 중지" onclick="killtime()">
+        <!-- killtime()함수를 보기위해 만든 버튼 (잘 작동하는지 확인용)-->
+        
+        <div id="mydiv">
+            <script>
+                start();        // start함수 호출
+            </script>
+        </div>
+
+    </body>
+</html>
