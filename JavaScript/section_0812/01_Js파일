@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_Js파일.html</title>
+        <!-- .js file import -->
+        <script src="myscript.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>Js파일</h3><hr>
+
+        <script>
+            //참조 https://www.w3schools.com/js/js_whereto.asp
+            alert(hap(5, 2));
+            alert(diff(7, 3));
+            alert(leap(2022));
+
+
+
+
+
+        </script>
+    </body>
+</html>
