@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_JS에서Style접근.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>JavaScript에서 Style접근</h3><hr>
+
+        <div id="mydiv" style="position: relative; 
+                               top: 10px; left: 20px;
+                               width: 150px; height: 70px;
+                               background-color: lightpink;"> 
+          대한민국   </div>
+        <hr>
+
+        <input type="button" value="mydiv의 style속성" onclick="test1()">
+        <br>
+        <input type="button" value="mydiv의 style속성 2" onclick="test2()">
+        <br>
+        <img src="../../images/coffee.png" id="myimg">
+        <input type="button" value="이미지 변경" onclick="test3()">
+
+        <script>
+            function test1(){
+                
+                /*
+                alert(document.getElementById("mydiv"));           // [object HTMLDivElement]
+               
+                // 순수 JS로 CSS접근하기 (많이 사용함) ex. 회원가입시 사용 가능한 아이디입니다 와 같은 문구의 색상변경할때 사용
+                alert(document.getElementById("mydiv").style);       // [object CSSStyleDeclaration]
+
+                // jQuery로 CSS접근하기 (추천) → 현재 라이브러리 연결이 안돼서 오류남
+                $("#mydiv").css()
+                */
+
+                alert(document.getElementById("mydiv").style.top);                  // 10px
+                alert(document.getElementById("mydiv").style.left);                 // 20px
+                alert(document.getElementById("mydiv").style.width);                // 150px
+                alert(document.getElementById("mydiv").style.height);               // 70px
+                alert(document.getElementById("mydiv").style.position);             // relative
+                alert(document.getElementById("mydiv").style.backgroundColor);      // lightpink
+
+            }//test1() end
+
+            function test2() {
+
+                document.getElementById("mydiv").style.top = "100px" ;              
+                document.getElementById("mydiv").style.left = "150px" ;        
+                document.getElementById("mydiv").style.width = "400px" ;      
+                document.getElementById("mydiv").style.height = "300px" ;      
+                document.getElementById("mydiv").style.position = "absolute" ;            
+                document.getElementById("mydiv").style.backgroundColor = "black" ;
+
+            }//test2() end
+
+            function test3(){
+
+                document.getElementById("myimg").src = "../../images/coffee2.png";
+                
+            }//test3() end
+
+
+
+
+        </script>
+    </body>
+</html>
