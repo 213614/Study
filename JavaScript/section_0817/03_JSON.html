@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_JSON.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>JSON</h3><hr>
+
+        <script>
+            // 참조 : https://www.w3schools.com/js/js_json_intro.asp
+            /*
+                    ● 【 JSON (JavaScript Object Notation) 】
+                        - 데이터를 어떻게 저장할지에 대한 문법(표기법)
+                        - 데이터를 JSON문법으로 저장 → 통신(데이터를 주고받고)을 위해 필요
+                        - ex. 뉴스 댓글란의 더보기버튼을 누르면 URL은 변하지않음 (페이지는 그대로임) 
+                              단, 새로운 데이터를 (데이터의 일부분만) JSON문법으로 사용자에게 넘겨준것 → 적은 양의 정보를 빠른 속도로 통신가능
+                              (URL로 넘길땐 문서의 전체를(한 페이지 전체를) 통으로 사용자에게 넘겨줌)
+                        - XML(예전 문법)을 더 간단히한게 JSON : 사용이 편리함
+
+                        - 문자 단위의 통신(=비동기식 통신)에서 XML을 대체하는 포맷
+                        - AJAX·NoSQL DB등에서 주로 사용하는 포맷(문법·표기법)
+                        - 배열을 객체화 (배열을 확장시킨 것)
+
+                        ○ JSON의 기본 구조 
+                            - 속성:값 : 쌍으로 데이터가 구성되어있다. : 파싱 필요없이 속성에 값만 불러오거나 값을 수정할 수 있음
+                            - 속성(name, key, property):값(value, data)
+                            - Java의 HashMap과 같은 구조
+                            - name (속성) 구성시 "" '' 기호는 생략 가능
+                            - {}안에 데5이터를 저장한다
+                            
+                            → 형식 : {name:value, "name":value, 'name':value ···.}
+                            - name을 변수개념이라고 생각하면 됨(한글 당연히 X)
+
+                            - ex. {driver:"OracleDriver", username:System, password:1234 ···.}
+                                  ※ value가 문자열(string)일때는 당연히 "" '' 기호 생락하면 안됨
+                            - ex. 비밀번호 value가 필요하면 password만 호출하면 됨
+
+                    ● 【 XML 】
+                        - 데이터를 어떻게 저장할지에 대한 문법(표기법)
+                        - 여는 태그와 닫는 태그로 구성되어 있음 : <> </>
+                            → 원래 XML문법인데 견고해서 HTML이 차용한 것 (= 문법이 같다!)
+                        - Custom tag(사용자 정의 태그) 기반 : JS Open source 있음
+                        - 환경설정 파일 작성에 주로 사용한다. (front단에서 browser에 출력하는 용은 아님)
+                        - Android기반의 app개발 시 view단 구성에 사용된다.
+
+                        - ex. <database>                                 : custom tag로 만들어서 사용할 수 있다.
+                                <driver>    OracleDriver  </driver>      : parsing(파싱) → 원하는 정보를 잘라오는것 
+                                <username>  System        </username>    : (ex. <database> 안에 <username> 안에 그 value값 : System)
+                                <password>  1234          </password>
+                              </database>
+
+                카카오맵이나 주소 연동할때 참조 https://www.data.go.kr/index.do (공공데이터포털)
+                                              https://postcode.map.daum.net/guide (카카오 우편번호 서비스)
+            */
+
+            /*
+            // 1. Arrany 순수 배열
+            let person=["John","Doe",46]
+
+            document.write(person.length + "<br>");             // 3
+            document.write(person[0]     + "<br>");             // Jhon
+            document.write(person[1]     + "<br>");             // Doe
+            document.write(person[2]     + "<br>");             // 46
+           
+            let person=[];
+            person["firstname"] = "John";
+            person["lastname"]  = "Doe";
+            person["Age"]       = 46;
+
+            document.write(person["firstname"] + "<br>");       // Jhon
+            document.write(person["lastname"]  + "<br>");       // Doe
+            document.write(person["Age"]       + "<br>");       // 46
+
+            document.write(person[1] + "<br>");                 // undefined
+            // 배열에 이름을 지정해서 사용할 수 있으나 비효율적이고 0번째 같은 인덱스값에는 인식하지 못함 (차라리 JSON씀)
+            */
+            
+            // 2. ★ JSON 변수 선언
+            let person={"firstname":"John", "lastname":"Doe", Age:46};      //   [] : 배열  |   {} : JSON 문법
+            // = let person={firstname:"John", 'lastname':"Doe", Age:46};
+            // name에 "" '' 기호는 생략 가능, 46은 숫자형이라 기호를 넣지 않았지만 value값이 문자라면 기호는 필수로 넣어야함
+            
+            // 2-1. JSON변수를 JavaScript로 접근하기
+            document.write(person["firstname"] + "<br>");       // Jhon
+            document.write(person["lastname"]  + "<br>");       // Doe
+            document.write(person["Age"]       + "<br>");       // 46
+
+            document.write("<hr>");
+
+            // 2-2. JSON변수를 JSON으로 접근하기 
+            document.write(person.firstname + "<br>");          // Jhon
+            document.write(person.lastname  + "<br>");          // Doe
+            document.write(person.Age       + "<br>");          // 46
+
+            document.write("<hr>");
+
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_JSON.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>JSON</h3><hr>
+
+        <script>
+
+            // 배열안에 JSON
+            let persons = [
+                 {firstname:"John", lastname:"Doe",     Age:46}     // = person[0]
+                ,{firstname:"Mike", lastname:"Smith",   Age:26}
+                ,{firstname:"Alex", lastname:"Simpson", Age:36}
+            ];
+
+            document.write(persons.length + "<br>");                // 3
+            document.write(persons[0]     + "<br>");                // [object Object]
+            document.write(persons[1]     + "<br>");
+            document.write(persons[2]     + "<br>");
+
+            document.write("<hr>");
+             
+            for(let i=0; i<persons.length; i++){
+                document.write(persons[i].firstname);
+                document.write(persons[i].lastname + " ");
+                document.write(persons[i].Age);
+                document.write("<br>");
+            }
+
+            document.write("<hr>");
+
+            // JSON안에 배열
+            let myObj = {
+                name:"Amy"
+                ,age:30
+                ,cars:["Ford", "RollsRoyce", "Benz"]
+            };
+            document.write(myObj.cars[0]);      // Ford
+
+            document.write("<hr>");
+
+            // ● 【 for ~ in 반복문 】 : for 반복문안에 있는 in이라는 명령어 → 배열에서 for · for in · each반복문을 많이 사용함
+            //   for(key in Object){} : 반복문이 회전할때마다 in이 여러 Object를 key값에다가 차례대로 대입시켜줌 = 최대회전수를 몰라도 회전가능
+            const numbers = [45, 4, 9, 16, 25];
+            
+            // ○ for 반복문
+            for(let i=0; i<numbers.length; i++){    // i <= numbers.length; : = 이 들어가면 쓰레기값이 나옴(undefinded) : 오류나기가 쉬움
+                document.write(numbers[i]); 
+                document.write("<br>");
+            }
+
+            document.write("<hr>");
+
+            // ○ for in 반복문
+            for(let i in numbers){                  // 회전하면서 numbers의 값을 알아서 i (key값)에 차례대로 대입시킴 : 오류 최소화
+                document.write(numbers[i]); 
+                document.write("<br>");
+            }
+            /*
+            const person = {firstname:"John", lastname:"Doe", Age:46};
+            for(let i in person){
+                document.write(person[i]);
+                document.write("<br>");
+            }
+            */
+
+            document.write("<hr>");
+           
+            // JSON 관련 함수
+            
+            // 1). JSON.parse() → String형태의 JSON 문법을 분리할 때
+            let person = '{"firstname":"John", "lastname":"Doe", "Age":42}';      // 문자열로 만듦
+            
+            document.write(person.length + "<br>");         // 48 (총 글자수)
+            document.write(person        + "<br>");         // {"firstname":"John", "lastname":"Doe", "Age":46} : 문자열이니까
+            
+            let obj=JSON.parse(person);                     // JSON형식으로 형변환
+                                                            // key값에 ""없으면 형변환시 오류남; 왜지 '' 도 안됌 뮤조건 ""
+            document.write(obj.firstname + "<br>");         // John
+            document.write(obj.lastname  + "<br>");         // Doe
+            document.write(obj.Age       + "<br>");         // 42
+
+            document.write("<hr>");
+
+            // 2). JSON.stringify() → JSON값을 일반 문자열로 변환
+            let txt = {"firstname":"John", "lastname":"Doe", Age:49};
+            let str = JSON.stringify(txt);
+
+            document.write(txt          + "<br>");          // [object Object]
+            document.write(str.length   + "<br>");          // 46 (총 글자수)
+            document.write(str          + "<br>");          // {"firstname":"John","lastname":"Doe","Age":46}
+
+            // ※ 형 변환시에는 무조건 key값도 "" 큰 따옴표로 감싸야한다. (왠진모르겠는데 안그러면 오류남)
+
+            /* 
+                 JSON으로 구성된 파일을 작성하는 경우 .json으로 저장한다.
+                 ex. person.json
+
+                 카카오맵이나 주소 연동할때 참조 https://www.data.go.kr/index.do (공공데이터포털)
+                                               https://postcode.map.daum.net/guide (카카오 우편번호 서비스)
+
+                 CKEditor : 편집가능한 게시판
+            */
+
+        </script>
+    </body>
+</html>

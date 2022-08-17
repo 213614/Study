@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_this.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>this</h3><hr>
+
+        <form name="myform" id="myform" onsubmit="return test5(this)">  
+                                                         <!-- #myform이 전달됨 -->
+                                                         <!-- ※ this.form으로 적으면 undefined로 나온다
+                                                                 : 이미 form안에 있는 this인데 내가 속해있는 form을 전달하려하면 undefined 뜬다 (내가 form인데 또 내가 속해있는 form을 부르려하니까 오류남)-->
+
+            <input type="button" name="btn1" id="btn1" value="버튼 1" onclick="test1()">
+            <input type="button" name="btn2" id="btn2" value="버튼 2" onclick="test2(this)">
+                                                                               <!-- this : 자신의 요소 -->
+            <input type="button" name="btn3" id="btn3" value="버튼 3" onclick="test3(this.value)">
+                                                                               <!-- this.value : 자신의 요소가 가지고 있는 실제 값 (value="") -->
+            <input type="button" name="btn4" id="btn4" value="버튼 4" onclick="test4(this.form)">
+                                                                               <!-- this.form : 자신의 요소가 속해있는 form (여기서는 #myform을 가리킴) -->
+            
+            <input type="submit" value="전송">         
+            <!-- onsubmit 이벤트는 return값이 true면 전송된다. -->                                                         
+        </form>
+
+        <script>
+            // body안에있는 object에 접근할때 this를 사용하여 간단히 접근 가능하다 (python-self / java,js-this)
+            // 참조 : https://www.w3schools.com/js/js_this.asp
+
+            /*
+                    ● 【 this 】
+                      - 자기 자신의 요소를 가리킨다.
+                      ∴ this = 나! 
+                      - form control object에서만 사용 가능 
+                      ※ <a href="" onclick="test(this)"> </a> : this는 form안에있는 컨트롤요소에만 사용하는것이므로
+                                                                 앵커태그에는 안 먹 힘! 
+            */
+
+            function test1() {
+                // 1. name으로 접근     ＊비추
+                let f = document.myform; 
+                alert(f);                   // [object HTMLFormElement]
+                alert(f.btn1);              // [object HTMLInputElement]
+                alert(f.btn1.value);        // 버튼 1
+                
+                // 2. id로 접근
+
+                alert(document.getElementById("btn1").value);             // 버튼 1
+            }//test1() end
+
+            function test2(obj) {
+                alert(obj);                 // [object HTMLInputElement]
+                // this가 전달값에 있었으므로 btn2의 전체가 넘어오기때문에 [object HTMLInputElement]가 뜬다
+
+                alert(obj.value);           // 버튼 2
+            }//test2() end
+
+            function test3(a) {
+                alert(a);                   // 버튼 3
+                // 전달값에 this.value가 있으므로 btn3의 value값이 넘어옴 
+            }//test3() end
+
+            function test4(a) {
+                alert(a);                   // [object HTMLFormElement]
+                // 전달값에 this.form 있으므로 btn4가 속해있는 #myform이 넘어옴
+                alert(a.btn4);              // [object HTMLInputElement]
+                alert(a.btn4.value);        // 버튼 4
+            }//test4() end
+
+            function test5(a) {
+                alert(a);                   // [object HTMLFormElement]     
+                
+            }//test5() end
+
+        </script>
+    </body>
+</html>
