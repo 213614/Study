@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>DataBase 필기.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3></h3><hr>
+
+        <script>
+            /*
+                   ● 【 DataBase Management System : 데이터베이스 】
+                      - 대용량의 저장소
+                      - 저장된 정보를 원하는대로 가공할 수 있음
+                      -
+
+                      ○ 참고서적 : Do it! 오라클로 배우는 데이터베이스 입문
+                                ( http://www.yes24.com/Product/Goods/65849798 )
+
+                   ● 【 DBMS의  종류 및 규모 】
+                      - Oracle       : 중대규모 기업의 데이터베이스로 사용, JAVA.  ＊DB대장＊
+                      - MariaDB      : My-SQL과 비슷한 구조, 대용량도 무료
+                      - My-SQL       : 중소 기업, PHP, JAVA.
+                      - SQLite       : 스마트폰 및 임베디드 기기의 내장 데이터베이스로 사용, Android, iPhone.
+                      - 오피스        : ACCESS(.mdb) → MS오피스 기본 장착 DB
+                      - Google Cloud : Java, Perl
+
+                   ● 【 DB 형태 】
+                      ○ 관계형 데이터베이스 (RDBMS:Relational Database Management System)
+                        - SQL문 필요 (저장시 먼저 구조를 만들고 저장함)
+                        → 엑셀-행과 열 구조가 이미 있고 거기에 채우는것처럼
+                        → ex. Oracle DB, MySQL, MariaDB, MS-SQL
+
+                      ○ NoSQL 데이터베이스 
+                        - SQL문이 없음 (구조가 없음) 
+                        → 메모장처럼 백지에서 시작해서 구조를 짜고 정보를 저장
+                        → ex. MongoDB
+
+                   ● 【 DB 용어 】
+                     - 테이블 table : 데이터베이스의 저장 기본 단위
+                     - 칼럼 column, 필드, 열
+                     - 레코드 record, 행, row, 줄
+
+                     예) 테이블 : 성적
+
+                         이름     국어    영어   수학   평균    → 테이블을 만들때에는 이 부분만 신경쓰면 됨
+                         ----------------------------------
+                         홍길동    100     90     80    95     → 정보의 양(여기선 두명의 사람)은 구조에 맞게 인서트만하면됨 
+                         진달래     30     50     60    55
+
+                   ● 【 최고관리자 계정 】  
+                    - Oracle: system 또는 sys
+                    - MySQL : root
+                    - MS-SQL: sa (system admin)
+
+
+                - 데이터베이스 서버는 껐·켰해야함 (꺼져있으면 서비스 안됨)
+                : 윈도우 돋보기로 서비스 검색 - OracleServiceXE 중지 / 다시 시작
+
+                   ● 【 SQL 】
+                   - 주석은 --로 작성한다.
+                   - SQL 명령어는 메모장에 적어두고 필요할때마다 복붙해서 사용한다 
+                   
+                   ○ DCL 명령어 (Data Control Language 제어어)
+                        - 주로 호스팅업체에서 사용
+                        - 계정 생성·삭제·권한부여 등 
+                        - grant 사용자 접근 권한부여
+                        - revoke 사용자 접근 권한 취소
+                        - deny 특정사용자만 접근차단
+                    
+                   ○ DDL 명령어 (Data Definition Language 정의어)
+                   - DB및 TABLE에 대한 정의
+                   - Create 생성
+                   - Drop 삭제
+                   - Alter 수정 : 자꾸 건들면 위험함 (구조가 잘못되어서 수정이 거듭된다는 뜻으로 그땐 멈춰서 검토한다.)
+                   
+                   ○ DML 명령어 (Data Manipulation Language 조작어)
+                     - 레코드작업
+
+                     - Select 조회 및 검색
+                     - insert 삽입
+                     - update 수정                      
+                     - delete 삭제
+                        → CRUD로 통칭하기도 한다
+                                        
+                        
+
+
+            */
+
+
+
+
+        </script>
+    </body>
+</html>
