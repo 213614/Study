@@ -1,0 +1,54 @@
+package oop0906;
+
+public class Test01_format {
+
+	public static void main(String[] args) {
+		//  ● 출력 서식
+		/*
+		 	〈 자주 사용하는 서식 〉
+		 			\n 줄바꿈
+		 			\t 탭(들여쓰기)
+		 	
+		 	\r 엔터
+		 	\b
+		 	
+		 	%d	10진수 정수형
+		 	%f		  실수형
+		 	%c		  문자형
+		 	%s		  문자열형
+		 					↓ 'f'주의 
+		 	System.out.printf("출력서식",값); 	
+		 	→ ex. System.out.printf("%f", 3.6);
+		 	
+		*/
+		
+		System.out.print("사과\n참외\n\n수박\n\n\n");
+		System.out.println("바\t나\t나");
+		System.out.println("\n\n딸기");
+		
+		System.out.printf("%d %d %d", 3, 5, 7);
+		System.out.printf("\n나이:%d\n",25);
+		System.out.printf("a:%d b:%d c:%d \n",2, 4, 6);
+												//#은 공백 칸수 알아보기위해 임의로 넣은 문자
+		System.out.printf("#%5d#\n", 123);		//#  123#	: 왼쪽 정렬 + 빈곳은 공백문자
+		System.out.printf("#%-5d#\n",123);		//#123  #	: 오른쪽 정렬 + 빈곳은 공백문자
+		System.out.printf("#%05d#\n",123);		//#00123#	: 왼쪽 정렬 + 빈곳은 0
+		
+		System.out.printf("x:%f y:%f z:%f\n", 1.2, 3.4, 5.6);	 // x:1.200000 y:3.400000 z:5.600000	
+		System.out.printf("#%6.2f#", 7.8);		//#  7.80#  : 전체를 6칸으로 잡고 소수점은 2자리까지 
+		System.out.printf("#%-6.2f#\n", 7.8);	//#7.80  #	: 오른쪽 정렬 + 6칸 소수점2자리
+		System.out.printf("#%.2f#\n", 7.8);		//#7.80#	: 소수점 2자리까지
+		
+		System.out.printf("%c %c %c \n", 'S', 'K', 'Y');		 // S K Y 
+		System.out.printf("#%5c#\n", 'R');		//#    R#
+		System.out.printf("#%-5c#\n",'r');		//#r    #
+		
+		System.out.printf("%s %s %s\n", "Year","Month","Date");  // Year Month Date
+		System.out.printf("#%8s#\n","happy");	//#   happy#
+		System.out.printf("#%-8s#\n","happy");	//#happy   #
+		
+		System.out.println(String.format("%.4f", 10/3.0));	// 3.3333 : 소수점을 4자리까지
+		
+	}//main()end
+
+}//class end
