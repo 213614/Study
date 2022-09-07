@@ -1,0 +1,75 @@
+package oop0907;
+
+public class Test01_method {
+	// method 함수 작성 자리
+	
+	// ★ void → 리턴값이 없는 함수(리턴값 유무를 반드시 명시해야함)
+	//					 ↓ 함수명
+	public static void test1() {		// = function test1(){} : in JS
+		System.out.println("Java");
+	}//test1 end
+	
+	public static void test2() {
+		System.out.println("Python");
+		return;		// 함수는 호출한 시점으로 되돌아가는 성질을 가지고 있다
+					// 함수 맨 마지막 return;명령어는 생략 가능하다 (중간은 당연히 생략불가)
+	}//test2 end
+	
+	//						     ↓ Parameter 매게변수 : 호출시 전달해주는 값을 받을 변수
+	//						       ★ 값의 자료형을 반드시 선언해줘야한다 (int/double···.)
+	public static void tset3(int a) {
+		System.out.println(a);
+		return;
+	}//test3 end
+	
+	//						  ↓ 호출시 전달받는 값의 자료형이 다 같다해도 자료형을 생략해서는 안된다
+	//						  ↓ ★ 매개변수의 자료형은 개별적으로 선언해야한다
+	public static void test4(int a, int b, int c) {
+		System.out.println(a+b+c);
+	}//test4 end
+	
+	public static void test5(double a, double b) {
+		System.out.println(a*b);
+	}//test5 end	
+	
+	public static void test6(char ch, byte num) {
+		for (int i=1; i<=num; i++) {
+			System.out.print(ch);
+		}//for end
+	}//test6 end
+	
+	
+	public static void main(String[] args) {
+		/* 
+		  ●	【 Method 메소드 (함수) 】 
+		
+		JS → function
+		DB → 프로시저 
+		*/
+		
+		// ○ 리턴값이 없는 함수 
+		
+		//	  1-1) 전달값(argument value)이 없는 경우
+		test1(); // 함수 호출 → 호출은 main안에서만 가능하다 
+		test2();
+		test1();
+		
+		//	  1-2) 전달값(argument value)이 있는 경우
+		tset3(10);
+		test4(20, 30, 40);
+		test5(1.2, 3.4);
+		
+		// 예제. #기호를 100번 출력
+		byte num = 100; 
+		char ch = '#';
+		test6(ch, num);
+		
+//------------------------------------------------------------------------------------
+		
+		// ○ 리턴값이 있는 함수 : Test02_method
+	
+		
+		
+
+	}//main end
+}//class end
