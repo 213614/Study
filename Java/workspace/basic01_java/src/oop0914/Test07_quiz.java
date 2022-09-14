@@ -14,14 +14,12 @@ public class Test07_quiz {
 		}
 		
 		System.out.println(sum);
-		// character class 활용은..못함 ㅎㅎ 머냐 
-		
-		
+			
 		// Q. 대소문자를 서로 바꿔서 출력 (character class, charAt() 활용)
 		// → gONE wITH tHE wIND
 		String str = "Gone With The Wind";
 		char c = 0;
-		/*
+		/* 뭔진모르겠는데 무한반복오류남
 		for(int i=0; i<str.length(); i++) {
 				c = str.charAt(i);
 			if (Character.isUpperCase(c)) {
