@@ -1,0 +1,112 @@
+package oop0914;
+
+import java.lang.*;  	// ← 자바의 기본 패키지(사용안해도됨,필요시에만 사용) ex.Math.- 
+
+public class Test01_wrapper {
+
+	public static void main(String[] args) {
+		/*
+		  	  ● wrapper class ; 포장 클래스
+		  	  				    (교재 chapter.11)
+		  	 	 - 대부분 java.lang 패키지에 선언되어있음
+		  	 	 - 기본 자료형을 참조형화(class화)시켜놓은 클래스'들을' 통칭
+		  	 	 		→      기본 			참조형(아래 전부를 wrapper class라고 통칭)		  	 	 		  				
+		  	 	 		    boolean	  	  Boolean
+		  	 	 		    byte		  Byte
+		  	 	 		    short		  Short
+		  	 	 		    int		      Integer
+		  	 	 		    long		  Long
+		  	 	 		    float		  Float
+		  	 	 		    double		  Double
+		  	 	 		    char		  Character
+		  	 	 		→ 참조형클래스는 대문자로 시작(클래스니까)		  	  			
+		  	  
+		  	  
+		      - RAM의 heap영역 : new연산자로 발생된 주소값을 이용
+		*/
+		boolean boo1 = true;
+		Boolean boo2 = new Boolean("false");  
+		//→ 일반적 클래스선언처럼 new로 메모리 할당할 수는 있지만 이클립스에선 기능이 절판됨(중간실선이 그어지는 이유), 비추
+		Boolean boo3 = true; 	
+		//→ 참조형 클래스는 일반 변수선언처럼 선언할 수 있음, 추천
+		
+		System.out.println(boo1);
+		System.out.println(boo2);
+		System.out.println(boo3);
+		System.out.println(boo3.toString());	//true, 리턴값이 없어서 화면엔 출력되지않음
+
+		
+		
+		int in1 = 3;
+		Integer in2 = new Integer(5);
+		Integer in3 = 7;
+		
+		System.out.println(in1);
+		System.out.println(in2);
+		System.out.println(in3);
+		
+		System.out.println(in2.toString());		// "5"
+		System.out.println(in3.doubleValue());	// 7.0
+		
+		//					↓ static이라 클래스 이름으로 직접 접근 가능하다
+		System.out.println(Integer.toBinaryString(15));	// 2진수	  1111
+		System.out.println(Integer.toOctalString(15));	// 8진수	  17
+		System.out.println(Integer.toHexString(15));	// 16진수   f
+		// → 반환값이 String임으로 주의
+		
+		System.out.println(Integer.sum(2, 4));			// 6
+		System.out.println(Integer.max(2, 4));			// 4
+		System.out.println(Integer.min(in1, in3));		// 3
+		
+		//★★★자주씀 parseInt() : "숫자" 숫자형태의 문자열 데이터를 정수형 데이터로 바꿔줌(연산가능해짐)
+		System.out.println(Integer.parseInt("123"));	// "123" → 123
+		//System.out.println(Integer.parseInt("KOREA"));
+		//!error code : NumberFormatException : 정수형으로 바꿀 수 없는 문자열 데이터라 오류 
+		
+		
+		
+		long lo1 = 3L ; 
+		Long lo2 = new Long(5);
+		Long lo3 = 7L;
+		
+		
+		double do1 = 2.4;
+		Double do2 = new Double(3.5); 	// ("3.5")도 허용해줌
+		Double do3 = 6.7;
+		
+		// Q. 실수형 값들 중에서 정수의 합을 구하시오. (2+3+6)
+		int hap = (int)(Math.floor(do1)+Math.floor(do2)+Math.floor(do3));
+		System.out.println(hap);
+		
+		//강사님 
+		int hap2 = (int) do1 + do2.intValue() + do3.intValue();
+		System.out.println(hap2);
+		
+		
+		
+		char ch1 = 'R';
+		Character ch2 = new Character('a');
+		Character ch3 = 'm';
+		
+		System.out.println(ch1);
+		System.out.println(ch2);
+		System.out.println(ch3);
+		
+		System.out.println(Character.isWhitespace(' '));
+									// ↑ 괄호안에 공백문자가 있으면 true로 반환
+		System.out.println(Character.toLowerCase('R'));	
+		System.out.println(Character.toUpperCase('a'));
+		
+		
+//---------------------------------------------------------------------------------------
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}//main() end
+}//class end
