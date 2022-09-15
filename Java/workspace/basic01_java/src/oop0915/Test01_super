@@ -1,0 +1,80 @@
+package oop0915;
+
+//          ↓ extends Object가 생략되어있음 (무조건적인 상속)
+class School {
+	String name = "학교";
+	public School() {
+		System.out.println("School()...");
+	}
+}//School.cla end
+
+class MiddleSchool extends School {
+	public MiddleSchool () {
+		
+		//상속관계에서 부모 생성자 함수 호출 명령어
+		super(); 			//→ 기본으로 생성되며 생략되어져있다
+							// 그래서 자식클래스 함수호출하면 부모 함수부터 출력됨 
+		
+		System.out.println("MiddleSchool()...");
+	}//default() end
+	
+	public void disp() {
+	
+		System.out.println(name);
+		//학교 → 부모가 물려준 name="학교"가 있기때문에 
+	
+	}//disp()end 
+	
+}//MS.cla end
+
+class HighSchool extends School {
+	// field (멤버변수)
+	String name = "고등학교";
+	
+	// constructor (생성자)
+	public HighSchool () {
+		
+		super(); 
+		
+		
+		System.out.println("HighSchool()...");
+	}//() end
+	
+	// method (멤버함수)
+	public void disp() {
+		String name = "강남고";
+		System.out.println(name);		// 강남고	  : 지역변수
+		System.out.println(this.name); 	// 고등학교  : 나의 멤버변수(해당 클래스 내의 멤버변수)
+		System.out.println(super.name); // 학교 	  : 부모의 멤버변수
+	}//disp() end
+}//HS.cla end
+
+public class Test01_super {
+
+	public static void main(String[] args) {
+		/*
+			  ● super 부모, 조상 
+			    ○ superclasses *복수형 : 부모클래스들 = 조상클래스들 
+			    ○ subclasses   *복수형 : 자식클래스들 = 후손클래스들
+			    
+			    ○ super   : 자식클래스에서 부모클래스의 멤버에 접근할 때
+			    ○ super() : 자식클래스의 생성자 함수가 부모클래스의 생성자 함수를 호출할 때
+			    
+			    ○ this    : 멤버변수(field)와 일반 지역변수를 구분하기 위해
+        		○ this()  : 자신의 생성자함수가 자신의 생성자함수를 호출할 때
+		*/
+		
+		MiddleSchool ms = new MiddleSchool();
+		// 결과값 → School()...
+		// 		  MiddleSchool()...
+		// ∴ 부모 클래스의 생성자 함수가 먼저 나온 후 자식이 출력된다
+		ms.disp();
+		
+		HighSchool hs = new HighSchool();
+		// 결과값 → School()...
+		// 		  HighSchool()...
+		// ∴ 상속관계에서 생성자 함수 호출순서 
+		// 	 → 부모생성자가 먼저 호출되고 자신의 생성자 함수가 호출된다 
+
+	}//main() end
+}//class end
