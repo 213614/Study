@@ -1,0 +1,218 @@
+package oop0916;
+
+public class Test01_exception {
+
+	private static final String String = null;
+
+	public static void main(String[] args) {
+		/*
+			  ● 예외처리 Exception
+			  	= error 
+			  	→ 자바 클래스 실행(run)시 발생하는 에러 
+			  	→ 오류가 나더라도 정상적으로 프로그램이 종료될 수 있게 한다 
+			  		: try ~ catch (~ finally)
+			  		: throws
+			  	→ 오류가 나도 그렇지 않은 것처럼 포장할수있음 (사용자에게 보여짐) 
+			  		 = 하지만 오류는 오류다! 
+			    	 ex. 요청하신 페이지가 존재하지 않습니다 등···.
+			    → try~catch문은 여러개 올 수 있다
+			    → finally 안에 try~catch문이 통으로 들어갈수도 있다 
+			    
+			   ★ 오류 메세지를 보고 무엇이 문제인지 파악하는것이 중요하다
+   	 
+		*/
+		
+		/*
+		// 1. 예외처리하지 *않은* 경우
+		System.out.println(1);
+		System.out.println(3/0);
+		// → 임의의 숫자는 0으로 나눌 수 없다 = error 
+		// !error : ArithmeticException: / by zero
+		// → 예외처리하지 않을 경우 오류가 발생한 지점에 프로그램이 비정상적으로 종료된다 (아래 코드가 정상이여도 출력되지않음)
+		// → 이런 오류메세지는 화면상 노출시키지 않는다(역추적가능하기때문에)
+		// → 오류 발생시 특정 페이지로 이동시켜서 사용자에게는 포장된 오류메세지만 보여주도록 한다 ex.요청하신 페이지가 존재하지 않습니다.
+		System.out.println(5);
+		System.out.println("END");
+		*/
+		
+//----------------------------------------------------------------------------------------------------------
+		
+		/*
+		// 2. 예외처리를 *한* 경우 
+		// → 지금처럼 다양한 exception이 발생하더라도 정상적으로 프로그램을 종료시키기 위해 예외처리를 한다 
+		// 2-1) try {} catch() {} → 하나의 덩어리다 
+		// ArithmeticException - 임의의 수를 0으로 나눴을때 나오는 오류
+		
+		try {
+				// try : 예외 발생이 예상되는 코드를 작성한다
+				//     → 자바에서 알려줌 
+				System.out.println(1);
+				System.out.println(3/0);
+				System.out.println(5);
+				System.out.println("냠");
+				// → 오류는 3/0만 났지만 try안에서 오류난 코드 밑으로는 출력되지않고 catch문이 작동된다. 
+				// = 1 - 오류메세지(e) - END 로 출력됨 
+				
+		} catch(ArithmeticException e) {
+				// ↑ 이 오류가 발생하면   ↑ 이 변수에 담아라 
+				// catch() : 예외 발생 시 처리할 코드를 작성한다 
+			    //         → 페이지 이동정도만 코딩하는 편이다(= 대체적으로 catch문은 짧게 코딩한다)
+				// → 오류 발생시에만 catch문이 작동된다 (if문과 비슷)
+				
+				System.out.println(e);
+				// 오류메세지를 담은 e를 출력하므로 오류메세지가 그대로 나타남 
+		}//end
+		
+		System.out.println("END");	// 이게 출력되면 코드가 정상적으로 종료되었다는 뜻 
+		// = 1 - 오류메세지(e) - END 로 출력됨 
+		*/
+		
+//----------------------------------------------------------------------------------------------------------
+		
+		/*
+		// 3. ArrayIndexOutOfBoundsException - 데이터 크기 오류
+		try {
+				System.out.println(1);
+				int [] num = new int[3];
+				num[5] = 2; 	// 크기가 3이라 5번째는 존재하지 않는다 
+				System.out.println(7);
+							
+		} catch(ArrayIndexOutOfBoundsException e) {
+		
+			System.out.println(e);
+			
+		}//end
+		
+		System.out.println("END");
+		
+			  출력 결과 
+			  → 1
+			    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 3
+			    END
+		*/
+		
+//----------------------------------------------------------------------------------------------------------
+		
+		/*
+		// 4. NumberFormatException - 자료형 불일치 오류
+		try {
+				System.out.println(1);
+				int num = Integer.parseInt("KOREA"); 
+				// ↑ 자료형이 맞지 않음 (String을 int로 변환하려는 중)
+				System.out.println(3);
+				
+		}catch(NumberFormatException e) {
+			// ↑ 자료형이 맞지 않는다는 오류메세지
+			
+			System.out.println(e);
+			
+		}//end
+		
+		System.out.println("END");
+		
+		  출력 결과 
+		  → 1
+		  	java.lang.NumberFormatException: For input string: "KOREA"
+			END
+		*/
+		
+//----------------------------------------------------------------------------------------------------------
+		
+		/*
+		// 5. NullPointerException - null값 오류 
+		try {
+				System.out.println(1);
+				Integer inte = null;
+				System.out.println(5/inte);
+				//→ null로 5를 나눌 수 없으니 오류
+			
+		}catch(NullPointerException e) {
+		    System.out.println(e);
+			// System.out.println("error"); → 오류메세지없이 그냥 error로 출력 가능
+		}//end
+		
+		System.out.println("END");
+		
+		  출력 결과 
+		  → 1
+		    java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because "inte" is null
+			END
+		*/
+		
+//----------------------------------------------------------------------------------------------------------
+		
+		/*
+		// 6. 다중 catch문 
+		// (★ catch문은 오류메세지를 보고 역추적해서 오류를 고치는게 가장 중요하다)
+		try {
+				int a=2/0;
+				int b=Integer.parseInt("KOREA");
+				int[] num = new int[3];
+				num[5] = 7;
+				
+		} catch (ArithmeticException e) {
+			System.out.println(e);
+		} catch (NumberFormatException e) {
+			System.out.println(e);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e);
+		} catch (NullPointerException e) {
+			System.out.println(e);
+		}//end
+		
+		System.out.println("END");
+		
+		  출력 결과 
+		  → java.lang.ArithmeticException: / by zero
+		  	END
+		  → 가장 첫번째 오류 메세지만 나타난다 
+		*/
+		
+//----------------------------------------------------------------------------------------------------------
+		/*
+		// 7. catch문에 다형성을 이용 → 자주사용 
+		// → Exception이라는 조상class안에 모든 오류메세지가 담겨져있음 (내가 하나하나 안찾아다도된다는뜻) 
+		try {
+				int a=2/0;
+				int b=Integer.parseInt("KOREA");
+				int[] num = new int[3];
+				num[5] = 7;
+			
+		} catch (Exception e) {	// 다형성 : Exception : 모든 예외 발생의 조상 클래스 
+			System.out.println(e);
+		}//end
+		
+		System.out.println("END");
+
+		  출력 결과 
+		  → java.lang.ArithmeticException: / by zero
+		  	END
+		  → 가장 첫번째 오류 메세지만 나타난다 
+		 */
+			
+//----------------------------------------------------------------------------------------------------------
+		
+		// 8. finally 문 (DB연동시 많이 사용함) 
+		// →  예외가 발생하거나, 혹은 발생하지 않더라도 무조건 실행된다
+		// 프로그램간의 연동 시 첫단계는 무조건 오픈 마지막은 무조건 클로즈다 (열어보고 정보가있으면 가져오고 없더라도 닫아야한다)
+		// ex. DB연동/파일in·output 
+		try {
+				System.out.println("Open");
+				System.out.println(1);
+				
+		} catch(Exception e) {
+			System.out.println(e);
+		} finally {
+			System.out.println("Close");
+		}//end
+		
+		System.out.println("END");
+		
+		
+		
+		// → try~catch문은 여러개 올 수 있다
+		// → finally 안에 try~catch문이 통으로 들어갈수도 있다 
+		
+		
+	}//main() end
+}//class end
