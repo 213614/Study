@@ -1,0 +1,47 @@
+package JDBC0921;
+
+import java.sql.*;
+
+public class Test01_DBopen {
+
+	public static void main(String[] args) {
+		/*
+			   ● Oracle DB 18c XE 연결 (Oracle DB - JAVA 연동)			   
+		*/
+		
+		try {
+				// 1. 오라클DB 서버 연결 관련 정보 (ex. url | id | pw | driver file )
+				String url 		="jdbc:oracle:thin:@localhost:1521:xe\r\n";
+								//				   = "localhost:1521:xe"; →  내 PC:포트번호(오라클 전용 문):오라클버전
+								// localhost → 상대적이다. 내가 열면 내pc지만 이걸 다운받아서 여는 사람들한테도 본인들 pc(내pc)와 연동이된다 
+				
+				String user 	= "system";		
+													// 오라클db에 설정해놓은 아이디와 비밀번호
+				String password = "1234";
+				String driver   = "oracle.jdbc.driver.OracleDriver"; 	
+								// = ojdbc8.jar파일 안에 있음(오라클을 인식하고 연결할 수 있음)
+				
+				// 2. 드라이버 로딩
+				Class.forName(driver);		
+				// driver파일로 class를 만들어준다는 뜻, 데이터가 오고가는 길을 만든다고 생각하면 됨
+				
+				// 3. 오라클DB 서버 연결
+				DriverManager.getConnection(url, user, password);
+			
+				
+				// → 비번을 자주 바꾸는게 좋은데 이걸 별도의 class화해서 관리해야한다
+				// 그래야 관리,수정이 용이함 
+				// 위 1~3단계를 함수 안에 넣어놓고 호출해서 사용, return을 받아야함(ex.성공메세지)
+				
+				
+				
+				
+				System.out.println("오라클DB 서버 연결 성공");
+			
+			
+		} catch(Exception e) {
+			System.out.println("오라클 DB 연결 실패 " + e);
+		}//try end
+
+	}//mian() end
+}//class end
