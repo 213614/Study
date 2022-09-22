@@ -1,0 +1,79 @@
+package JDBC_0922;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class Test01_selectCount {
+
+	public static void main(String[] args) {
+		// sungjuk 테이블의 행의 개수 출력 
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// ↑ 주로 DB연결해서 select값을 받을때 사용하는 명령어 
+		// ex. select count(*) from ~ : 조회한 cnt값을 ResultSet의 커서가 가리키고있따.
+		//     => select문을 실행한 결과(논리적 테이블)을 저장
+		// 특징 ; 맨 앞 한줄을 가리킨 후, 그 다음으로 차례대로 가리킨다
+		
+		// ★ close()할땐 작성 순서 반대로 닫는다. (rs - pstmt - con)
+		
+		try {
+					
+					String url 		="jdbc:oracle:thin:@localhost:1521:xe\r\n";
+					String user 	= "system";		
+					String password = "1234";
+					String driver   = "oracle.jdbc.driver.OracleDriver"; 	
+					
+					Class.forName(driver);		
+					
+					con = DriverManager.getConnection(url, user, password);
+					System.out.println("오라클DB 서버 연결 성공");
+				
+					StringBuilder sql = new StringBuilder();
+					sql.append(" SELECT COUNT(*) AS cnt ");
+					sql.append(" FROM sungjuk ");
+					
+					pstmt = con.prepareStatement(sql.toString());
+					rs = pstmt.executeQuery(); 			//select문 실행→논리적테이블생성(실행결과)→그걸 rs변수에 담는다
+	 						 // ↑ 리턴형이 ResultSet인 함수
+					
+					if (rs.next()) {
+						// = cursor가 있는가? : next()은 boolean값으로 리턴
+						System.out.println("자료 있음");
+						
+						// 1. 칼럼 순서대로 접근 → ex. select 칼럼1, 칼럼2, 칼럼3 ···. 
+						// ※ 값을 가져올때는 자료형을 일치시켜야한다 
+						System.out.println("전체 행 개수 : " + rs.getInt(1)); 	  // 칼럼1을 가져옴
+							
+						// 2. 칼럼명으로 접근 → select count(*) as cnt, ···. 
+						System.out.println("전체 행 개수 : " + rs.getInt("cnt")); // cnt칼럼을 가져옴
+						
+					} else { System.out.println("자료 없음"); }//if end
+					
+					
+		} catch(Exception e) {
+					System.out.println("Failed" + e);
+		} finally {
+					/*
+							rs.close();
+							pstmt.close();
+							con.close();
+							→ try문 안에서 close함수를 쓸때는 위처럼 그냥 작성하면 됐지만
+							  finally문 안에서 작성할때에는 아래처럼 try문으로 작성해야한다.
+					*/
+					try {
+						if(rs != null) { rs.close(); }
+					}catch(Exception e) {}	
+					try {
+						if(pstmt != null) { pstmt.close(); }
+					}catch(Exception e) {}	
+					try {
+						if(con != null) { con.close(); }
+					}catch(Exception e) {}	
+		}//try end
+
+	}//main() end
+}//class end
