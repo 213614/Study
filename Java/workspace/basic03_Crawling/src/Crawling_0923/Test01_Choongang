@@ -1,0 +1,35 @@
+package Crawling_0923;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+public class Test01_Choongang {
+
+	public static void main(String[] args) {
+	
+		// 참조 : https://www.choongang.co.kr/html/sub07_01_n.php
+		// 중앙 정보 처리 학원 웹페이지 - 공지사항 게시판 제목만 크롤링
+	
+		try {
+			   String url = "https://www.choongang.co.kr/html/sub07_01_n.php"; 
+			   
+			   // 웹 페이지 소스 가져오기 = 페이지 소스를 변수에 담은 것
+			   Document doc = Jsoup.connect(url).get();
+			   System.out.println(doc.toString());
+			   
+			   
+			   
+		} catch(Exception e) {
+			System.out.println("크롤링 실패 " + e);
+		}//try end
+	
+		
+		
+		
+		
+		
+		
+		
+
+	}//main()end
+}//class end
