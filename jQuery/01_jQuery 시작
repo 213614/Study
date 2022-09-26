@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_jQuery 시작.html</title>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>jQuery 시작</h3><hr>
+        <!--
+                참조 : https://www.w3schools.com/jquery/default.asp
+
+                ● [ 자바스크립트 기반 오픈소스(.js) ]
+                - jQuery, Bootstrap, moment, AJAX, AngularJS, react 등 ···. 
+                  (AngularJS, react는(둘은 비슷한 문법) jsp,AJAX가 되어야 수월함)
+                - 시각화 : chart.js, d3.js 등 ···.
+
+                
+                ● [jQuery 오픈소스 사용방법]
+                1) jQuery라이브러리를 제공하는 해당사이트 직접 링크
+                    <head>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    </head>                                                                 → min 이 쓰여있는 오픈소스를 추천한다
+                                                                                            → 엔터와 스페이스를 최소화한 파일 
+                                                                                            → 오픈소스를 열어볼 일이 없기때문에 용량 최소화시킨 파일이 좋다
+
+
+                
+                2) jQuery라이브러리를 직접 다운 받아서 사용(추천)
+                    https://jquery.com/download/
+                    ->Download the compressed, production jQuery 3.6.0
+                    -> 우클릭 -> 다른이름으로 링크 저장
+                    ->jquery-3.6.0.min.js 다운 
+        -->
+
+        <script src="jquery-3.6.1.min.js"></script>
+        <!--→ opensource import -->
+        
+        <script>    
+            // jQuery 
+
+            // import test
+            // 1. jQuery() 의 축약형 = $ : 작동되면 jQuery가 잘 적용된것이다 
+            // alert($);
+
+            // 2. 함수를 jQuery자체에서 작성할 수 있다 (우리는 1번으로 쓸거임)
+            /*
+            $(document).ready(function(){
+                alert("jQuery 시작");
+                alert($);
+            });
+            */
+
+            // 3. 2번 짧게 
+            $(function(){
+                alert("jQuery 시작");
+                alert($);
+            });
+
+
+
+
+        </script>
+
+
+
+
+    </body>
+</html>
