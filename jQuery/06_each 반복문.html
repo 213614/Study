@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>06_each 반복문.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <style>
+            #displayList {
+                margin: 20px; padding: 20px;
+                width: 400px; height: 300px;
+                background: rgb(196, 231, 245);
+                list-style: none;
+            }
+        </style>
+
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>each 반복문</h3><hr>
+        <button id="startBtn">7단</button>
+        <ul id="displayList"></ul>
+
+        <script>
+            // each반복문 참조 : https://www.w3schools.com/jquery/misc_each.asp
+            $("#startBtn").click(function(){
+                let dan = 7;
+               
+                // for문으로 반복
+                for(let i=1; i<=9; i++){
+                    /* 
+                        jQuery에서 셀렉터 사용시 주의사항
+                            $("li")    : <body>에 있는 요소들 중 <li>요소에 접근하라 
+                            $("<li>")  : <body>에 새로운 <li>요소를 생성하라 
+                            → 완전 다른 형태임 주의~!
+                    */
+                    $("<li>").text(dan + "*" + i + "=" + (dan*i)).appendTo("#displayList");
+                    // = #displayList에 li요소들을 추가하고 그 안에 dan*i를 담는다 (→ 9번 반복)
+                }//for end
+
+                // jQuery에서 each문으로 반복 
+                // → $.each(배열, function(){})
+                // → $(배열).each(function(){}) 
+                // = 문법만 다를뿐 기능은 같음 (for(:)와 비슷) ; 배열에있는 요소를 하나하나 꺼내서 function을 작동한다는 뜻
+                $("li").each(function(){
+                    // 위에 for문으로 li요소가 생성되었으므로 가능하다 
+                    
+                    let result = $(this).text();        // this - 나 | "this" - this라는 문자열 | "<this>" - <this></this> 생성
+                    alert(result);
+                });//eac end   
+                
+
+
+
+
+            });//cli end
+
+
+
+
+        </script>
+    </body>
+</html>

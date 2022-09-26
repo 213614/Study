@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_text&html.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>text() & html()</h3><hr>
+
+        <button> 입력 </button>
+<hr>
+        <div id="text"></div>
+        <div id="html"></div>
+
+        <script>
+            // 본문에 있는 <button>요소 접근 (하지만 id접근이 더 많이쓰인다)
+            $("button").click(function(){
+                // alert();
+                
+                let txt = "<img src='../images/yellowstar.png'>";
+
+                // JavaScript
+                document.getElementById("text").innerText=txt;
+                // innerText = txt로 출력 | innerHTML = txt가 html태그면 코드 동작해서(마크업되어) 출력
+                document.getElementById("html").innerHTML=txt;
+
+                
+                // jQuery
+                $("#text").text(txt);   // 단순 문자열
+                $("#html").html(txt);   // 문자열이 마크업되면서(코드가동작) 출력 
+              
+
+                
+            });    //click end
+
+
+
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_CSS Method.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <style>
+            #box {
+                    width: 400px; height: 300px;
+                    border: 1px solid black;
+            }
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>CSS() 함수</h3><hr>
+
+        <p>
+            <button>색상입력</button>
+            <button>높이얻기</button>
+            <button>여러개의 속성을 한번에 변경</button>
+        </p>
+        <div id="box"></div>
+
+        <script>
+            /*
+                 참조 : https://www.w3schools.com/jquery/jquery_dom_get.asp
+                        https://www.w3schools.com/jquery/jquery_dom_set.asp
+
+                 ●【 getter & setter 함수 】
+                   - jQuery는 대부분 getter와 setter함수 이름을 같이 사용한다.
+                   - JS에서 스타일 접근 : document.getElementById.style
+                   - jQeury에서의 스타일 접근   : css함수를 이용하여 접근한다 → css()
+                        1) css(속성명)              : getter 개념
+
+                        2) css(속성명, 속성값)       : setter 개념 
+
+                        3) css({                    : 여러개의 속성을 중괄호안에서 한번에 세팅한다
+                                   속성명:속성값
+                                  ,속성명:속성값 
+                                   ( key:value → JSON문법 ,HashMap(in JAVA) ,NoSQL DB ) 
+                                  , ···. 
+                                  
+                                })                        
+            */
+            // 식별시 이름이 동일하면 index순으로 접근한다(0부터 시작) → 하지만 id, class사용을 추천한다
+            $("button:eq(0)").click(function(){
+                // 0번째 버튼을 클릭하면 
+
+                // setter 함수
+                $("#box").css("background","ivory");
+
+            });//cli end
+
+            $("button:eq(1)").click(function(){
+                // 1번째 버튼을 클릭하면 
+
+                // getter 함수
+                let width = $("#box").css("width");
+                let height = $("#box").css("height");
+
+                alert(width);
+                alert(height);
+
+            });//cli end
+
+            $("button:eq(2)").click(function(){
+                // 2번째 버튼을 클릭하면 
+
+                // 여러 속성을 한번에 (JSON → key:value)
+                let width = 800;
+                $("#box").css({
+                                  "background" : "url(../images/k7.png)"
+                                , "width" : width   // 위에 선언해놓은 변수
+                                , height  : 600
+                                , border  : "3px dotted skyblue" 
+                                // key에 "" 있어도되고 없어도됨 , value에는 있어야함 단 단위없이 숫자만있으면(600px) 없어도됨
+                });
+            });//cli end
+
+            // jQuery Method Chaining (참조:https://www.w3schools.com/jquery/jquery_chaining.asp)
+            // → $().css().text().hide();
+
+        </script>
+    </body>
+</html>

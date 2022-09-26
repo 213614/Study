@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>08_요소 생성.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>요소 생성</h3><hr>
+
+        <p>
+            <button id="createBtn"> 테이블 생성 </button>
+        </p>
+        
+        <div id="box"></div>
+        <!--
+                <table> 요소 element
+                    border 속성 property=attribute
+        -->
+
+        <script>
+        /*
+                ● 요소를 생성하는 이유 
+                - 문자 단위의 통신(비동기식 통신)을 많이 사용하기 때문 = AJAX
+                - 댓글의 더보기 등 무한 스크롤링하기 위해 (더보기 클릭시 댓글 아래에 10줄 table이 새로 생김)
+                = $("<td>")
+                
+                ● 요소 생성 및 추가 
+                - append(), appendTo()      : 요소를 가장 끝에 추가
+                - prepend(), prependTo()    : 요소를 가장 앞에 추가
+                - 부모.append(자식);
+                - 자식.appendTo(부모);
+        */
+        $("#createBtn").click(function(){
+            //alert();
+
+            /* 1. → 이렇게 작성하면 역동적이지 못함
+            let table = "";
+
+            table += "<table border = '1'>";
+            table += "<tr>";
+            table += "  <td>대한민국</td>";
+            table += "</tr>";
+            table += "</table>";
+
+            //$("#box").html(table);          // mark-up
+            //$("#box").text(table);          // String
+            */
+
+            // 2. jQ명령어를 이용 → 다이나믹한 페이지 구현 가능 → ""안에 있지만 단순히 문자열이 아닌 명령어로 인식함
+            let $table = $("<table></table>");
+            
+            let $tr1   = $("<tr> <td>사과</td> <td>바나나</td> </tr>");   // 한 줄로 인식
+
+            let $tr2   = $("<tr>");                     // ← 없어도 알아서 </tr> 인식해줌
+            let $td1   = $("<td>수박</td>");            // 한 셀로 인식
+            let $td2   = $("<td>").text("메론");        // 한 셀로 인식 → 없어도 알아서 </td> 인식해줌
+            
+            // $tr2 변수에 $td1, $td2를 마지막에 자식으로 추가한다
+            $tr2.append($td1, $td2);     // 수박 메론
+            
+            // $table변수에 자식으로 추가
+            $table.prepend($tr1, $tr2);  // 사과 바나나
+
+            $("#box").append($table);
+
+            
+
+
+        });//cli end
+
+
+
+        </script>
+    </body>
+</html>

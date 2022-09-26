@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_jQuery event.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>jQuery event</h3><hr>
+
+        <form id="memfrm" name="memfrm" action="ok.jsp"> 
+        <!-- id/name 접근 둘다 가능인데 id를 더 추천 (보통 이름을 똑같게함) -->
+            아이디 : <input type="text" id="uid" name="uid" value="itwill" > 
+                    <!-- type을 안적으면 기본이 text -->
+            <hr>
+            <!-- button태그는 submit속성을 기본으로 가지고 있다 
+                 = <button type = "submit">                   -->
+            <button id="btn_idcheck"> ID 중복 확인 </button>
+            <button id="btn_join"   > 회원가입     </button>
+            <button id="btn_reset"  > 다시쓰기     </button>
+        </form>
+
+        <script>
+
+            //<input type="text" id="uid" name="uid" value="itwill">
+            /*
+            // 1. JavaScript 접근                 ↓ value = 값 : 값을 value에 대입 | = 없으면 getter로써의 기능(이미 대입된 value값을 가져와라)
+            alert(
+                document.getElementById("uid").value
+            );
+
+            // 2. jQuery 접근 
+            // → 기본문법 : ($("선택자").action()); 
+            // → $ : jQuery 축약어 | 선택자 : id(#), class(.) ; this를 적을땐 "" 적으면 큰일! | action() : 다양한게 올 수 있음(onclick 등)
+            alert(
+                $("#uid").val()
+            );
+            */
+//-----------------------------------------------------------------------------------------------------------------
+
+            // jQuery event (참조: https://www.w3schools.com/jquery/jquery_events.asp )
+            /*
+                  ● jQuery event와 함수 
+                    - $("").click(function함수명(){})
+                      = 이벤트(clikc)발생 시 해당 함수 작동 
+                    - $("").on(click, function(){})
+                                ↑ 어떤이벤트에 ↑ 어떤함수를 작동시킨다
+                    
+                    = 위 아래 둘다 맞는 표현임(함수명작성하지않아도 됨)
+
+                  EX.  id="btn_idcheck"에 클릭 이벤트와 함수 연결하기  
+                     - $("#btn_idcheck").click(function(){})
+                     - $("#btn_idcheck).on(click, function(){})
+
+
+                  → $("#btn_idcheck").click(function(){});// click end 
+                  : 기본 형태 functin(){여기다가 함수 코딩하면 됨}
+            */
+
+            $("#btn_idcheck").click(function(){
+                 // id=btn_idcheck를 클릭했을 시 팝업창 띄우기
+                 window.open("Blank_jQ.html", "popwin", "width=350,heigth=300");
+            });  // click end
+
+            $("#btn_join").click(function(){
+                let uid=$("#uid").val();
+                uid = uid.trim();
+                if(!(uid.length>=8 && uid.length<=12)){
+                    alert("아이디는 8-12글자 이내로 입력해주세요.");
+                    $("#uid").focus();
+                    return false;    // button의 submit기본값때문에 false로 반환해서 서버로 전송하지 못하도록한다
+                }//if end
+
+                $("#memfrm").submit();  // 위를 통과했다면 <form id="memfrm"></form>을 서버로 전송
+
+            });//click end
+
+            $("#btn_reset").click(function(){
+                $("#memfrm").reset();   // 버튼 클릭시 <form id="memfrm"></form>을 리셋시킴
+            });//click end
+
+        </script>
+    </body>
+</html>

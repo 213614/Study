@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>05_속성 관련 메소드.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>속성 관련 메소드</h3><hr>
+
+        <p>
+            <button>title 얻기</button>
+            <button>src 변경</button>
+            <button>여러개의 속성을 변경</button>
+        </p>
+        <img src="../images/k1.png" alt="무지" title="muzi">
+        <!--
+            <img>           : 요소 = element
+            src, alt, title : 속성 = property = arrtibute
+
+        -->
+        <script>
+            /*
+                ○ text(), html(), css() → 요소에 접근하는 함수 
+                ○ prop(), attr() → 요소의 속성에 접근할 수 있는 함수 
+                ○ ajax() → 웹 서버와 문자 단위 통신시(비동기식) 사용하는 함수, ex.댓글                 
+            */
+            $("button:eq(0)").click(function(){
+                //<img>요소의 title 속성값 가져오기 (getter:매개변수가 0 또는 1)
+                let title = $("img").attr("title");
+                alert(title);       // <img>에 title="muzi" → muzi가 출력됨
+            });//cli end
+
+            $("button:eq(1)").click(function(){
+                //<img>요소의 src 속성값 변경(이미지변경)
+                $("img").attr("src","../images/k6.png")
+                // <img>에 있는 src의 속성을 ↑로 대입한다 (setter:매개변수가 2)
+            });//cli end
+
+            $("button:eq(2)").click(function(){
+                /* 여러 속성을 한번에 변경하기
+                let obj = {};
+                $("img").attr(obj);
+                → key:value를 중괄호 안에 몰아놓고 변수화해서 그 변수를 대입시킬수도있다. 
+                */
+                let obj = {
+                             width  : 400
+                            ,height : 400
+                            ,src    : "../images/k5.png"
+                            ,alt    : "네오"
+                            ,title  : "NEO"
+                };
+                $("img").attr(obj);
+                
+
+            });//cli end
+
+
+
+        </script>
+    </body>
+</html>
