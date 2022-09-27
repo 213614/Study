@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>12_날짜자동생성(moment종합예제).html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <!-- moment open source import -->
+        <script src="moment-with-locales.min.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>날짜 데이터 자동 생성</h3><hr>
+
+        생년월일 : 
+        <select id="myear"></select>년
+        <select id="mmonth"></select>월
+        <select id="mdate"></select>일
+
+        <script>
+
+            createYM();     // 최초로 함수 한번만 호출
+
+            // 년,월 생성
+            function createYM(){
+                //alert();
+                
+                // Q. 1-12월 생성 후 #mmonth에 추가 
+                /*
+                for(let i=1; i<=12; i++){
+                    $("#mmonth").append("<option value='"+i+"'>"+i+"</option>");
+                }
+                */   
+                // 강사님 → front단의 다이나믹한 구현 
+                for (i=1; i<=12; i++){
+                        //부모.append(자식);
+                    $("#mmonth").append($("<option>").text(i).val(i));
+                        //자식.appendTo(부모); → 부모에게다가 자식을 붙여라 
+                    //$("<option>").text(i).val(i).appendTo("#mmonth");
+                        // → 위 아래 같은 기능 : 편한대로 쓰면 됨
+                }//for end
+
+                // Q. 현재년도 -5 ~ 현재년도 +5까지 출력
+                 /*
+                 let now = moment();
+
+                $("<option>").text(now.year()).appendTo("#myear");  //2022 (현재)
+                
+                for(i=5; i>=1; i--){        
+                $("<option>").text(now.subtract(1, "years").format("YYYY")).appendTo("#myear");
+                    // 2022-2017
+                }
+                 */
+
+                
+                // 강사님
+                let cYear = moment().year();
+                for(i=cYear-5; i<=cYear+5; i++){
+                    // 현재 년도를 기본으로 보여주기 (selected)
+                    if(i==cYear){
+                        $("#myear").append($("<option>").text(i).val(i).attr("selected","selected"));
+                        //= $("#myear").append($("<option>").text(i).val(i).prop("selected",true));
+                        //                                                   ↑
+                        //= $("#myYear").append($("<option selected>").text(y).val(y));
+                    }else {
+                        $("#myear").append($("<option>").text(i).val(i));
+                    }//if end
+                }
+               
+                // year,month가 다 완성이 되면 ↓ createDate함수를 호출하며 creatYM()을 끝낸다
+                createDate();
+
+            }//creatYM() end
+
+            // 일 생성
+            function createDate(){
+
+                // ★ 기존의 '일' 출력된 값 지우기 (누적되지않도록)
+                $("#mdate").empty();
+
+                // text() : 일반적인 요소의 문자열 값을 얻어올 때
+                // val()  : <input>, <select>, <textarea> 등 폼과 관련된 값(컨트롤 요소)을 얻어올 때
+                
+                // #myear에서 사용자가 선택한 년도 가져오기
+                var year =$("#myear").val();
+                //alert(year);
+
+                // #mmonth에서 사용자가 선택한 월 가져오기
+                var month = $("#mmonth").val();
+                //alert(month);
+
+                // endOf() : 해당 년도와 해당 월의 마지막 일을 얻어온다 
+                let endDay = moment(year + "-" + month).endOf("month").date();
+                //alert(endDay);
+
+                // #mdate 출력 → 사용자가 년과 월을 변경했을때 change 이벤트 발생 → 해당 월에 맞게 endDay가 바뀐다.     
+                for(i=1; i<=endDay; i++){
+                    $("#mdate").append($("<option>").text(i).val(i));
+                }
+            }//createD() end
+
+            // 사용자가 년과 월을 변경해서 change 이벤트 발생시 일 생성 함수 재호출
+            $("#myear, #mmonth").change(createDate);
+            // = $("myear","mmonth").change("createDate()");   →  Old Version
+            // 단 이벤트 발생할때마다 일수가 누적됨 → 기존에 데이터가 있다면 지운 다음에 새로 출력하면됨 → createDate() 맨 처음에 데이터 지우는 코드 추가
+
+            // Q. 만일 연도를 2017(현재년도-5)선택한다면 앞에 열개 연도를 추가하기 = selected된 년도 기준으로 ~ 
+        </script>
+    </body>
+</html>

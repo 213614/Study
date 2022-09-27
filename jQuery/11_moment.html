@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>11_moment.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <!-- moment open source import -->
+        <script src="moment-with-locales.min.js"></script>
+
+        <style>
+            #time {
+                     margin: 70px;
+                     text-align: center;
+                     font-size: 20px;
+                     font-weight: bold;
+            }
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>Moment</h3><hr>
+        <h1 id="time"></h1>
+
+        <script>
+        /*
+            자바 스크립트 기반 오픈소스 인기 순위 https://stats.js.org/
+        
+            ● moment.js 
+             - 자바 스크립트의 내장 객체 Date()의 복잡성을 단순, 다양하게 사용하기 위한 JS기반 오픈소스
+             - https://momentjs.com/
+        
+
+        // 1. JS
+        let now   = new Date();
+        
+        let year  = now.getFullYear();
+        let month = now.getMonth()+1;
+        let date  = now.getDate();
+
+        let hour  = now.getHours();
+        let min   = now.getMinutes();
+        let sec   = now.getSeconds();
+
+        let fullData = "";
+        fullData += year + "년 " + month + "월 " + date + "일　";
+        fullData += hour + "시 " + min   + "분 " + sec + "초";
+
+        $("#time").text(fullData);
+        */
+
+        // 2. moment
+        let now = moment();    // moment library 시작
+        /* 확인용
+        alert(now.year());
+        alert(now.month()+1);
+        alert(now.date());
+        alert(now.day());
+        */
+        
+        moment.locale("ko");   // 한글 날짜 형식으로 지정
+        var fullData = now.format("YYYY년MM월DD일 HH:MM:SS");
+        $("#time").text(fullData);
+
+        </script>
+    </body>
+</html>

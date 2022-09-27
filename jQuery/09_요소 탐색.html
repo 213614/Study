@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>09_요소 탐색.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <style>
+            table {
+                    border-collapse: collapse;
+                    font: bold 50px Arial, Helvetica, sans-serif;
+                    margin: auto;
+            }
+
+            table td {
+                    padding: 20px 35px;
+            }
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>요소 탐색</h3><hr>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script>
+            // DOM구조에서 원하는 요소까지 이동하고 찾아가는 것 
+           
+            $("td").eq(2).css("background", "lightyellow")
+                    .prev().css("background", "lightgreen")
+                    // = eq(2)의 바로 앞 요소 = eq(1)의 css를 변경해라 
+                    .parent()           // eq(2)의 부모 tr = 첫번째 <tr>
+                    .next()             // eq(2)의 부모 tr의 다음 tr = 두번째 <tr>
+                    .children()         // 두번째 <tr>태그들의 자식들 = 그 안에있는 <td> 4 | 5 | 6 </td>
+                    .eq(1).css("background", "lightblue");
+                    // <td> 4 | 5 | 6 </td> 중 1번째(0부터 카운트) = 5의 css 변경
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>13_아날로그시계.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <!-- moment open source import -->
+        <script src="moment-with-locales.min.js"></script>
+        <style>
+            #wrap{
+                width:600px;
+                height:600px;
+                position: fixed;        
+                left:50%;
+                top:50%;
+                margin:-300px 0 0 -300px;
+                font-family: bon,sans-serif;
+            }
+
+            #wrap h3{
+                height:80px;
+                font-size:50px;
+                text-align: center;
+                line-height: 80px;
+                font-weight: 700;
+                color:#424242;
+            }
+
+            /* 1) CSS 추가 : 시계 전체 원형 이미지 출력 */
+            #clock{
+                width: 500px; height: 500px;
+                background: url(../images/dddd.png);
+                background-size: 100% 100%;
+                margin: auto;
+                position: relative;
+                box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            #hour { background: url(../images/hour_hand.png); }
+            #min { background: url(../images/minute_hand.png); }
+            #sec { background: url(../images/second_hand.png); }
+
+            .hand { width: 500px; height: 500px; position: absolute; left: 0; top: 0; }
+
+
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <div id="wrap">
+            <h3>아날로그 시계</h3>
+
+            <div id="clock">                           <!-- 시계 전체 이미지 -->
+                <div id="hour" class="hand"></div>     <!-- 시침 이미지 -->
+                <div id="min" class="hand"></div>      <!-- 분침 이미지 -->
+                <div id="sec" class="hand"></div>      <!-- 초침 이미지 -->
+            </div>
+            </div>
+            </div>
+        </div>
+
+        <script>
+            /*
+                Q. 시 | 분 | 초 이미지 각도 꺾기 (360도)  
+                hour : 한바퀴를 12번안에 돌아야함
+                min  : 360도를 60분동안 60초씩 돈다 → 1초당 6도씩 
+                sec  : 한바퀴를 
+            */
+            runtime();           // → 최초로 한번(만) 함수 호출
+            function runtime(){
+                let now  = moment();       // moment.js 시작
+
+                let hour = now.hour();
+                let min  = now.minute();
+                let sec  = now.second();
+
+                //초침 : 60초 360도
+                $("#sec").css("transform", "rotate("+(sec*6)+"deg)");
+
+                //분침 : 60분 360도
+                $("#min").css("transform", "rotate("+(min*6)+"deg)");
+
+                //시침 : 12시 360도
+                //$("#hour").css("transform", "rotate("+(hour*30)+"deg)");
+                // 초에따라 시 분의 바늘도 미세한 움직임이 필요하다 = 0.5*min을 더한다 (360 /12 = 30(시침)/60 = 0.5)
+                // (360 /12 = 30(시침)/60(분침) = 0.5) | (360 / 60 = 60(분침)/60(초침) = 0.1)
+                $("#hour").css("transform", "rotate("+(30*hour+0.5*min)+"deg)");
+                
+
+
+            }// run end
+
+            // 1초마다 반복적(주기적)으로 함수 호출
+            setInterval(runtime,1000);
+
+            //setTimeout("location.reload()",1000);   → 페이지 새로고침
+
+
+        </script>
+    </body>
+</html>
