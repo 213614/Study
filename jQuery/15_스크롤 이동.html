@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>15_스크롤 이동.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <link rel = "stylesheet" href="../css/reset.css">
+        <style>
+            @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+            html {  overflow-y: scroll;  }
+            body {  font:14px 'Nanum Gothic',dotum, sans-serif; margin:0;  }
+            
+            .hide {  
+                    width:0; height:0;
+                    margin:0; padding:0;
+                    border:0;
+                    font-size:0;
+                    line-height:0;
+                    overflow: hidden;
+                    visibility: hidden;
+            }
+            
+            #footer {  
+                    border-top:1px solid #00BCD4;
+                    width:1000px; height:300px;
+                    text-align: center;
+                    color:#00BCD4;
+                    line-height: 100px;
+            }
+            
+            #topBtn a {
+                    position: fixed;
+                    bottom:10px;
+                    margin-left:1010px;
+                    display: block;
+                    width:50px; height:50px; border-radius: 25px;
+                    background:#81c2a4;
+                    color:#fff;
+                    font-size:20px; font-weight: bold;
+                    box-shadow:0 0 4px rgb(107, 107, 107);
+                    text-align:center; text-decoration: none;
+                    line-height:50px;
+                    opacity: .5; 
+            }       
+            #topBtn a:hover {  opacity: 1;  }
+            
+            #wrap {  width:1000px; margin: auto; border:1px solid #81c2a4;  }
+            
+            #header {  
+                    width:1000px; height:122px;
+                    position: fixed; top:0;
+                    background:rgb(255, 255, 255);
+            }
+            #header>h1 {
+                    height:70px;
+                    text-align: center; font-size:36px; font-weight:bold;
+                    color:#81c2a4;
+                    line-height:70px;
+            }
+            
+            #nav {
+                    height:50px;
+                    border:1px solid #81c2a4;
+                    border-left:none; border-right:none;
+                    text-align: center;
+            }   
+            #nav li {  display: inline-block; margin: 0 3px 0 3px;  }
+            #nav li a {
+                    display:block;
+                    padding:0 10px 0 10px;
+                    height:50px;
+                    line-height:50px;
+                    color:#81c2a4;
+                    font-size:17px; font-weight:bold;
+                    text-decoration: none;
+            }
+            #nav li a:hover {
+                    background:#81c2a4;
+                    color:#fff;
+                    text-decoration: underline;
+                    opacity: 1;
+                }
+            #nav li .now a {
+        /*→ id="nav" 안에 <li> 중 class="now"가 있는 <a>태그의 CSS */
+                    background:#81c2a4;
+                    color:#fff;
+            }
+
+            #content {
+                    width:1000px;
+                    min-height:400px;
+                    padding-top:121px;
+                    color:#fff;
+            }
+            #content h2 {
+                    font-size:200px;
+                    font-weight:bold;
+                    text-align: center;
+            }
+
+            #box1 {  width:1000px; height:600px; background: lightcoral;  }
+            #box1 h2 {  line-height:600px;  }
+
+            #box2 {  width:1000px; height:1000px; background:lightgray;  }
+            #box2 h2 {  line-height:1000px;  }
+
+            #box3 {  width:1000px; height:400px; background: lightsalmon;  }
+            #box3 h2 {  line-height:400px;  }
+
+            #box4 {  width:1000px; height:800px; background: lightblue;  }
+            #box4 h2 {  line-height:800px;  }
+
+            #box5 {  width:1000px; height:1200px; background: lightpink;  }
+            #box5 h2 {  line-height:1200px;  }
+                
+
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <!--<h3>스크롤 이동</h3><hr>-->
+
+        <div id="wrap">
+
+            <div id="header">
+                <h1>로고</h1>
+                <div id="nav">
+                    <h2 class="hide"> 메인 메뉴 </h2>
+                    <ul>
+                        <li class="now"><a href=""> 박스 1 보기 </a></li>
+                        <li><a href=""> 박스 2 보기 </a></li>
+                        <li><a href=""> 박스 3 보기 </a></li>
+                        <li><a href=""> 박스 4 보기 </a></li>
+                        <li><a href=""> 박스 5 보기 </a></li>
+                    </ul>
+                </div>
+            </div>     <!-- #header end -->
+            
+            <div id="content">
+                <div id="box1"><h2> 박스 1 </h2></div>
+                <div id="box2"><h2> 박스 2 </h2></div>
+                <div id="box3"><h2> 박스 3 </h2></div>
+                <div id="box4"><h2> 박스 4 </h2></div>
+                <div id="box5"><h2> 박스 5 </h2></div>
+            </div>    <!-- #content end -->
+
+            <div id="footer">
+                &copy; 2022 ITwill
+            </div>     <!-- #footer end -->
+
+            <div id="topBtn">
+                <a href="#wrap"> TOP </a>
+            </div>     <!-- #topBtn end -->
+
+        </div>                          <!-- #wrap end -->
+
+        <script>
+            $("#nav li").click(function(e){ //→ e(매개변수) : 클릭 이벤트르 받는 객체 
+                //alert("test");
+                //alert(e);
+
+                /*
+                reset.css → 기본으로 깔려있는 html속성을 지우고 내가 원하는 대로 조정하려고 사용한다
+                .preventDefault() → 브라우저가 가진 앵커태그의 기본 기능을 막아놓고 내가 동작을 조정할 수 있다 
+                                    (<a></a>의 기본 동작 방지, 클릭해도 reload되지않음)
+                                  → 앵커태그의 기능은 사용하지만 어디론가 이동하고싶지는 않을때 사용한다 
+                */
+                e.preventDefault();
+
+                // 사용자가 클릭한 li요소의 index값(순서값) 가져오기
+                let idx = $(this).index();
+                //alert(idx);
+
+                /*
+                // 각 #box1-5의 top 여백 
+                alert($("#box1").offset().top);     // 122
+                alert($("#box2").offset().top);     // 722
+                alert($("#box3").offset().top);
+                alert($("#box4").offset().top);
+                alert($("#box5").offset().top);
+                */
+                let bTop = $("#box"+(idx+1)).offset().top;
+                //                      인덱스는 0부터 시작이니까 +1을해준다
+                
+                // 스크롤 애니메이션 처리 
+                // ※ $("body") → 브라우저(크롬,엣지 등)마다 body를 처리하는 객체가 다르므로 다른 브라우저에서는 구동되지않을수있다
+                $("body, html").animate({scrollTop:bTop-122}, 300);  
+                // 122 → #box1.offset().top;       |            300 → 속도
+
+            });
+    </script>
+
+    </body>
+</html>
