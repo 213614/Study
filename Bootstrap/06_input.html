@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>06_input.html</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+         
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3></h3><hr>
+        <!-- 참조 https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp 
+                  https://www.w3schools.com/bootstrap/bootstrap_forms_inputs2.asp  -->
+
+
+        <h1>Input Group Button</h1>
+        <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+        <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+        <form action="/action_page.php">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="search">
+            <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+
+
+        <h2>Form control: input</h2>
+        <p>The form below contains two input elements; one of type text and one of type password:</p>
+        <form>
+            <div class="form-group">
+            <label for="usr">Name:</label>
+            <input type="text" class="form-control" id="usr">
+            </div>
+            <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+            </div>
+        </form>
+
+
+        <h2>Form control: checkbox</h2>
+        <p>The form below contains three checkboxes. The last option is disabled:</p>
+        <form>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Option 1</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Option 2</label>
+          </div>
+          <div class="checkbox disabled">
+            <label><input type="checkbox" value="" disabled>Option 3</label>
+          </div>
+        </form>
+        
+
+        <h2>Form control: inline radio buttons</h2>
+        <p>The form below contains three inline radio buttons:</p>
+        <form>
+            <label class="radio-inline">
+            <input type="radio" name="optradio" checked>Option 1
+            </label>
+            <label class="radio-inline">
+            <input type="radio" name="optradio">Option 2
+            </label>
+            <label class="radio-inline">
+            <input type="radio" name="optradio">Option 3
+            </label>
+        </form>
+
+
+        <h2>Form control: select</h2>
+        <p>The form below contains two dropdown menus (select lists):</p>
+        <form>
+          <div class="form-group">
+            <label for="sel1">Select list (select one):</label>
+            <select class="form-control" id="sel1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+            <br>
+            <label for="sel2">Mutiple select list (hold shift to select more than one):</label>
+            <select multiple class="form-control" id="sel2">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </form>
+
+
+        <h2>Form control: textarea</h2>
+        <p>The form below contains a textarea for comments:</p>
+        <form>
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </form>
+
+
+        <h2>Horizontal form with static control</h2>
+        <form class="form-horizontal" action="/action_page.php">
+          <div class="form-group">
+            <label class="control-label col-sm-2">Email:</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">someone@example.com</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-10">          
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+            </div>
+          </div>
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+        </form>
+    </body>
+</html>
