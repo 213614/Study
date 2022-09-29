@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--
+                - 모든 장치에서 웹사이트를 잘 보이게 하기 위해 뷰포트 설정
+                - Desktop, Tablet, Mobile등 각 장비에 따라서 반응
+                - 반응형 웹이 적용되려면 추가해야 함
+        -->
+        <title>01_Bootstrap 시작.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+        <div style = "padding: 0px 0px 0px 10px;"> <!-- 위 오른쪽 아래 왼쪽 - 시계방향 -->
+        <h3>Bootstrap</h3><hr>
+
+        참조 : https://www.w3schools.com/bootstrap/bootstrap_ver.asp <br>
+        　　　https://www.w3schools.com/bootstrap/bootstrap_get_started.asp <br><br>
+
+        ● Bootstrap <br><br>
+        - HTML, CSS, JavaScript Framework (구조화시켜놓은 문서) <br>
+        - Bootstrap 3·4·5 (우린 3위주)<br>
+        - 웹페이지개발시 front단(UI단,view단)을 구현하기 위한 무료 오픈소스 <br>
+        - 주로 CSS, 레이아웃, 반응형 웹(Media query)구현 시 많이 사용한다 <br>
+        → Bootstrap에서 Mediaquery를 구현한 시스템 = grid <br>
+        - Web-App <br><br>
+        
+        ● Bootstrap 사용 방법 <br><br>
+        1) 직접 링크(CDN) <br>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+       
+        2) 라이브러리 다운로드 <br>
+        https://getbootstrap.com/docs/5.2/getting-started/download/ <br>
+        → Compiled CSS and JS → Download <br><br>
+
+        ※ Bootstrap사용시 meta태그로 viewport를 꼭 작성해두어야한다 <br>
+        → 사용자의 환경에 맞는 반응형 웹 구성 태그 <br>
+</div>
+    </body>
+</html>
