@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>10_Grid.html</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .b{border: solid 1px black;}
+        </style>
+         
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>Grid</h3><hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 b"> 오 필승 </div>
+                <div class="col-xs-6 b"> 코리아 </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 b"> 오 필승 </div>
+                <div class="col-xs-4 b"> 오 필승 </div>
+                <div class="col-xs-4 b"> 오 필승 </div>
+            </div>
+
+            <hr>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 b">진달래</div>
+                    <div class="col-sm-6 b">개나리</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 b"> 개나리 </div>
+                    <div class="col-sm-4 b"> 개나리 </div>
+                    <div class="col-sm-4 b"> 개나리 </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 b">국어</div>
+                    <div class="col-md-6 b">영어</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 b"> 미술 </div>
+                    <div class="col-md-4 b"> 음악 </div>
+                    <div class="col-md-4 b"> 체육 </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 b">HTML</div>
+                    <div class="col-lg-6 b">CSS</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 b"> DATABASE </div>
+                    <div class="col-lg-4 b"> JAVA </div>
+                    <div class="col-lg-4 b"> PYTHON </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 칼럼의 합이 12개 미만인 경우 : 모자란 것만큼 여백이 생김 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 b"> 미술 </div>
+                <div class="col-md-2 b"> 음악 </div>
+                <div class="col-md-3 b"> 체육 </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 칼럼의 합이 12개 초과인 경우 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 b"> 미술 </div>
+                <div class="col-md-5 b"> 음악 </div>
+                <div class="col-md-5 b"> 체육 </div>
+                <!-- error는 아니지만 초과된 칼럼은(체육) 아랫줄로 넘어감 -->
+            </div>
+            <div class="row">
+                <div class="col-md-15 b"> 미술 </div>
+                <div class="col-md-5 b"> 음악 </div>
+                <div class="col-md-5 b"> 체육 </div>
+                <!-- 초과되는 시점(미술)부터 단독화되어서 아랫줄로 넘어감 -->
+            </div>
+        </div>
+ 
+        <hr>
+
+        <!-- 스크린 사이즈를 혼합해서 사용할 수도 있다 : 각 기기 환경에 맞는 사이즈가 적용된다-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 b"> AA </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 b"> BB </div>
+                <div class="col-lg-3 col-md-4 col-sm-12 b"> CC </div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>11_Responsive.html</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .b{border: solid 1px black;}
+        </style>
+    </head>
+                                                                                                                                                                                                     
+    <body>
+
+        <h3>Responsive</h3><hr>
+        <!--
+             ● responsive util
+                - visible-mode mode일때 보이기
+                - hidden-mode  mode일때 숨기기
+                - offset-sm-4  빈여백으로 남김
+        -->
+        visible - mode
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 b"> JAVA </div>
+                <div class="col-md-6 b visible-md"> PYTHON </div>
+                <!-- md모드일때만 화면에 노출된다 (=992px이하일때는 화면에 노출되지 않음) -->
+                <div class="col-md-3 b"> ORACLE </div>
+            </div>
+        </div>
+        
+        <hr>
+
+        hidden-mode
+        <div class="container-fluid">
+            <div class="row hidden-md">
+            <!-- md모드일때 화면에 숨겨짐 (= 992px 이상이 되면 hidden) -->
+                <div class="col-md-3 b"> 대한민국 </div>
+                <div class="col-md-6 b"> 오 필승 </div>
+                <div class="col-md-3 b"> 코리아 </div>
+            </div>
+        </div>
+
+        <hr>
+ 
+        offset-mode : 공간을 빈 여백으로 남겨놓음 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 b"> 개나리 </div>
+                <div class="col-md-4 b"> 진달래 </div>
+                <div class="col-md-4 b"> 라일락 </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 b"> 개나리 </div>
+                <div class="col-md-4 b"> 라일락 </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 b"> 개나리 </div>
+                <div class="col-md-offset-4 b"> 라일락 </div>
+            </div>
+        </div>
+
+        <hr>
+
+        row 안에 row 중복사용 가능
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 b"> JAVA </div>
+                <div class="col-md-6 b">
+                    <!-- 칸의 크기인 6칸 내에서 새로운 줄로 또 나눌 수 있다 
+                         (※6칸 크기 내지만 새로운 줄이기때문에 12칸을 기준으로 삼아야한다)-->
+                    <div class="row">
+                        <div class="col-md-4 b"> HTML </div>
+                        <div class="col-md-4 b"> CSS </div>
+                        <div class="col-md-4 b"> jQuery </div>
+                    </div>
+                </div>
+                <div class="col-md-3 b"> ORACLE </div>
+            </div>
+        </div>
+
+    </body>
+</html>

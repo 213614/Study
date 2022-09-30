@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>12_myweb intro.html</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!--layout.css import--> 
+        <!--rel="stylesheet"이여야 import됨 바꾸면 오류남 -->
+        <link rel="stylesheet" href="layout.css">  
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>     
+
+        <script>   
+          let ctnt=[];      
+          ctnt[0]= '<img src="/images/b324.png" width="85px">'
+          ctnt[1]= '<img src="/images/c9bf.png" width="85px">'
+          ctnt[2]= '<img src="/images/8d40.png" width="85px">'
+          ctnt[3]= '<img src="/images/숀더쉽.png" width="85px">'
+          ctnt[4]= '<img src="/images/53e9.png" width="85px">'
+          ctnt[5]= '<img src="/images/e7c9.png" width="85px">'
+
+          function start(){
+
+              for (let i=0; i<ctnt.length; i++){
+                  document.write("<div id='area"+ i + "'style='position: absolute; top:5px; left:"+ (i*200)+"px;'>");
+                  document.write(ctnt[i]);
+                  document.write("</div>"); 
+              }
+              
+              setTimeout(scroll, 2000);
+
+          }//start() end
+                              
+          function scroll(){
+             for(let i=0; i<ctnt.length; i++){
+                  let tmp = document.getElementById("area"+i).style; 
+                  tmp.left = parseInt(tmp.left) - 10 + "px";
+                  if (parseInt(tmp.left) <= -200) {
+                      tmp.left = parseInt(tmp.left) + (ctnt.length*200) + "px";
+                  }
+              }        
+             timer = setTimeout(scroll, 300);                              
+          }//scroll() end
+          
+       
+          var timer;              
+          function killtime(){  
+              clearTimeout(timer);
+          }
+      </script>
+      <script>
+        function showtime(){
+            const d=new Date();
+            let today="";
+        
+            today += d.getFullYear() + "."; // 년.
+
+            if ((d.getMonth()+1)<10) {          // 월.
+            today += "0"+(d.getMonth()+1)+".";  
+            } else { today += (d.getMonth()+1)+"."; }
+
+            
+            today += ((d.getMonth()+1)<10) ? "0"+(d.getMonth()+1)+"." : (d.getMonth()+1)+"." ;
+
+            today += d.getDate()+" ";       // 일.
+
+            const days=["일","월","화","수","목","금","토"];
+            today += "("+days[d.getDay()]+")"+" ";  // 요일
+
+
+            today += d.getHours() >= 12 ? 'PM'+" " : 'AM'+" ";
+
+
+            today += d.getHours() > 13 ? (d.getHours() - 12 )+":" : d.getHours() +":";
+
+            today += d.getMinutes() < 10 ? '0' + d.getMinutes()+":" : d.getMinutes()+":";
+            
+            today += (d.getSeconds() < 10 ? "0"+(d.getSeconds()) : d.getSeconds());
+
+            document.getElementById("clock").innerText=today;     
+
+            timer=setTimeout(showtime, 1000);           
+        }//showtime() end
+      </script>
+    </head>
+
+    <body onunload="killtime()">
+          
+          <!-- Navbar:메인 카테고리 시작 -->
+          <nav class="navbar navbar-default">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">HOME</a>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">게시판</a></li>
+                  <li><a href="#">공지사항</a></li>
+                  <li><a href="#">로그인</a></li>
+                  <li><a href="#">포토갤러리</a></li>
+                  <li><a href="#">메일보내기</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+<!-- Content 시작 -->
+          <!-- First Container -->
+          <div class="container-fluid bg-1 text-center">
+            <h3 class="margin">환영합니다</h3>
+            <img src="/images/ea8f.png" class="img-responsive margin" style="display:inline" alt="Bird" width="350" height="350">
+            <h3>Shaun the Sheep</h3>
+          </div><!-- 1 con end -->
+          
+          <!-- Second Container -->
+          <div class="container-fluid bg-2 text-center">
+              <div class="row">
+                  <!-- 본문 시작 -->
+                  <div id="mydiv">
+                    <script>start();</script>
+                  </div>
+                  <div id="clock">
+                    <script>showtime();</script>
+                  </div>
+                  <!-- 본문 종료 -->
+              </div><!-- row end -->
+          </div><!-- 2 con end -->
+<!-- Content 끝 -->
+
+          <!-- Footer -->
+          <footer class="container-fluid bg-4 text-center">
+                Copyright &copy; 2022 MyWeb 
+          </footer>
+          
+    </body>
+</html>
