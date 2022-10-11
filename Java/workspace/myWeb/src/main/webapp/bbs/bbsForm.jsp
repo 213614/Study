@@ -6,7 +6,8 @@
 		<p><a href="bbsList.jsp">목록</a></p>
 	
 		<div class="container">
-		<form name="bbsfrm" id="bbsfrm" method="post" action="bbsIns.jsp">
+		<form name="bbsfrm" id="bbsfrm" method="post" action="bbsIns.jsp" onsubmit="return bbsCheck()">
+						      <!-- 제대로 입력되었는지 확인 후 서버로 submit → myscript.js에 함수 작성 -->
 			<table class="table">
 				<tr>
 				   <th class="success">작성자</th>
