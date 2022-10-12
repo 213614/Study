@@ -26,7 +26,7 @@
     color: #fff;
   }
   .container-fluid {
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 30px;
   }
   .navbar {
@@ -49,3 +49,15 @@
     opacity: 0.6;
     padding-top: 2%;
   }
+  
+  .lith {
+  	text-align : center;
+  	font-size : medium;
+  	color : gray;
+  }
+  
+  .ti {
+  	width: 250px;
+  }
+  
+ 
