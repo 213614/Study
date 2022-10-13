@@ -1,3 +1,7 @@
+
+
+
+
 /**
  * 
  */
@@ -65,7 +69,17 @@
 	
 }//pwC()end
 
-
+ function searchCheck(){
+	// 검색어를 입력해야만 서버로 접속
+	let word = document.getElementById("word").value;
+	word = word.trim();
+	if(word.length==0){
+		alert("검색어를 입력해주세요.");
+		return false;
+	}// if end
+	
+	return true;
+}//searchCh()end
 
 
 
