@@ -1,7 +1,3 @@
-
-
-
-
 /**
  * 
  */
@@ -81,12 +77,101 @@
 	return true;
 }//searchCh()end
 
+ function loginCheck() {
+	// 로그인 유효성 검사
+	
+	// ①. id 5-10글자 이내인지 검사
+	let id = document.getElementById("id").value;
+	id = id.trim(); 
+	if (!(id.length>=5 && id.length<=10)) {
+        alert("아이디는 5-10자 이내로 입력해주세요.");
+	    document.getElementById("id").focus();
+	    return false;
+    }//if end
+		
+	// ②. pw 5-10글자 이내인지 검사
+	let passwd = document.getElementById("passwd").value;
+	passwd = passwd.trim(); 
+	if (!(passwd.length>=5 && passwd.length<=10)) {
+        alert("비밀번호는 5-10자 이내로 입력해주세요.");
+	    document.getElementById("passwd").focus();
+	    return false;
+    }//if end
+    
+	return true;
+}//loginCh() end
+  
+ function idCheck() {
+	// 아이디 중복 확인
 
+	// ● 모달창 → 부모창과 자식창이 한 몸으로 구성되어 있음 = 자식창을 close하지않는이상 부모창엔 클릭 못함
+	// https://www.w3schools.com/bootstrap/bootstrap_modal.asp
+	
+	// ● 새창 → 부모창창과 자식창이 별개로 구성되어 있음 = 자식창과 상관없이 부모창 클릭 가능
+	// https://www.w3schools.com/jsref/met_win_open.asp
+	// window.open("파일명", "새창이름", "다양한 옵션들");
+	window.open("idCheckForm.jsp", "idwin", "width=400, height=350");
+	
+	
+}//idCh() end
 
+ function emailCheck() {
+	// 이메일 중복 확인
+	
+	window.open("emailCheckForm.jsp","emailwin","width=400, height=350");
+	
+}//emailCh() end
 
+ function memberCheck(){
+	// 회원가입 유효성 검사
+	
+	// ①. 아이디 5~10글자 인지?
+	let id = document.getElementById("id").value;
+	id = id.trim(); 
+	if (!(id.length>=5 && id.length<=10)) {
+        alert("아이디는 5-10자 이내로 입력해주세요.");
+	    document.getElementById("id").focus();
+	    return false;
+    }//if end
+    
+    // ②. 비밀번호 5~10글자 인지?
+	let passwd = document.getElementById("passwd").value;
+	passwd = passwd.trim(); 
+	if (!(passwd.length>=5 && passwd.length<=10)) {
+        alert("비밀번호는 5-10자 이내로 입력해주세요.");
+	    document.getElementById("passwd").focus();
+	    return false;
+    }//if end
+	
+    // ③. 비밀번호와 비밀번호확인이 서로 일치하는지?
+	let repasswd = document.getElementById("repasswd").value;
+	repasswd = repasswd.trim();
+	if(passwd != repasswd) {
+        alert("비밀번호가 서로 일치하지 않습니다.");
+	    document.getElementById("repasswd").focus();
+	    return false;
+	}
+	
+    // ④. 이름 2글자 이상 인지?
+    let mname = document.getElementById("mname").value;
+    mname = mname.trim();
+    if (mname.length < 2) {
+        alert("이름은 2글자 이상 입력해주세요.");
+	    document.getElementById("mname").focus();
+	    return false;
+	}
 
-
-
+    // ⑤. 이메일이 입력되었는가 
+	let email = document.getElementById("email").value;
+    email = email.trim();
+    if (email.length <= 0) {
+        alert("이메일을 입력해주세요.");
+	    document.getElementById("mname").focus();
+	    return false;
+	}
+	
+	return true;
+}//memCh() end
 
 
 
