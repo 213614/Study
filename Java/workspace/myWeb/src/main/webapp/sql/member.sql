@@ -75,16 +75,23 @@ FROM member
 WHERE id = 'user1' AND passwd = '12341234' AND mlevel IN ('A1','B1','C1','D1') ;
 -- 선택된 레코드가 없습니다. (= 'user1'은 탈퇴한 회원=F1등급이니까)
 
+-------------------------------------------------------------------------------
 
+-- 아이디 중복 확인
+-- 무엇을 조회하느냐 중요 일반적으로 count(*)를 많이한다 
+--→ id는 PK라 count(*) = 1라면 이미 아이디가 존재한다는 뜻 
+SELECT COUNT(id) AS cnt
+FROM member
+WHERE id = ?;
 
+-- 이메일 중복 확인도 똑같음
+SELECT COUNT(email) AS cnt
+FROM member
+WHERE email = ?;
 
-
-
-
-
-
-
-
+-- 회원가입 
+INSERT INTO member (id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', sysdate);
 
 
 
