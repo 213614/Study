@@ -8,8 +8,8 @@
 	// 1. 작성자 확인 ex. 작성자명 두글자 이상 입력시 true 
 	let wname = document.getElementById("wname").value;
 	wname = wname.trim(); 
-	if (wname.length<2) {
-        alert("작성자명은 두글자 이상 입력해주세요.");
+	if (wname.length<1) {
+        alert("작성자명은 한글자 이상 입력해주세요.");
 	    document.getElementById("wname").focus();
 	    return false;
     }//if end
@@ -174,7 +174,19 @@
 }//memCh() end
 
 
+ function findID() {
+	// 아이디 찾기 
 
+	window.open("findID.jsp", "findIDwin", "width=400, height=350");
+
+}//findID() end
+
+ function findPW() {
+	// 비밀번호 찾기 
+
+	window.open("findPW.jsp", "findPWwin", "width=400, height=350");
+
+}//findPW() end
 
 
 
