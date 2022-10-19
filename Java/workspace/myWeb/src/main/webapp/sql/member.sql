@@ -93,16 +93,36 @@ WHERE email = ?;
 INSERT INTO member (id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) 
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', sysdate);
 
+-------------------------------------------------------------------------------
 
+-- ID찾기 
+-- 이름과 이메일을 받아서 일치되면 화면에 아이디 띄워주기 
+SELECT id 
+FROM member
+WHERE mname = ? AND email = ?
 
+SELECT id 
+FROM member
+WHERE mname = '햄스터' AND email = 'hamster@itwill.com' ;
 
+-- PW찾기
+-- 아이디와 이메일을 받음 → 계정에 있으면 랜덤번호 10자리 발생 → 해당 랜덤 비밀번호를 UPDATE 
+-- → 그 비밀번호를 해당 계정 이메일로 전송 → '등록된 이메일 계정으로 임시 비밀번호를 발급해드렸습니다.' 띄우기
+UPDATE member
+SET passwd = ? 
+WHERE id = ? AND email = ?; 
 
+UPDATE member
+SET passwd = '랜덤10자리' 
+WHERE id = '햄스터' AND email = 'hamster@itwill.com' ;
 
+UPDATE member
+SET passwd = '12341234' 
+WHERE id = 'saemm' AND email = 'saemmm614@naver.com' ;
 
-
-
-
-
+UPDATE member
+SET mlevel = 'A1' 
+WHERE id = 'saemm' AND email = 'saemmm614@naver.com' ;
 
 
 
