@@ -110,7 +110,7 @@ WHERE mname = '햄스터' AND email = 'hamster@itwill.com' ;
 -- → 그 비밀번호를 해당 계정 이메일로 전송 → '등록된 이메일 계정으로 임시 비밀번호를 발급해드렸습니다.' 띄우기
 UPDATE member
 SET passwd = ? 
-WHERE id = ? AND email = ?; 
+WHERE id = ? AND email = ?
 
 UPDATE member
 SET passwd = '랜덤10자리' 
@@ -123,6 +123,30 @@ WHERE id = 'saemm' AND email = 'saemmm614@naver.com' ;
 UPDATE member
 SET mlevel = 'A1' 
 WHERE id = 'saemm' AND email = 'saemmm614@naver.com' ;
+
+-------------------------------------------------------------------------------
+-- 10/20 강사님 sql
+
+-- 아이디 / 비밀번호 찾기 연습용 데이터 행 추가 (확인 가능한 이메일 주소로 정확히 작성)
+INSERT INTO member (id, passwd, mname, tel, email, mlevel, mdate) 
+VALUES ('saemm', '12341234', '관리자', '010-0000-0000','saemmm614@naver.com', 'A1', sysdate);
+
+commit;
+
+-- 아이디 / 비밀번호 찾기 
+-- ① 이름과 이메일이 일치하면 id 가져오기
+SELECT id
+FROM member 
+WHERE mname = ? AND email = ?
+
+-- ② 임시 비밀번호를 발급해서 테이블 수정하기
+UPDATE member 
+SET passwd = ?
+WHERE mname = ? AND email = ?
+
+
+
+
 
 
 
