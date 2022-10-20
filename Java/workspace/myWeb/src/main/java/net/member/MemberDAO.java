@@ -236,17 +236,18 @@ public class MemberDAO {	 // Data Access Object : DB 접근 객체
 				
 				Session sess = Session.getInstance(props, myAuth);
 				
-			    String to 	  = email;
-			    String from    = "hansam0385@gmail.com";
-			    String subject = "임시 비밀번호 발급 안내";
+			    String to 	   = email;
+			    String from    = "webmaster@itwill.co.kr";
+			    String subject = "[MyWeb] 임시 비밀번호 발급 안내";
 			    String content = "";
 			    
 			    content = Utility.convertChar(content);
 			    
-				content = id + "님에게 발급된 임시 비밀번호입니다. <br><br>";
+				content = "<br>" + id + "님에게 발급된 임시 비밀번호입니다. <br><br>";
 				content += "<strong style='font-size:30px;'>";
 				content += generatedString;
-				content += "</strong>";
+				content += "</strong><br><br>";
+				content += "※ 임시 비밀번호로 로그인 한 후, 회원 정보 수정에서 비밀번호 수정바랍니다.";
 				
 				InternetAddress [] address = { new InternetAddress(to) };
 				
@@ -270,5 +271,104 @@ public class MemberDAO {	 // Data Access Object : DB 접근 객체
 		
 		return cnt; 
 	}//findPW() end
+	
+	/* 아이디,비밀번호 찾기 강사님 함수 */
+	public boolean T_findid(MemberDTO dto) {
+		boolean flag = false;	// 아래 try문이 정상적으로 실행됐을때만 true로 변환한다.
+		
+		try {
+			  con = dbopen.getConnection();
+			
+			  sql = new StringBuilder();
+			  
+			  // 이름과 이메일이 일치하는 아이디 조회
+			  sql.append(" SELECT id  ");
+			  sql.append(" FROM member ");
+			  sql.append(" WHERE mname = ? AND email = ? ");
+			  
+			  pstmt = con.prepareStatement(sql.toString());
+			  pstmt.setString(1, dto.getMname());
+			  pstmt.setString(2, dto.getEmail());
+			  
+			  rs = pstmt.executeQuery();
+			  if(rs.next()) {
+				  // 이름과 이메일이 일치하는 회원이라면 → 임시 비밀번호와 아이디를 이메일로 전송해준다
+				  String id = rs.getString("id"); 			   // 아이디 불러오기
+				  
+				  // 임시 비밀번호 10자리 문자열 생성 : 대문자 + 소문자 + 숫자  : 배열에 몰아넣기(원하는 글자 추가 가능 : 특문 추가)
+				  String [] ch = {
+						  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","V","Q","R","S","T","U","V","W","X","Y","Z"
+						 ,"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"
+						 ,"0","1","2","3","4","5","6","7","8","9"
+						 ,"!","~","&","%","$","#","@","^","*"
+				  }; //ch[0]~ch[70] 
+				  
+				  // ch배열에서 랜덤하게 10글자 뽑아서 가져오기
+				  StringBuilder imsiPW = new StringBuilder(); 	// 임시 비밀번호 변수 
+				  for(int i=0; i<10; i++) {
+					  int num = (int)(Math.random()*ch.length);
+					  imsiPW.append(ch[num]);
+				  }// for end
+				  
+				  // 위에서 생성된 임시 비밀번호로 테이블 수정하기 
+				  // sql은 delete해도되고 다시 new S~로 메모리할당 새로 해도 됨
+				  sql = new StringBuilder();
+				  sql.append(" UPDATE member ");
+				  sql.append(" SET passwd = ? ");
+				  sql.append(" WHERE mname = ? AND email = ? ");
+	
+				  pstmt = con.prepareStatement(sql.toString());
+				  pstmt.setString(1, imsiPW.toString());
+				  pstmt.setString(2, dto.getMname());
+				  pstmt.setString(3, dto.getEmail());
+				  
+				  int cnt = pstmt.executeUpdate();
+				  if (cnt == 1) {
+					  //임시 비밀번호로 테이블 수정이 되었다면 아이디+비밀번호 이메일로 전송
+					  String content = "※ 임시 비밀번호로 로그인 한 후, 회원 정보 수정에서 비밀번호를 수정해주세요.";
+					  content += "<hr>";
+					  content += "<table border='1'>";
+					  content += "	<tr>";
+					  content += "		<th> 아이디 </th>";
+					  content += "		<td>" + id + "</td>";
+					  content += "	</tr>";
+					  content += "	<tr>";
+					  content += "		<td> 임시 비밀번호 </td>";
+					  content += "		<td>"+ imsiPW.toString() +"</td>";
+					  content += "	</tr>";
+					  content += "</table>";
+					  
+					  String mailServer = "mw-002.cafe24.com";
+					  Properties props = new Properties();
+					  props.put("mail.smtp.host", mailServer );
+					  props.put("mail.smtp.auth", true);
+					  Authenticator myAuth = new MyAuthenticator();	
+					  Session sess = Session.getInstance(props, myAuth);
+					  
+					  InternetAddress [] address = { new InternetAddress(dto.getEmail()) } ;
+					  Message msg = new MimeMessage(sess);
+					  msg.setRecipients(Message.RecipientType.TO, address);
+					  msg.setFrom(new InternetAddress("webmaster@itwill.co.kr"));
+					  msg.setSubject("[myweb] 아이디/비밀번호 입니다.");
+					  msg.setContent(content, "text/html; charset=UTF-8");
+					  msg.setSentDate(new Date());
+					  Transport.send(msg);
+					  
+					  flag=true; // 여기까지 모두 완료했다면 true로 바꿔서 반환(성공시 true)
+				  }//if end
+				  
+			  } else {
+				  flag = false;     //기본 설정이 false라 상관없지만 적어줌 
+			  }//if end
+			  
+			  
+		}catch(Exception e) {
+			System.out.println("아이디/비번찾기 실패 : " + e);
+		}finally {
+			DBClose.close(con, pstmt, rs);
+		}//try end
+		
+		return flag;
+	}//T_findid() end
 	
 }//DAO end
