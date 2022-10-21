@@ -71,7 +71,7 @@
 	out.println("<strong style='font-size:30px;'> " + s_id + "</strong> 님 <br>");
 	out.println("<a href='logout.jsp'>로그아웃</a>");
 	out.println("&nbsp;&nbsp;");
-	out.println("<a href='memberModify.jsp'>회원정보수정</a>");
+	out.println("<a href='memberModify.jsp?id="+ s_id +"'>회원정보수정</a>");
 	out.println("&nbsp;&nbsp;");
 	out.println("<a href='memberWithdraw.jsp'>탈퇴</a>");
 	
