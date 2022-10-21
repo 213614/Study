@@ -188,8 +188,73 @@
 
 }//findPW() end
 
+ function findIDCheck(){
+	// 아이디,비밀번호찾기(강사님)
+	
+	
+}//findIDCheck() end 
 
+ function pdsCheck(){
+	// 포토갤러리 이미지만 업로드할 수 있게 제약 = 파일 이름에서 substring으로 확장자명만 뜯어서 이미지파일인지 확인(.jsp, .png 등)
+	//								 → oop0908.Test04_Quiz.java 참조
+		
+	// ①. 작성자 1글자이상 입력 필수
+	let wname = document.getElementById("wname").value;
+	wname = wname.trim(); 
+	if (wname.length<1) {
+        alert("작성자명은 한글자 이상 입력해주세요.");
+	    document.getElementById("wname").focus();
+	    return false;
+    }//if end
+    
+	// ②. 제목 1글자이상 입력 필수
+	let subject = document.getElementById("subject").value;
+	subject = subject.trim(); 
+	if (subject.length<2) {
+        alert("제목은 두글자 이상 입력해주세요.");
+	    document.getElementById("subject").focus();
+	    return false;
+    }//if end
+    
+	// ③. 비밀번호 4글자이상 필수
+	let passwd = document.getElementById("passwd").value;
+	passwd = passwd.trim(); 
+	if (passwd.length<4 || isNaN(passwd)) {
+						// isNaN() : 매개변수가 숫자인지 검사하는 함수 (=Not a Number) : 문자일 경우 true을 반환 (숫자는 false반환)
+        alert("비밀번호는 4글자 이상 숫자로만 입력해주세요.");
+	    document.getElementById("passwd").focus();
+	    return false;
+    }//if end
+	
+	
+	// ④. 이미지 첨부파일인지 제한  (.png / .jpg / .gif → html문서에서 출력되는 이미지 확장자만, 더 추가해도 되긴하는데 화면에 안뜰수도있음)
+	let filename = document.getElementById("filename").value;
+    filename = filename.trim();
+    if(filename.length == 0) {
+	// 이미지를 첨부하지 않았음 
+        alert("파일이 첨부되지않았습니다.");
+	    return false;
+	}else{
+		//filename 변수값에서 마지막 .의 순서값 가져오기 
+		let dot = filename.lastIndexOf(".");	// .의 인덱스값을 dot에 저장
+		
+		//확장명 뽑기 : 마지막 .의 인덱스값(dot)이후의 문자열들만 불러오면 됨
+		let ext = filename.substr(dot+1);
+		
+		//확장명을 전부 소문자로 변환
+		ext = ext.toLowerCase();
+		
+		//확장자명이 이미지파일이라면 서버로 전송 아니라면 알림창 띄우고 false
+		if(ext.equals("png") || ext.equals("jpg") || ext.equals("gif") || ext.equals("heif")) {
+			return true;
+		} else {
+			alert("이미지 파일만 전송 가능합니다. (.png/.jpg /.gif)");
+			return false;
+		}//if end
 
+	}//if end
+    
+}//pdsCh() end
 
 
 
