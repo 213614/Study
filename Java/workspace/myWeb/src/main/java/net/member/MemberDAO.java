@@ -371,4 +371,48 @@ public class MemberDAO {	 // Data Access Object : DB 접근 객체
 		return flag;
 	}//T_findid() end
 	
+	public MemberDTO read (String id) {
+		MemberDTO dto = null;
+		
+		try {
+				  con = dbopen.getConnection();
+					
+				  sql = new StringBuilder();
+				  sql.append(" SELECT * ");
+				  sql.append(" FROM member ");
+				  sql.append(" WHERE id = ? ");
+				 
+				  pstmt = con.prepareStatement(sql.toString());
+				  pstmt.setString(1, id);
+				  
+				  rs = pstmt.executeQuery();
+				  
+				  if(rs.next()) {
+					  
+					  dto = new MemberDTO();
+					  dto.setId(rs.getString("id"));
+					  dto.setPasswd(rs.getString("passwd"));
+					  dto.setMname(rs.getString("mname"));
+					  dto.setTel(rs.getString("tel"));
+					  dto.setEmail(rs.getString("email"));
+					  dto.setZipcode(rs.getString("zipcode"));
+					  dto.setAddress1(rs.getString("address1"));
+					  dto.setAddress2(rs.getString("address2"));
+					  dto.setJob(rs.getString("job"));
+					  dto.setMlevel(rs.getString("mlevel"));
+					  dto.setMdate(rs.getString("mdate"));
+
+				  }else { dto = null; }//if end
+	
+		}catch(Exception e) {
+			System.out.println("회원 정보 불러오기 실패 : " + e);
+		}finally{
+			DBClose.close(con, pstmt, rs);
+		}//try end
+		
+		
+		return dto;
+	}//read() end
+	
+	
 }//DAO end
