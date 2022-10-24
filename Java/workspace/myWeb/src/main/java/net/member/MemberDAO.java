@@ -390,17 +390,17 @@ public class MemberDAO {	 // Data Access Object : DB 접근 객체
 				  if(rs.next()) {
 					  
 					  dto = new MemberDTO();
-					  dto.setId(rs.getString("id"));
-					  dto.setPasswd(rs.getString("passwd"));
-					  dto.setMname(rs.getString("mname"));
-					  dto.setTel(rs.getString("tel"));
-					  dto.setEmail(rs.getString("email"));
-					  dto.setZipcode(rs.getString("zipcode"));
+					  dto.setId      (rs.getString("id"));
+					  dto.setPasswd  (rs.getString("passwd"));
+					  dto.setMname   (rs.getString("mname"));
+					  dto.setTel     (rs.getString("tel"));
+					  dto.setEmail   (rs.getString("email"));
+					  dto.setZipcode (rs.getString("zipcode"));
 					  dto.setAddress1(rs.getString("address1"));
 					  dto.setAddress2(rs.getString("address2"));
-					  dto.setJob(rs.getString("job"));
-					  dto.setMlevel(rs.getString("mlevel"));
-					  dto.setMdate(rs.getString("mdate"));
+					  dto.setJob     (rs.getString("job"));
+					  dto.setMlevel  (rs.getString("mlevel"));
+					  dto.setMdate   (rs.getString("mdate"));
 
 				  }else { dto = null; }//if end
 	
@@ -409,10 +409,76 @@ public class MemberDAO {	 // Data Access Object : DB 접근 객체
 		}finally{
 			DBClose.close(con, pstmt, rs);
 		}//try end
-		
-		
+			
 		return dto;
 	}//read() end
 	
+	public int ModifyUpdateProc(MemberDTO dto) {
+		int cnt = 0;
+		
+		try {
+				con = dbopen.getConnection();
+				
+				sql = new StringBuilder();
+				sql.append(" UPDATE member  ");
+				sql.append(" SET passwd = ? ");
+				sql.append("    ,mname = ? ");
+				sql.append("    ,email = ? ");
+				sql.append("    ,tel = ? ");
+				sql.append("    ,zipcode = ? ");
+				sql.append("    ,address1 = ? ");
+				sql.append("    ,address2 = ? ");
+				sql.append("    ,job = ? ");
+				sql.append(" WHERE id = ? ");
+
+				
+				pstmt = con.prepareStatement(sql.toString());
+				
+				pstmt.setString(1, dto.getPasswd());
+				pstmt.setString(2, dto.getMname());
+				pstmt.setString(3, dto.getEmail());
+				pstmt.setString(4, dto.getTel());
+				pstmt.setString(5, dto.getZipcode());
+				pstmt.setString(6, dto.getAddress1());
+				pstmt.setString(7, dto.getAddress2());				
+				pstmt.setString(8, dto.getJob());
+				pstmt.setString(9, dto.getId());
+				
+				cnt = pstmt.executeUpdate();
+				
+		} catch(Exception e) {
+			System.out.println("수정 실패 : " + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		}//try() end
+		
+		return cnt;
+	}//MUP() end
+	
+	public int withdrawProc (MemberDTO dto) {
+		int cnt = 0;
+		
+		try {
+				con = dbopen.getConnection();
+				
+				sql = new StringBuilder();
+				sql.append(" UPDATE member ");
+				sql.append(" SET mlevel = 'F1' ");
+				sql.append(" WHERE id = ? AND passwd = ? ");			
+				
+				pstmt = con.prepareStatement(sql.toString());
+				pstmt.setString(1, dto.getId());
+				pstmt.setString(2, dto.getPasswd());
+				
+				cnt = pstmt.executeUpdate();
+				
+		}catch(Exception e) {
+			System.out.println("탈퇴 실패 : " + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		}//try end
+		
+		return cnt;
+	}//withP() end
 	
 }//DAO end
