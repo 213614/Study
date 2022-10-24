@@ -16,16 +16,16 @@
 		
 		<table class="table table-condensed">
 				<tr>
-				   <td><input type="text" name="wname" id="wname" placeholder="작성자" class="form-control" maxlength="20" required ></td>
-				   <td><input type="password" name="passwd" id="passwd" placeholder="비밀번호" class="form-control" maxlength="10" required></td>
+				   <td style="border-top:none;"><input type="text" name="wname" id="wname" placeholder="작성자" class="form-control" maxlength="20" required ></td>
+				   <td style="border-top:none;"><input type="password" name="passwd" id="passwd" placeholder="비밀번호" class="form-control" maxlength="10" required></td>
 				</tr>
 				
 				<tr>
-				   <td colspan="2"><input type="text" name="subject" id="subject"  placeholder="제목" class="form-control" maxlength="100" required></td>
+				   <td colspan="2" style="border-top:none;"><input type="text" name="subject" id="subject"  placeholder="제목" class="form-control" maxlength="100" required></td>
 				</tr>
 				
 				<tr>
-				   <td colspan="2"><textarea rows="10"  class="form-control" name="content" id="content" placeholder="내용"></textarea></td>
+				   <td colspan="2" style="border-top:none;"><textarea rows="10"  class="form-control" name="content" id="content" placeholder="내용"></textarea></td>
 				</tr>
 		</table>		
 			
