@@ -20,7 +20,7 @@ public class BbsDAO {
 	public BbsDAO() {
 		dbopen = new DBOpen();
 	}
-	
+	 
 	public int create (BbsDTO dto) {
 		
 		int cnt = 0;
@@ -30,9 +30,10 @@ public class BbsDAO {
 				con = dbopen.getConnection();
 			
 				sql = new StringBuilder();
-				sql.append(" INSERT INTO tb_bbs (bbsno, wname, subject, content, passwd, ip, grpno) ");
-				sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, (SELECT nvl(max(bbsno),0)+1 FROM tb_bbs)) ");
-				
+				// mariaDB
+				sql.append(" INSERT INTO tb_bbs(wname,subject,content,grpno,passwd,ip,regdt)");
+			    sql.append(" VALUES(?, ?, ?, (SELECT ifnull(max(bbsno),0)+1 FROM tb_bbs as TB),?,?,now())");
+			      
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setString(1, dto.getWname());
 				pstmt.setString(2, dto.getSubject());
@@ -43,7 +44,7 @@ public class BbsDAO {
 				cnt = pstmt.executeUpdate();
 				
 		}catch(Exception e) {
-			System.out.println("추가 실패 : " + e);
+			System.out.println("작성 실패 : " + e);
 		}finally {
 			DBClose.close(con, pstmt);
 		}//try end
@@ -152,17 +153,17 @@ public class BbsDAO {
 			 		
 			 		dto = new BbsDTO();
 			 		
-			 		dto.setBbsno(rs.getInt("bbsno"));
-			 		dto.setWname(rs.getString("wname"));
+			 		dto.setBbsno  (rs.getInt("bbsno"));
+			 		dto.setWname  (rs.getString("wname"));
 			 		dto.setSubject(rs.getString("subject"));
 			 		dto.setContent(rs.getString("content"));
-			 		dto.setPasswd(rs.getString("passwd"));
+			 		dto.setPasswd (rs.getString("passwd"));
 			 		dto.setReadcnt(rs.getInt("readcnt"));
-			 		dto.setRegdt(rs.getString("regdt"));
-			 		dto.setGrpno(rs.getInt("grpno"));
-			 		dto.setIndent(rs.getInt("indent"));
-			 		dto.setAnsnum(rs.getInt("ansnum"));
-			 		dto.setIp(rs.getString("ip"));
+			 		dto.setRegdt  (rs.getString("regdt"));
+			 		dto.setGrpno  (rs.getInt("grpno"));
+			 		dto.setIndent (rs.getInt("indent"));
+			 		dto.setAnsnum (rs.getInt("ansnum"));
+			 		dto.setIp     (rs.getString("ip"));
 			 		
 			 	}else { dto = null; }//if end
 	
@@ -317,8 +318,12 @@ public class BbsDAO {
 				sql.delete(0, sql.length()); 	// 0번째부터 마지막글자까지 지우기(2단계때 작성한 sql문 삭제)
 				
 				// ③. 답변 글 추가 (insert문)
-				sql.append(" INSERT INTO tb_bbs(bbsno, wname, subject, content, passwd, ip, grpno, indent, ansnum) ");
-				sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ? ) ");
+				//sql.append(" INSERT INTO tb_bbs(bbsno, wname, subject, content, passwd, ip, grpno, indent, ansnum) ");
+				//sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ? ) ");
+				
+				//mariaDB
+				sql.append(" INSERT INTO tb_bbs(wname, subject, content, passwd, ip, grpno, indent, ansnum, regdt)");
+			    sql.append(" VALUES(?,?,?,?,?,?,?,?,now())");
 				
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setString(1, dto.getWname());
@@ -490,23 +495,28 @@ public class BbsDAO {
 				  // 검색어가 없을 경우 = 검색하지 않는 경우의 페이징 
 				  sql.append(" SELECT *  ");
 				  sql.append(" FROM (  ");
-				  sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum AS r  ");
+				  //sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum AS r  ");
+				  sql.append(" 		SELECT bbsno, grpno, subject, wname, readcnt, indent, regdt, @ROWNUM := @ROWNUM + 1 as rowNum  ");
 				  sql.append(" 		FROM ( ");
-				  sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt ");
-				  sql.append(" 				FROM tb_bbs ");
+				  sql.append(" 				SELECT bbsno, grpno, subject, wname, readcnt, indent, regdt ");
+				  sql.append(" 				FROM tb_bbs, (SELECT @ROWNUM :=0) A ");
 				  sql.append(" 				ORDER BY grpno DESC, ansnum ASC ");
-				  sql.append(" 		) ");
-				  sql.append(" ) ");
-				  sql.append(" WHERE r >="+ startRow +" AND r <=" + endRow);
+				  //sql.append(" 		) ");
+				  //sql.append(" ) ");
+				  sql.append(" 		)AA ");
+				  sql.append(" )BB ");
+				  //sql.append(" WHERE r >="+ startRow +" AND r <=" + endRow);
+				  sql.append(" WHERE rowNum >="+ startRow +" AND rowNum <=" + endRow );
 
 				}else {
 				  // 검색하는 결과 페이징 	
 				  sql.append(" SELECT * ");
 				  sql.append(" FROM ( ");
-				  sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum AS r ");
+				  //sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum AS r ");
+				  sql.append(" 		SELECT bbsno, grpno, subject, wname, readcnt, indent, regdt, @ROWNUM := @ROWNUM + 1 as rowNum  ");
 				  sql.append(" 		FROM ( ");
-				  sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt ");
-				  sql.append(" 				FROM tb_bbs ");
+				  sql.append(" 				SELECT bbsno, grpno, subject, wname, readcnt, indent, regdt ");
+				  sql.append(" 				FROM tb_bbs, (SELECT @ROWNUM :=0) A ");
 				  
 				  //sql.append(" 				WHERE ? LIKE '%?%' ");
 										    if(word.length()>=1) {
@@ -531,9 +541,12 @@ public class BbsDAO {
 											 }//if end
 										    
 				  sql.append(" 				ORDER BY grpno DESC, ansnum ASC ");
-				  sql.append(" 		) ");
-				  sql.append(" ) ");
-				  sql.append(" WHERE r >="+ startRow +" AND r <=" + endRow);
+				  //sql.append(" 		) ");
+				  //sql.append(" ) ");
+				  sql.append(" 		)AA ");
+				  sql.append(" )BB ");
+				  //sql.append(" WHERE r >="+ startRow +" AND r <=" + endRow);
+				  sql.append(" WHERE rowNum >="+ startRow +" AND rowNum <=" + endRow );
 				  
 				}//if end
 
@@ -555,6 +568,7 @@ public class BbsDAO {
 							dto.setReadcnt(rs.getInt("readcnt"));
 							dto.setRegdt(rs.getString("regdt"));
 							dto.setIndent(rs.getInt("indent"));
+							dto.setGrpno(rs.getInt("grpno"));
 							list.add(dto);
 
 					}while(rs.next()); 	
@@ -571,54 +585,49 @@ public class BbsDAO {
 		
 		return list;
 	}//list3() end
+
 	
+   public int replycnt(int grpno) {
+	     
+	   	int replycnt = 0;
+	      
+	   	try {
+	         con = dbopen.getConnection();
+	         
+	         sql=new StringBuilder();
+	        
+	         sql.append(" SELECT reply ");
+	         sql.append(" FROM ( ");
+	         sql.append("     SELECT BB.subject, AA.reply , BB.grpno ");
+	         sql.append("     FROM ( ");
+	         sql.append("         SELECT grpno, count(*)-1 AS reply ");
+	         sql.append("         FROM tb_bbs ");
+	         sql.append("         GROUP BY grpno ");
+	         sql.append("     )AA JOIN tb_bbs BB ");
+	         sql.append("         ON AA.grpno = BB.grpno ");
+	         sql.append("     WHERE BB.indent = 0 ");
+	         sql.append("     ORDER BY BB.grpno DESC ");
+	         sql.append(" )CC ");
+	         sql.append(" WHERE grpno = ? ");
+
+			 pstmt = con.prepareStatement(sql.toString());
+			 pstmt.setInt(1, grpno);
+			 
+		     rs = pstmt.executeQuery();
+		         
+		     if(rs.next()) {
+		    	 replycnt = rs.getInt("reply");
+		     }//if end
+	         
+	      } catch (Exception e) {
+	         System.out.println("댓글 조회 실패 :" + e);
+	      }finally {
+	         DBClose.close(con, pstmt, rs);
+	      }//end
+	   	
+	      return replycnt;
+	   }//replycnt() end
 	
-	public int test(BbsDTO dto) {
-		int cnt=0;
-		
-		try {
-			con = dbopen.getConnection();
-			
-			sql = new StringBuilder();
-			
-			//sql.append(" SELECT nvl(max(indent),0) ");
-			//sql.append("FROM tb_bbs ");
-			//sql.append(" WHERE grpno = ? ");
-			//sql.append(" GROUP BY grpno ");
-			
-			sql.append(" SELECT BB.subject, AA.reply ");
-			sql.append(" FROM ( ");
-			sql.append(" 		SELECT grpno, count(*)-1 AS reply ");
-			sql.append(" 		FROM tb_bbs ");
-			sql.append(" 		GROUP BY grpno ");
-			sql.append(" )AA JOIN tb_bbs BB ");
-			sql.append(" 	ON AA.grpno = BB.grpno ");
-			sql.append(" WHERE BB.indent = 0 ");
-			sql.append(" ORDER BY BB.grpno DESC ");
-
-			pstmt = con.prepareStatement(sql.toString());
-
-			rs = pstmt.executeQuery(); 		
-			
-			if (rs.next()) {
-				
-				do {
-						// 커서가 가리키는 한 행(줄) = 한 사람의 모든 정보를 저장한다 
-						dto = new BbsDTO();
-						dto.setIndent(rs.getInt("indent"));
-
-				}while(rs.next()); 	
-			cnt = pstmt.executeUpdate();
-			}
-			
-			}catch(Exception e) {
-				System.out.println("수정 실패 : " + e);
-			}finally {
-				DBClose.close(con, pstmt, rs);;
-			}
-		
-	return cnt;	
-	}//test end
 	
 	
 	
