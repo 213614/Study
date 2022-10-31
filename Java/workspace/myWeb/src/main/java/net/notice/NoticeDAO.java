@@ -28,8 +28,12 @@ public class NoticeDAO {
 				con = dbopen.getConnection();
 			
 				sql = new StringBuilder();
-				sql.append(" INSERT INTO notice (noticeno, subject, content, regdt) ");
-				sql.append(" VALUES (noticeno_seq.nextval, ?, ?, sysdate) ");
+				//sql.append(" INSERT INTO notice (noticeno, subject, content, regdt) ");
+				//sql.append(" VALUES (noticeno_seq.nextval, ?, ?, sysdate) ");
+				
+				//maria DB
+				sql.append(" INSERT INTO notice(subject , content, regdt) ");
+				sql.append(" VALUES ( ? , ? ,now()) ");
 				
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setString(1, dto.getSubject());
@@ -65,23 +69,23 @@ public class NoticeDAO {
 				  // 검색어가 없을 경우 = 검색하지 않는 경우의 페이징 
 				  sql.append(" SELECT *  ");
 				  sql.append(" FROM (  ");
-				  sql.append(" 				SELECT noticeno, subject, content, regdt, rownum AS r  ");
+				  sql.append(" 				SELECT noticeno, subject, content, regdt, @ROWNUM := @ROWNUM + 1 as rowNum  ");
 				  sql.append(" 		FROM ( ");
 				  sql.append(" 				SELECT noticeno, subject, content, regdt ");
-				  sql.append(" 				FROM notice ");
+				  sql.append(" 				FROM notice, (SELECT @ROWNUM :=0) A ");
 				  sql.append(" 				ORDER BY noticeno DESC ");
-				  sql.append(" 		) ");
-				  sql.append(" ) ");
-				  sql.append(" WHERE r >="+ startRow +" AND r <=" + endRow);
+				  sql.append(" 		)AA ");
+				  sql.append(" )BB ");
+				  sql.append(" WHERE rowNum >="+ startRow +" AND rowNum <=" + endRow);
 
 				}else {
 				  // 검색하는 결과 페이징 	
 				  sql.append(" SELECT * ");
 				  sql.append(" FROM ( ");
-				  sql.append(" 				SELECT noticeno, subject, content, regdt, rownum AS r ");
+				  sql.append(" 				SELECT noticeno, subject, content, regdt, @ROWNUM := @ROWNUM + 1 as rowNum ");
 				  sql.append(" 		FROM ( ");
 				  sql.append(" 				SELECT noticeno, subject, content, regdt ");
-				  sql.append(" 				FROM notice ");
+				  sql.append(" 				FROM notice, (SELECT @ROWNUM :=0) A ");
 										    if(word.length()>=1) {
 												  String search = "";
 												  if (col.equals("subject_content")) {
@@ -96,9 +100,9 @@ public class NoticeDAO {
 											 }//if end
 										    
 				  sql.append(" 				ORDER BY noticeno DESC ");
-				  sql.append(" 		) ");
-				  sql.append(" ) ");
-				  sql.append(" WHERE r >="+ startRow +" AND r <=" + endRow);
+				  sql.append(" 		)AA ");
+				  sql.append(" )BB ");
+				  sql.append(" WHERE rowNum >="+ startRow +" AND rowNum <=" + endRow);
 								  
 				}//if end
 
