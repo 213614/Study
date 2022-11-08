@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- JDBC.xml : 데이터 베이스 연동 -->
+<!-- DBOpen class + DAO class = JDBC.xml -->
+
+<configuration>
+	
+	<!-- 클래스에 대한 별칭 부여 (안에 <typeAlias> 여러개 가능) -->
+	<typeAliases>
+		<typeAlias type="net.mem.MemDTO" alias="memDTO"/>
+		<!-- = net.mem패기지 안에 MemDTO라는 클래스를 주고받는 전송객체(g·setter)로 지정하고 이름은 memDTO라고 하겠다 -->
+	</typeAliases>
+
+
+	<!-- environments : DB연동 관련 태그 -->
+    <environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC"/>
+         <dataSource type="POOLED">
+      	    <!-- Oracle DB 연결 정보(DBOpne class) -->
+            <property name="driver"    value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="url"       value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="username"  value="system"/>
+            <property name="password"  value="1234"/>
+         </dataSource>
+      </environment>
+    </environments>
+    
+    <!-- SQL 문법 관련 태그 = SQL문을 작성해놓은 .xml문서(DAO class) -->
+    <!-- 안에 <mapper> 여러개 가능 -->
+    <mappers>
+       <mapper resource="config/mem.xml"/>
+    </mappers>
+</configuration>

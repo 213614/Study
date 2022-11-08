@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mem.xml -->
+<!-- 실행할 SQL문을 정의해놓은 파일(DAO class) -->
+<!-- ※ 종결문자 = 세미콜론 = ; 이 들어가지 않도록 주의!(생략필수) -->
+
+<!--       ↓ namespace는 테이블 이름과 동일하게 주는 경우가 많다 -->
+<mapper namespace="mem">
+
+	<!--     ↓ 해당 쿼리문의 id      ↓ 매개변수 타입 지정(전송객체로 지정해놓은 것 작성) : HashMap을 정말 많이 사용한다 -->
+	<insert id="insertRow" parameterType="memDTO">
+		INSERT INTO mem (num, name, age)
+		VALUES (mem_seq.nextval, #{name}, #{age})
+		
+		<!-- 
+		     물음표 기호를 대신하는 문법 = 파라미터 바인딩(값을 넣어주는 것) 표기법 : #{property} 
+		       → VALUES (mem_seq.nextval, ?, ?)
+		       = VALUES (mem_seq.nextval, #{name}, #{age})
+		-->
+		
+	</insert>
+	
+	<select id="selectAll" resultMap="rs">
+		SELECT num , name, age
+		FROM mem
+		ORDER BY num DESC
+	</select>	
+	
+	<!-- 'ResultSet(rs)에다가 담고 행값을 한 줄씩 DTO에 불러와서 ArrayList에 담아서 조회된 결과를 화면에 출력'과 똑같은 태그 
+		 = DTO에 담은 객체를 매핑하는 것 -->
+	<resultMap type="net.mem.MemDTO" id="rs">
+		<result column="num"  property="num"/>
+				<!-- ﻿ num이라는 칼럼은 MemDTO에 있는 num 속성(변수)에 대입해주세요 라는 뜻 -->
+		<result column="name" property="name"/>
+		<result column="age"  property="age"/>
+	</resultMap>
+					               <!--  = java.util.HashMap : 해쉬맵은 이렇게 작성  -->
+	<update id="updateRow" parameterType ="net.mem.MemDTO">
+		UPDATE mem
+		SET name = #{name}
+		   ,age  = #{age}
+		WHERE num = #{num}
+	</update> 
+							         <!--   ↓ 아래 ${a}라는 매개변수(넘겨받는 값 30)의 자료형 -->
+	<delete id="deleteRow" parameterType ="int">
+		<!-- SQL문에서 특수문자 < > / 등을 사용해야하는 경우 <![CDATA[]]> 안에 쿼리문 작성한다(주석 주의) -->
+	   <![CDATA[
+
+		DELETE FROM mem
+		WHERE age >= ${a}
+	   ]]>   	  <!-- ↑ 매개변수(이름은 원하는대로 지정) 위의 parameterType이 이 매개변수의 자료형이 된다 -->
+	   
+	</delete>
+	
+		<!-- ↓ 자주 사용하는 SQL문을 저장해놓고 필요할때마다 조합하여 사용 가능 -->
+			<sql id="tablename">
+				SELECT num , name, age
+				FROM mem
+			</sql>
+			
+			<sql id="sort">
+				ORDER BY num DESC	
+			</sql>
+		<!-- ↑ 자주 사용하는 SQL문을 저장해놓고 필요할때마다 조합하여 사용 가능 -->
+
+   <select id="search" parameterType="String" resultMap="rs">
+      <include refid="tablename"></include>
+   
+      WHERE name LIKE '%' || #{keyword} || '%'
+   
+      <include refid="sort"></include>
+   </select>
+	
+	
+	<select id="selectRead" parameterType="Integer" resultType="net.mem.MemDTO">
+		 <![CDATA[
+		 	SELECT num, name, age
+		 	FROM mem
+		 	WHERE num = #{n}
+		 ]]>
+	</select>
+	
+	<select id="rowCount" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM mem
+	</select>
+
+
+
+
+</mapper>
