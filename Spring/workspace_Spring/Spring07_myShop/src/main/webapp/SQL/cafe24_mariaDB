@@ -1,0 +1,38 @@
+CREATE TABLE mediagroup(
+  mediagroupno int          NOT NULL PRIMARY KEY,
+  title        varchar(100) NOT NULL
+);
+
+
+CREATE TABLE media(
+  mediano      int          NOT NULL PRIMARY KEY,
+  title        varchar(300) NOT NULL,       
+  rdate        datetime     NOT NULL,
+  poster       varchar(50)  DEFAULT 'poster.jpg' NOT NULL,
+  filename     varchar(100) NOT NULL,
+  filesize     bigint       DEFAULT 0 NOT NULL,
+  mview        char(1)      DEFAULT 'Y' NOT NULL,
+  mediagroupno int          NULL
+);
+
+
+
+
+-- 상품테이블
+CREATE TABLE product (
+	 product_code INT	 			NOT NULL PRIMARY KEY
+	,product_name VARCHAR(100)	 	NOT NULL 
+	,description  VARCHAR(2000) 
+	,price		  INT			 	DEFAULT 0
+	,filename	  VARCHAR(500) 
+	,filesize 	  BIGINT		    DEFAULT 0  NULL
+); 
+
+-- 댓글테이블
+CREATE TABLE pcomment (
+	 cno		   NUMBER		 	PRIMARY KEY
+	,pno		   NUMBER		  	NOT NULL 
+	,content       VARCHAR(255)	    NOT NULL 
+	,wname		   VARCHAR(100)	 	NOT NULL 
+	,regdate 	   DATETIME  		NOT NULL
+);

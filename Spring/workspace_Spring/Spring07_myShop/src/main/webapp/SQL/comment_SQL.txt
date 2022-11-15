@@ -1,0 +1,26 @@
+
+-- 상품 댓글 테이블
+CREATE TABLE pcomment (
+	 cno		  NUMBER			PRIMARY KEY			 -- 댓글 번호
+	,pno		  NUMBER			NOT NULL 			 -- 부모글 번호
+	,content      VARCHAR(255)	    NOT NULL 			 -- 댓글 내용
+	,wname		  VARCHAR(100)		NOT NULL 			 -- 작성자
+	,regdate 	  DATE				DEFAULT sysdate 	 -- 작성일
+);
+
+
+CREATE TABLE pcomment (
+	 cno		   NUMBER		 	PRIMARY KEY
+	,pno		   NUMBER		  	NOT NULL 
+	,content       VARCHAR(255)	    NOT NULL 
+	,wname		   VARCHAR(100)	 	NOT NULL 
+	,regdate 	   DATE			 	DEFAULT sysdate 
+);
+
+
+-- 상품 댓글 시퀀스 
+CREATE SEQUENCE pcomment_seq;
+
+commit;
+
+

@@ -1,0 +1,33 @@
+
+-- 상품 테이블
+CREATE TABLE product (
+	 product_code INT	 			PRIMARY KEY
+	,product_name VARCHAR(100)	 	NOT NULL 
+	,description  VARCHAR(2000) 
+	,price		  INT			 	DEFAULT 0
+	,filename	  VARCHAR(500) 
+); 
+
+-- 상품 시퀀스 
+CREATE SEQUENCE product_seq;
+
+commit;
+
+-- 칼럼 추가 쿼리
+-- = ALTER TABLE 테이블이름 ADD 추가할컬럼이름 데이터형(데이터크기) 컬럼속성
+ALTER TABLE product ADD filesize NUMBER DEFAULT 0 NOT NULL;
+
+ALTER TABLE product MODIFY filesize NUMBER DEFAULT 0 NOT NULL;
+
+
+--기본 값 지정
+ALTER TABLE emp MODIFY editid VARCHAR2(5) DEFAULT '1000';
+
+--NOT NULL 지정
+ALTER TABLE emp MODIFY editid VARCHAR2(5) NOT NULL;
+
+--NOT NULL 제거(변경)
+ALTER TABLE product MODIFY filesize NUMBER DEFAULT 0 NULL;
+
+--기본 값 + NOT NULL 지정
+ALTER TABLE emp MODIFY editid VARCHAR2(5) DEFAULT '1000' NOT NULL;
